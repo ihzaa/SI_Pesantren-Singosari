@@ -11,6 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::post('/logincek', 'userController@cek');
+
+Route::get('/login','userController@index')->name('login');
+
+Route::prefix('santri')->group(function () {
+	Route::get('/','userController@santriidx')->name('santriidx');
+
+});
+
+Route::prefix('pengajar')->group(function () {
+	Route::get('/','userController@pengajaridx')->name('pengajaridx');
+
+});
+
+Route::prefix('admin')->group(function () {
+	Route::get('/','userController@adminidx')->name('adminidx');
+
 });

@@ -12,16 +12,16 @@ class kelas extends Model
 
     public function data_per_kelas()
     {
-        return $this->hasMany('App\data_per_kelas');
+        return $this->hasMany('App\data_per_kelas','id_kelas');
     }
 
     public function pembelajaran()
     {
-        return $this->hasMany('App\pembelajaran');
+        return $this->hasMany('App\pembelajaran','id_kelas');
     }
 
     public function khs()
     {
-        return $this->hasMany('App\khs');
+        return $this->hasMany('App\khs','id_kelas');
     }
 }

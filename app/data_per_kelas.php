@@ -12,11 +12,11 @@ class data_per_kelas extends Model
 
     public function kelas()
     {
-        return $this->belongsTo('App\kelas');
+        return $this->belongsTo('App\kelas','id_kelas');
     }
 
     public function santri()
     {
-        return $this->belongsTo('App\santri');
+        return $this->belongsTo('App\santri','id_santri');
     }
 }

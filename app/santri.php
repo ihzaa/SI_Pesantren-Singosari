@@ -12,17 +12,17 @@ class santri extends Model
 
     public function data_per_kelas()
     {
-        return $this->hasMany('App\data_per_kelas');
+        return $this->hasMany('App\data_per_kelas','id_santri');
     }
 
     public function khs()
     {
-        return $this->hasMany('App\khs');
+        return $this->hasMany('App\khs','id_santri');
     }
 
     public function user()
     {
-        return $this->belongsTo('App\user');
+        return $this->belongsTo('App\user','id_user');
     }
 
 }

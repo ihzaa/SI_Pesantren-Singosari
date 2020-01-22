@@ -12,11 +12,11 @@ class pengajar extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\user');
+        return $this->belongsTo('App\user','id_user');
     }
 
     public function pengajar_mata_pelajaran()
     {
-        return $this->hasMany('App\pengajar_mata_pelajaran');
+        return $this->hasMany('App\pengajar_mata_pelajaran','id_pengajar');
     }
 }

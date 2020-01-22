@@ -16,7 +16,6 @@ class CreateTableAdmin extends Migration
         Schema::create('admin', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
-            $table->char('jenis_kelamin',1);
             $table->string('email')->unique();
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('user')->onDelete('cascade');
