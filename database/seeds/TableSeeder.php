@@ -39,9 +39,8 @@ class TableSeeder extends Seeder
             'telp' => '891273712',
             'alamat' => 'tulungageng',
             'tahun_masuk' => '2017',
-            'nama_ibu' => 'mus',
-            'nama_ayah' => 'sunyoto',
-            'telp_orang_tua' => '9080890',
+            'nama_wali' => 'mus',
+            'telp_wali' => '9080890',
             'id_user' => 3,
         ]);
     }

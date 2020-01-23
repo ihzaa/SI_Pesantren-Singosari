@@ -23,9 +23,8 @@ class CreateTableSantri extends Migration
             $table->string('telp');
             $table->string('alamat');
             $table->string('tahun_masuk',4);
-            $table->string('nama_ibu');
-            $table->string('nama_ayah');
-            $table->string('telp_orang_tua');
+            $table->string('nama_wali');
+            $table->string('telp_wali');
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('user')->onDelete('cascade');
         });
