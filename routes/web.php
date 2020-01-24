@@ -33,7 +33,9 @@ Route::prefix('4dm1n')->group(function () {
     Route::get('/downloadexcsvsantri', 'userController@downloadexcsvsantri')->name('exfilecsvsantri');
     #end manage santri
 
+
     Route::get('logout', 'userController@logout')->name('adminlogout');
+
 
     Route::get('/kelola-pengajar', 'userController@adminkelolapengajar')->name('adminkelolapengajar');
     Route::post('/kelola-pengajar/changedata', 'userController@changedatapengajar')->name('admin_ubah_data_pengajar');
@@ -41,6 +43,12 @@ Route::prefix('4dm1n')->group(function () {
     Route::post('/kelola-pengajar/tambahfilepengajar', 'userController@tambahfilepengajar')->name('admin_tambah_file_pengajar');
     Route::post('/kelola-pengajar/hapuspengajar', 'userController@hapuspengajar')->name('admin_hapus_pengajar');
     Route::get('/downloadexcsvpengajar', 'userController@downloadexcsvpengajar')->name('exfilecsvpengajar');
-
     #end manage pengajar
+
+    Route::get('/kelola-pembelajaran','userController@adminkelolapembelajaran')->name('adminkelolapembelajaran');
+    Route::POST('/kelola-pembelajaran/tambah-tahun-ajaran','userController@admin_tambah_tahun_ajaran')->name('admin_tambah_tahun_ajaran');
+    Route::POST('/kelola-pembelajaran/edit-tahun-ajaran','userController@admin_edit_tahun_ajaran')->name('admin_edit_tahun_ajaran');
+    Route::POST('/kelola-pembelajaran/hapus-tahun-ajaran','userController@admin_hapus_tahun_ajaran')->name('admin_hapus_tahun_ajaran');
+
+    #end manage pembelajaran
 });

@@ -512,4 +512,44 @@ class userController extends Controller
     {
         return Response::download(public_path() . '/Downloadable/Contoh File CSV pengajar.csv', 'Contoh File CSV pengajar.csv');
     }
+
+    public function adminkelolapembelajaran()
+    {
+        $sesi_admin = Session::get('adminlogin');
+        $ta = \App\tahun_ajaran::get();
+        if ($sesi_admin)
+            return view('admin.kelolapembelajaran', compact('ta'));
+        else
+            return redirect('/login');
+    }
+
+    public function admin_tambah_tahun_ajaran(Request $request)
+    {
+        DB::table('tahun_ajaran')->insert([
+            'nama' => $request->nama,
+            'semester' => $request->semester
+        ]);
+        Session::flash('color', 'alert-success');
+        Session::flash('pesan', 'Berhasil menambahkan tahun ajaran');
+        return redirect('/4dm1n/kelola-pembelajaran');
+    }
+
+    public function admin_edit_tahun_ajaran(Request $request)
+    {
+        \App\tahun_ajaran::where('id',$request->id)->update([
+            'nama' => $request->nama,
+            'semester' => $request->semester
+        ]);
+        Session::flash('color', 'alert-success');
+        Session::flash('pesan', 'Berhasil merubah tahun ajaran');
+        return redirect('/4dm1n/kelola-pembelajaran');
+    }
+
+    public function admin_hapus_tahun_ajaran(Request $request)
+    {
+        \App\tahun_ajaran::where('id',$request->id)->delete();
+        Session::flash('color', 'alert-success');
+        Session::flash('pesan', 'Berhasil menghapus tahun ajaran');
+        return redirect('/4dm1n/kelola-pembelajaran');
+    }
 }

@@ -19,4 +19,9 @@ class pengajar extends Model
     {
         return $this->hasMany('App\pengajar_mata_pelajaran','id_pengajar');
     }
+
+    public function pengajar_tahun_ajaran()
+    {
+        return $this->hasMany('App\pengajar_tahun_ajaran','id_pengajar');
+    }
 }

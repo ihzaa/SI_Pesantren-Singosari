@@ -122,8 +122,8 @@
             <div class="modal-body">
                 <form class="user" action="{{route('admin_tambah_pengajar')}}" method="POST">
                     @include('Form.formpengajar_atas')
-                    <input type="number" id="nip" class="form-control" id="nip" placeholder="NIP" name="nip" required=""
-                        >
+                    <input type="number" id="nip" class="form-control" id="nip" placeholder="NIP" name="nip"
+                        required="">
                     @include('Form.formpengajar_bawah')
             </div>
         </div>
@@ -199,8 +199,7 @@
                         </div>
                         <div class="col-sm-6">
                             <label for="nis">NIP</label>
-                            <input type="number" class="form-control" id="nip" placeholder="NIS" name="nip"
-                                disabled="">
+                            <input type="number" class="form-control" id="nip" placeholder="NIS" name="nip" disabled="">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -211,19 +210,19 @@
             </div>
         </div>
     </div>
-@endsection
+    @endsection
 
 
-@section('js')
-<!-- Page level plugins -->
-<script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    @section('js')
+    <!-- Page level plugins -->
+    <script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
-<!-- Page level custom scripts -->
-<script src="{{asset('js/demo/datatables-demo.js')}}"></script>
+    <!-- Page level custom scripts -->
+    <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
 
-<script>
-    $('#detailModal').on('show.bs.modal', function (event) {
+    <script>
+        $('#detailModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that trigg  ered the modal
         var modal = $(this)
 
@@ -250,6 +249,6 @@
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
       });
-</script>
+    </script>
 
-@endsection
+    @endsection
