@@ -13,12 +13,18 @@
 	    <!-- Tabs Titles -->
 		<div class="fadeIn first">
 	    	<h3 class="h2">Masuk</h3>
-	    </div>
+        </div>
+        @if(Session::get('pesan'))
+          <div class="alert alert-danger alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{Session::get('pesan')}}
+          </div>
+          @endif
 	    <!-- Login Form -->
 	    <form action="/logincek" method="POST">
 	    	@csrf
-	      <input type="text" id="username" class="fadeIn second" name="username" placeholder="login">
-	      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+	      <input type="text" id="username" class="fadeIn second" name="username" placeholder="login" required="">
+	      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" required="">
 	      <input type="submit" class="fadeIn fourth" value="Masuk">
 	    </form>
 

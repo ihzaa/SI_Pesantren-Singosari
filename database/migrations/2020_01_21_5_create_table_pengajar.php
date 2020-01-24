@@ -16,14 +16,14 @@ class CreateTablePengajar extends Migration
         Schema::create('pengajar', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
-            $table->char('jenis_kelamin',1);
+            $table->string('nip')->unique();
+            $table->set('jenis_kelamin', ['l', 'p']);
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('email');
             $table->string('telp');
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('user')->onDelete('cascade');
-
         });
     }
 

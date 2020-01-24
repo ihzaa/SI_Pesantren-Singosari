@@ -17,12 +17,12 @@ class CreateTableSantri extends Migration
             $table->bigIncrements('id');
             $table->string('nama');
             $table->string('nis')->unique();
-            $table->char('jenis_kelamin',1);
+            $table->set('jenis_kelamin', ['l', 'p']);
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('telp');
             $table->string('alamat');
-            $table->string('tahun_masuk',4);
+            $table->string('tahun_masuk', 6);
             $table->string('nama_wali');
             $table->string('telp_wali');
             $table->unsignedBigInteger('id_user');

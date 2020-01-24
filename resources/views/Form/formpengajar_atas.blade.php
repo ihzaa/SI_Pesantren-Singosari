@@ -6,4 +6,4 @@
     <input type="text" class="form-control" placeholder="Nama" id="nama" name="nama" required="">
   </div>
   <div class="col-sm-6">
-    <label for="nis">NIS <strong>(NIS tidak dapat diubah)</strong></label>
+    <label for="nip">NIP <strong>(NIP tidak dapat diubah)</strong></label>

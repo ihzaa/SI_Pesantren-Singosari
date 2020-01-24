@@ -116,7 +116,6 @@
       </div>
     </div>
   </div>
-</div>
 
 <!-- MODAL TAMBAH -->
 <div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -137,7 +136,6 @@
       </div>
     </div>
   </div>
-</div>
 
 <!-- MODAL MENU TAMBAH -->
 <div class="modal fade" id="tambahModalFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

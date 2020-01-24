@@ -53,7 +53,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Kelola
+        Kelola User
       </div>
 
       <!-- Nav Item - Pages Kelola Santri Menu -->
@@ -67,9 +67,9 @@
 
       <!-- Nav Item - Page Kelola Pengajar Menu -->
       <li class="nav-item {{request()->is('4dm1n/kelola-pengajar') ? 'active open' : ''}}">
-        <a class="nav-link collapsed" href="#" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="{{route('adminkelolapengajar')}}" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-male"></i>
-          <span>Pengejar</span>
+          <span>Pengajar</span>
         </a>
       </li>
 
@@ -78,7 +78,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Addons
+        Kelola Pembelajaran
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->

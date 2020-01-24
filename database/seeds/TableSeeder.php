@@ -12,15 +12,16 @@ class TableSeeder extends Seeder
     public function run()
     {
         DB::table('admin')->insert([
-        	'id' => 1,
+            'id' => 1,
             'nama' => 'ihza',
             'email' => 'ihzaahmad@gmail.com',
             'id_user' => 1,
         ]);
 
         DB::table('pengajar')->insert([
-        	'id' => 1,
+            'id' => 1,
             'nama' => '3K0 5U6eNg',
+            'nip' => '43223423',
             'jenis_kelamin' => 'p',
             'tempat_lahir' => 'tulungageng',
             'tanggal_lahir' => '1999-01-01',
@@ -30,7 +31,7 @@ class TableSeeder extends Seeder
         ]);
 
         DB::table('santri')->insert([
-        	'id' => 1,
+            'id' => 1,
             'nama' => '3V1 F3bR!0n',
             'nis' => '008',
             'jenis_kelamin' => 'p',
