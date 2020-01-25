@@ -525,6 +525,7 @@ class userController extends Controller
 
     public function admin_tambah_tahun_ajaran(Request $request)
     {
+        $this->cekAdminLogin();
         DB::table('tahun_ajaran')->insert([
             'nama' => $request->nama,
             'semester' => $request->semester
@@ -536,7 +537,8 @@ class userController extends Controller
 
     public function admin_edit_tahun_ajaran(Request $request)
     {
-        \App\tahun_ajaran::where('id',$request->id)->update([
+        $this->cekAdminLogin();
+        \App\tahun_ajaran::where('id', $request->id)->update([
             'nama' => $request->nama,
             'semester' => $request->semester
         ]);
@@ -547,9 +549,66 @@ class userController extends Controller
 
     public function admin_hapus_tahun_ajaran(Request $request)
     {
-        \App\tahun_ajaran::where('id',$request->id)->delete();
+        $this->cekAdminLogin();
+        \App\tahun_ajaran::where('id', $request->id)->delete();
         Session::flash('color', 'alert-success');
         Session::flash('pesan', 'Berhasil menghapus tahun ajaran');
         return redirect('/4dm1n/kelola-pembelajaran');
+    }
+
+    public function timeline_tahuna_ajaran(Request $request)
+    {
+        $this->cekAdminLogin();
+        $ta = \App\tahun_ajaran::where('id', $request->id)->first();
+        return view('admin.kelolatahunajaran', compact('ta'));
+    }
+
+    public function adminkelolamatpel()
+    {
+        $this->cekAdminLogin();
+        $mp = \App\mata_pelajaran::get();
+        return view('admin.kelolamatpel', compact('mp'));
+    }
+
+    public function admintambahmatpel(Request $request)
+    {
+        $this->cekAdminLogin();
+
+        DB::table('mata_pelajaran')->insert([
+            'nama' => $request->nama
+        ]);
+
+        Session::flash('color', 'alert-success');
+        Session::flash('pesan', 'Berhasil menambah mata pelajaran');
+        return redirect('/4dm1n/kelola-matpel');
+    }
+
+    public function admineditmatpel(Request $request)
+    {
+        $this->cekAdminLogin();
+        \App\mata_pelajaran::where('id', $request->id)->update([
+            'nama' => $request->nama
+        ]);
+        Session::flash('color', 'alert-success');
+        Session::flash('pesan', 'Berhasil merubah mata pelajaran');
+        return redirect('/4dm1n/kelola-matpel');
+    }
+
+    public function adminhapusmatpel(Request $request)
+    {
+        $this->cekAdminLogin();
+        \App\mata_pelajaran::where('id', $request->id)->delete();
+        Session::flash('color', 'alert-success');
+        Session::flash('pesan', 'Berhasil menghapus mata pelajaran');
+        return redirect('/4dm1n/kelola-matpel');
+    }
+
+    private function cekAdminLogin()
+    {
+        $sesi_admin = Session::get('adminlogin');
+        if ($sesi_admin)
+            return;
+        else
+            return redirect('/login');
     }
 }

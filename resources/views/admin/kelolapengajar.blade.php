@@ -64,19 +64,21 @@
                         <td>{{$s->email}}</td>
                         <td>{{$s->telp}}</td>
                         <td>
-                            <a href="#" data-toggle="modal" data-target="#detailModal"
-                                class="btn btn-info btn-circle btn-sm" title="Detail dan Edit" data-id="{{$s->id}}"
-                                data-nama="{{$s->nama}}" data-nip="{{$s->nip}}" data-jk="{{$s->jenis_kelamin}}"
-                                data-tgl="{{$s->tanggal_lahir}}" data-tmpt="{{$s->tempat_lahir}}"
-                                data-telp="{{$s->telp}}" data-email="{{$s->email}}">
-                                <i class="fas fa-user-edit text-light"></i>
-                            </a>
+                            <div class="row justify-content-center">
+                                <a href="#" data-toggle="modal" data-target="#detailModal"
+                                    class="btn btn-info btn-circle btn-sm" title="Detail dan Edit" data-id="{{$s->id}}"
+                                    data-nama="{{$s->nama}}" data-nip="{{$s->nip}}" data-jk="{{$s->jenis_kelamin}}"
+                                    data-tgl="{{$s->tanggal_lahir}}" data-tmpt="{{$s->tempat_lahir}}"
+                                    data-telp="{{$s->telp}}" data-email="{{$s->email}}">
+                                    <i class="fas fa-user-edit text-light"></i>
+                                </a>
 
-                            <a href="#" data-toggle="modal" data-target="#hapusModal"
-                                class="btn btn-danger btn-circle btn-sm" title="Hapus" data-id="{{$s->id_user}}"
-                                data-nama="{{$s->nama}}" data-nip="{{$s->nip}}">
-                                <i class="fas fa-trash text-light"></i>
-                            </a>
+                                <a href="#" data-toggle="modal" data-target="#hapusModal"
+                                    class="btn btn-danger btn-circle btn-sm" title="Hapus" data-id="{{$s->id_user}}"
+                                    data-nama="{{$s->nama}}" data-nip="{{$s->nip}}">
+                                    <i class="fas fa-trash text-light"></i>
+                                </a>
+                            </div>
                         </td>
                     </tr>
                     @endforeach

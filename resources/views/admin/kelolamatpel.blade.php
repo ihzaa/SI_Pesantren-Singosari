@@ -16,7 +16,7 @@
                 <span class="icon text-white-50">
                     <i class="fa fa-plus"></i>
                 </span>
-                <span class="text">Tambah Tahun Ajaran</span>
+                <span class="text">Tambah Mata Pelajaran</span>
             </a>
         </div>
     </div>
@@ -27,11 +27,6 @@
                     <tr>
                         <th>No</th>
                         <th>Nama</th>
-                        <th>Semester</th>
-                        <th>Jumlah Pengajar</th>
-                        <th>Jumlah Santri</th>
-                        <th>Jumlah Mata Pelajaran</th>
-                        <th>Dibuat Pada</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -39,11 +34,6 @@
                     <tr>
                         <th>No</th>
                         <th>Nama</th>
-                        <th>Semester</th>
-                        <th>Jumlah Pengajar</th>
-                        <th>Jumlah Santri</th>
-                        <th>Jumlah Mata Pelajaran</th>
-                        <th>Dibuat Pada</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
@@ -51,42 +41,19 @@
                     <?php
                             $i = 1;
                         ?>
-                    @foreach($ta as $s)
+                    @foreach($mp as $s)
 
                     <tr>
                         <td>{{$i++}}</td>
                         <td>{{$s->nama}}</td>
                         <td>
-                            <?php
-                            if($s->semester == 'ganjil'){
-                                echo 'Ganjil';
-                            }else{
-                                echo 'Genap';
-                            }
-                            ?>
-                        </td>
-                        <td>{{count($s->pengajar_tahun_ajaran)}}</td>
-                        <td>{{count($s->kelas_tahun_ajaran)}}</td>
-                        <td>{{count($s->mata_pelajaran_tahun_ajaran)}}</td>
-                        <td>{{$s->dibuat}}</td>
-                        <td>
                             <div class="row justify-content-center">
                                 <a href="#" class="btn btn-info btn-circle btn-sm" title="Edit" data-toggle="modal"
-                                    data-target="#editModal" data-id="{{$s->id}}" data-nama="{{$s->nama}}"
-                                    data-semester="{{$s->semester}}">
+                                    data-target="#editModal" data-id="{{$s->id}}" data-nama="{{$s->nama}}">
                                     <i class="fas fa-user-edit text-light"></i>
                                 </a>
-                                <form action="{{route('timeline_tahuna_ajaran')}}" method="POST">
-                                    @csrf
-                                    <input type="hidden" value="{{$s->id}}" name="id">
-                                    <button type="submit" href="#" class="btn btn-success btn-circle btn-sm"
-                                        title="Kelola Tahun Ajaran">
-                                        <i class="fas fa-cog text-light"></i>
-                                    </button>
-                                </form>
                                 <a href="#" class="btn btn-danger btn-circle btn-sm" title="Hapus" data-toggle="modal"
-                                    data-target="#hapusModal" data-id="{{$s->id}}" data-nama="{{$s->nama}}"
-                                    data-nip="{{$s->semester}}">
+                                    data-target="#hapusModal" data-id="{{$s->id}}" data-nama="{{$s->nama}}">
                                     <i class=" fas fa-trash text-light"></i>
                                 </a>
                             </div>
@@ -111,20 +78,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="user" action="{{route('admin_tambah_tahun_ajaran')}}" method="POST">
+                <form class="user" action="{{route('admintambahmatpel')}}" method="POST">
                     @csrf
                     <div class="form-group row">
-                        <div class="col-sm-6">
+                        <div class="col">
                             <label>Nama</label>
                             <input type="text" class="form-control" placeholder="Nama" id="nama" name="nama"
                                 required="">
-                        </div>
-                        <div class="col-sm-6">
-                            <label>Semester</label>
-                            <select class="form-control" name="semester" id="semester">
-                                <option value="ganjil">Ganjil</option>
-                                <option value="genap">Genap</option>
-                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -149,21 +109,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="user" action="{{route('admin_edit_tahun_ajaran')}}" method="POST">
+                <form class="user" action="{{route('admineditmatpel')}}" method="POST">
                     @csrf
                     <input type="hidden" id="id" name="id">
                     <div class="form-group row">
-                        <div class="col-sm-6">
+                        <div class="col">
                             <label>Nama</label>
                             <input type="text" class="form-control" placeholder="Nama" id="nama" name="nama"
                                 required="">
-                        </div>
-                        <div class="col-sm-6">
-                            <label>Semester</label>
-                            <select class="form-control" name="semester" id="semester">
-                                <option value="ganjil">Ganjil</option>
-                                <option value="genap">Genap</option>
-                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -188,18 +141,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="user" action="{{route('admin_hapus_tahun_ajaran')}}" method="POST">
+                <form class="user" action="{{route('adminhapusmatpel')}}" method="POST">
                     @csrf
                     <input type="hidden" class="form-control" id="id" name="id">
                     <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
+                        <div class="col">
                             <label>Nama</label>
                             <input type="text" class="form-control" placeholder="Nama" id="nama" name="nama"
                                 disabled="">
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="nis">Semester</label>
-                            <input type="text" class="form-control" id="nip" placeholder="NIS" name="nip" disabled="">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -228,7 +177,6 @@
 
         modal.find('.modal-body #id').val(button.data('id'))
         modal.find('.modal-body #nama').val(button.data('nama'))
-        modal.find('.modal-body #semester').val(button.data('semester'))
         })
 
     $('#hapusModal').on('show.bs.modal', function (event) {
@@ -237,7 +185,6 @@
 
         modal.find('.modal-body #id').val(button.data('id'))
         modal.find('.modal-body #nama').val(button.data('nama'))
-        modal.find('.modal-body #nip').val(button.data('nip'))
         })
 </script>
 

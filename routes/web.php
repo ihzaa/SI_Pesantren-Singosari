@@ -45,10 +45,16 @@ Route::prefix('4dm1n')->group(function () {
     Route::get('/downloadexcsvpengajar', 'userController@downloadexcsvpengajar')->name('exfilecsvpengajar');
     #end manage pengajar
 
-    Route::get('/kelola-pembelajaran','userController@adminkelolapembelajaran')->name('adminkelolapembelajaran');
-    Route::POST('/kelola-pembelajaran/tambah-tahun-ajaran','userController@admin_tambah_tahun_ajaran')->name('admin_tambah_tahun_ajaran');
-    Route::POST('/kelola-pembelajaran/edit-tahun-ajaran','userController@admin_edit_tahun_ajaran')->name('admin_edit_tahun_ajaran');
-    Route::POST('/kelola-pembelajaran/hapus-tahun-ajaran','userController@admin_hapus_tahun_ajaran')->name('admin_hapus_tahun_ajaran');
-
+    Route::get('/kelola-pembelajaran', 'userController@adminkelolapembelajaran')->name('adminkelolapembelajaran');
+    Route::POST('/kelola-pembelajaran/tambah-tahun-ajaran', 'userController@admin_tambah_tahun_ajaran')->name('admin_tambah_tahun_ajaran');
+    Route::POST('/kelola-pembelajaran/edit-tahun-ajaran', 'userController@admin_edit_tahun_ajaran')->name('admin_edit_tahun_ajaran');
+    Route::POST('/kelola-pembelajaran/hapus-tahun-ajaran', 'userController@admin_hapus_tahun_ajaran')->name('admin_hapus_tahun_ajaran');
+    Route::POST('/kelola-pembelajaran/kelola-tahun-ajaran', 'userController@timeline_tahuna_ajaran')->name('timeline_tahuna_ajaran');
     #end manage pembelajaran
+
+    Route::get('/kelola-matpel', 'userController@adminkelolamatpel')->name('adminkelolamatpel');
+    Route::POST('/kelola-matpel/tambah', 'userController@admintambahmatpel')->name('admintambahmatpel');
+    Route::POST('/kelola-matpel/edit', 'userController@admineditmatpel')->name('admineditmatpel');
+    Route::POST('/kelola-matpel/hapus', 'userController@adminhapusmatpel')->name('adminhapusmatpel');
+    #end manage matpel
 });
