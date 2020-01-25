@@ -209,33 +209,36 @@ class userController extends Controller
                     $file = fopen($filepath, "r");
 
                     $importData_arr = array();
+                    $pertama = TRUE;
                     $i = 0;
                     $theRightColumn = [
                         'no', 'nis', 'nama', 'jenis kelamin - l atau p', 'tempat lahir', 'tanggal lahir - hh/mm/tttt',
-                        'telp', 'alamat', 'tahun masuk', 'nama wali', 'telp wali', 'JANGAN MENGUBAH DAN MENGHAPUS NAMA KOLOM'
+                        'telp', 'alamat', 'tahun masuk', 'nama wali', 'telp wali'
                     ];
-                    while (($filedata = fgetcsv($file, 1000, ";")) !== FALSE) {
+                    while (($filedata = fgetcsv($file, 1000, ';')) !== FALSE) {
                         $num = count($filedata);
 
                         // Skip first row (Remove below comment if you want to skip the first row)
-                        if ($i == 0) {
+                        if ($pertama) {
                             for ($c = 0; $c < $num; $c++) {
                                 $importData_arr[$i][] = $filedata[$c];
                             }
                             if (array_diff($theRightColumn, $importData_arr[$i])) {
                                 Session::flash('color', 'alert-danger');
                                 Session::flash('pesan', 'Kolom tidak sesuai dengan contoh file');
-                                return redirect('/4dm1n/kelola-santri');
+                                return $importData_arr[$i];
                             }
-                            continue;
                         }
-                        for ($c = 0; $c < $num; $c++) {
+                        for ($c = 0; $c < $num && !$pertama; $c++) {
                             if ($c == 5) {
                                 $temp = explode("/", $filedata[5]);
                                 $importData_arr[$i][] = "$temp[2]-$temp[1]-$temp[0]";
                                 continue;
                             }
                             $importData_arr[$i][] = $filedata[$c];
+                        }
+                        if ($pertama) {
+                            $pertama = FALSE;
                         }
                         $i++;
                     }
@@ -287,7 +290,7 @@ class userController extends Controller
 
     public function downloadexcsvsantri()
     {
-        return Response::download(public_path() . '/Downloadable/Contoh File CSV Santri.csv', 'Contoh File CSV Santri.csv');
+        return Response::download(public_path() . '/Downloadable/Contoh File CSV Santri1.csv', 'Contoh File CSV Santri.csv');
     }
 
 
@@ -420,17 +423,17 @@ class userController extends Controller
                         $file = fopen($filepath, "r");
 
                         $importData_arr = array();
+                        $pertama = TRUE;
                         $i = 0;
                         $theRightColumn = [
                             'no', 'nip', 'nama', 'telepon', 'tempat lahir',
-                            'tanggal lahir - hh/mm/tttt', 'jenis kelamin - l atau p', 'email',
-                            'JANGAN MENGUBAH DAN MENGHAPUS NAMA KOLOM'
+                            'tanggal lahir - hh/mm/tttt', 'jenis kelamin - l atau p', 'email'
                         ];
                         while (($filedata = fgetcsv($file, 1000, ";")) !== FALSE) {
                             $num = count($filedata);
 
                             // Skip first row (Remove below comment if you want to skip the first row)
-                            if ($i == 0) {
+                            if ($pertama) {
                                 for ($c = 0; $c < $num; $c++) {
                                     $importData_arr[$i][] = $filedata[$c];
                                 }
@@ -439,15 +442,17 @@ class userController extends Controller
                                     Session::flash('pesan', 'Kolom tidak sesuai dengan contoh file');
                                     return redirect('/4dm1n/kelola-pengajar');
                                 }
-                                continue;
                             }
-                            for ($c = 0; $c < $num; $c++) {
+                            for ($c = 0; $c < $num && !$pertama; $c++) {
                                 if ($c == 5) {
                                     $temp = explode("/", $filedata[5]);
                                     $importData_arr[$i][] = "$temp[2]-$temp[1]-$temp[0]";
                                     continue;
                                 }
                                 $importData_arr[$i][] = $filedata[$c];
+                            }
+                            if ($pertama) {
+                                $pertama = false;
                             }
                             $i++;
                         }
@@ -510,7 +515,7 @@ class userController extends Controller
 
     public function downloadexcsvpengajar()
     {
-        return Response::download(public_path() . '/Downloadable/Contoh File CSV pengajar.csv', 'Contoh File CSV pengajar.csv');
+        return Response::download(public_path() . '/Downloadable/Contoh File CSV pengajar1.csv', 'Contoh File CSV pengajar.csv');
     }
 
     public function adminkelolapembelajaran()
@@ -556,10 +561,10 @@ class userController extends Controller
         return redirect('/4dm1n/kelola-pembelajaran');
     }
 
-    public function timeline_tahuna_ajaran(Request $request)
+    public function timeline_tahuna_ajaran($id)
     {
         $this->cekAdminLogin();
-        $ta = \App\tahun_ajaran::where('id', $request->id)->first();
+        $ta = \App\tahun_ajaran::where('id', $id)->first();
         return view('admin.kelolatahunajaran', compact('ta'));
     }
 
@@ -601,6 +606,36 @@ class userController extends Controller
         Session::flash('color', 'alert-success');
         Session::flash('pesan', 'Berhasil menghapus mata pelajaran');
         return redirect('/4dm1n/kelola-matpel');
+    }
+
+    public function adminhapusmatpeldita(Request $request)
+    {
+        $this->cekAdminLogin();
+        \App\mata_pelajaran_tahun_ajaran::where('id', $request->id)->delete();
+        Session::flash('color', 'alert-success');
+        Session::flash('pesan', 'Berhasil menghapus mata pelajaran');
+        return back();
+    }
+
+    public function admin_tambah_mp_ta(Request $request)
+    {
+        $this->cekAdminLogin();
+
+        $cek = \App\mata_pelajaran_tahun_ajaran::where('id_tahun_ajaran')->where('id_mata_pelajaran')->get();
+
+        if ($cek) {
+            Session::flash('color', 'alert-danger');
+            Session::flash('pesan', 'Mata pelajaran sudah termasuk di semester ini');
+            return back();
+        }
+
+        DB::table('mata_pelajaran_tahun_ajaran')->insert([
+            'id_tahun_ajaran' => $request->id_ta,
+            'id_mata_pelajaran' => $request->mata_pelajaran
+        ]);
+        Session::flash('color', 'alert-success');
+        Session::flash('pesan', 'Berhasil menambah mata pelajaran');
+        return back();
     }
 
     private function cekAdminLogin()

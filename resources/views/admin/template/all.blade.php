@@ -88,7 +88,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item {{request()->is('4dm1n/kelola-pembelajaran') ? 'active open' : ''}}
-                {{request()->is('4dm1n/kelola-pembelajaran/kelola-tahun-ajaran') ? 'active open' : ''}}">
+                {{request()->is('4dm1n/kelola-pembelajaran/*') ? 'active open' : ''}}">
                 <a class="nav-link" href="{{route('adminkelolapembelajaran')}}">
                     <i class="fas fa-fw fa-cogs"></i>
                     <span>Kelola Pembelajaran</span></a>

@@ -76,14 +76,10 @@
                                     data-semester="{{$s->semester}}">
                                     <i class="fas fa-user-edit text-light"></i>
                                 </a>
-                                <form action="{{route('timeline_tahuna_ajaran')}}" method="POST">
-                                    @csrf
-                                    <input type="hidden" value="{{$s->id}}" name="id">
-                                    <button type="submit" href="#" class="btn btn-success btn-circle btn-sm"
+                                    <a href="/4dm1n/kelola-pembelajaran/{{$s->id}}-{{$s->semester}}" class="btn btn-success btn-circle btn-sm"
                                         title="Kelola Tahun Ajaran">
                                         <i class="fas fa-cog text-light"></i>
-                                    </button>
-                                </form>
+                                    </a>
                                 <a href="#" class="btn btn-danger btn-circle btn-sm" title="Hapus" data-toggle="modal"
                                     data-target="#hapusModal" data-id="{{$s->id}}" data-nama="{{$s->nama}}"
                                     data-nip="{{$s->semester}}">

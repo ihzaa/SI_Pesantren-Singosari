@@ -157,13 +157,14 @@
                                 <li>Ukuran maksimal 10MB</li>
                                 <li>Format .csv</li>
                                 <li>Urutan kolom sesuai contoh file
-                                    <a href="{{route('exfilecsvpengajar')}}">
+                                    <a href="{{URL::to('/')}}/Downloadable/Contoh File CSV Pengajar.csv">
                                         <i class="fas fa-download fa-sm text-primary"></i> Download contoh
                                         file csv
                                     </a>
                                 </li>
                                 <li>Penulisan tanggal lahir hh/bb/tttt <strong>contoh:20/10/1998</strong>
                                 </li>
+                                <li>Jangan menghapus atau merubah nama kolom</li>
                             </ul>
                             <p><br><strong>NIS tidak dapat dirubah</strong></p>
                         </div>

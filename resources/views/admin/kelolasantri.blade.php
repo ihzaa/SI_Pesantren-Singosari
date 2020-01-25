@@ -167,10 +167,12 @@
                                     <ul>
                                         <li>Ukuran maksimal 10MB</li>
                                         <li>Format .csv</li>
-                                        <li>Urutan kolom sesuai contoh file <a href="{{route('exfilecsvsantri')}}"><i
+                                        <li>Urutan kolom sesuai contoh file <a
+                                                href="{{URL::to('/')}}/Downloadable/Contoh File CSV Santri.csv"><i
                                                     class="fas fa-download fa-sm text-primary"></i> Download contoh
                                                 file csv</a></li>
                                         <li>Penulisan tanggal lahir hh/mm/yyyy <strong>contoh:20/10/1998</strong> </li>
+                                        <li>Jangan menghapus atau merubah nama kolom</li>
                                     </ul>
 
 
