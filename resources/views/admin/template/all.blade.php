@@ -104,7 +104,7 @@
 
             <li class="nav-item {{request()->is('4dm1n/kelola-carousel') ? 'active open' : ''}}">
                 <a class="nav-link" href="{{route('adminkelolacarousel')}}">
-                    <i class="fas fa-fw fa-cogs"></i>
+                    <i class="fas fa-fw fa fa-picture-o"></i>
                     <span>Kelola Carousel</span></a>
             </li>
 
@@ -239,6 +239,7 @@
 
 
     <!-- Bootstrap core JavaScript-->
+    <script src="/js/fa5.js" crossorigin="anonymous"></script>
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

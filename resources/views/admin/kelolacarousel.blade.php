@@ -57,9 +57,10 @@
                         <td>{{$i++}}</td>
                         <td>{{$s->nama}}</td>
                         <td>{{$s->foto}}</td>
-                        <td>{{$s->deskripsi}}</td>
+                        <td>{{str_limit($s->deskripsi,10)}}</td>
                         <td>{{$s->dibuat}}</td>
                         <td>
+                           <div class="row justify-content-center">
                             @if($s->status == 'nonaktif')
                             <button type="button" class="btn btn-outline-info btn-sm btn-aktif"
                                 data-target="{{$i}}">Aktifkan</button>
@@ -80,6 +81,7 @@
                             </button>
                             <input type="hidden" name="idcar{{$s->id}}" value="{{$s->id}}">
                             @endif
+                           </div>
                         </td>
                         <td>
                             <div class="row justify-content-center">
@@ -148,7 +150,7 @@
 </div>
 
 <!-- MODAL Edit -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+{{-- <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -169,10 +171,10 @@
                                 required="">
                         </div>
                         <div class="col-6">
-                            {{-- <div class="custom-file">
+                            <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="file" name="file" required="">
                                 <label class="custom-file-label" for="customFile">Pilih Foto</label>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -190,7 +192,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <!-- MODAL HAPUS -->
 <div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -198,7 +200,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Hapus Mata Pelajaran?</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Hapus Carousel?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -234,15 +236,15 @@
 <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
 
 <script>
-    $('#editModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that trigg  ered the modal
-        var modal = $(this)
+    // $('#editModal').on('show.bs.modal', function (event) {
+    //     var button = $(event.relatedTarget) // Button that trigg  ered the modal
+    //     var modal = $(this)
 
-        modal.find('.modal-body #id').val(button.data('id'))
-        modal.find('.modal-body #nama').val(button.data('nama'))
-        modal.find('.modal-body #file').val(button.data('foto'))
-        modal.find('.modal-body #deskripsi').val(button.data('deskripsi'))
-        })
+    //     modal.find('.modal-body #id').val(button.data('id'))
+    //     modal.find('.modal-body #nama').val(button.data('nama'))
+    //     modal.find('.modal-body #file').val(button.data('foto'))
+    //     modal.find('.modal-body #deskripsi').val(button.data('deskripsi'))
+    //     })
 
     $('#hapusModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that trigg  ered the modal
