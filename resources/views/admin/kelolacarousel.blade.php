@@ -59,7 +59,8 @@
                         <td>
                             <div class="row justify-content-center">
                                 <a href="#" class="btn btn-info btn-circle btn-sm" title="Edit" data-toggle="modal"
-                                    data-target="#editModal" data-id="{{$s->id}}" data-nama="{{$s->nama}}">
+                                    data-target="#editModal" data-id="{{$s->id}}" data-nama="{{$s->nama}}"
+                                    data-deskripsi="{{$s->deskripsi}}">
                                     <i class="fas fa-user-edit text-light"></i>
                                 </a>
                                 <a href="#" class="btn btn-danger btn-circle btn-sm" title="Hapus" data-toggle="modal"
@@ -88,9 +89,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="user" action="{{route('admintambahcarousel')}}" method="POST" enctype="multipart/form-data">
+                <form class="user" action="{{route('admintambahcarousel')}}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" id="id" name="id">
                     <div class="form-group row">
                         <div class="col-6">
                             <label>Nama</label>
@@ -120,6 +121,83 @@
         </div>
     </div>
 </div>
+
+<!-- MODAL Edit -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Carousel</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="user" action="{{route('admineditcarousel')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" id="id" name="id">
+                    <div class="form-group row">
+                        <div class="col-6">
+                            <label>Nama</label>
+                            <input type="text" class="form-control" placeholder="Nama" id="nama" name="nama"
+                                required="">
+                        </div>
+                        <div class="col-6">
+                            {{-- <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="file" name="file" required="">
+                                <label class="custom-file-label" for="customFile">Pilih Foto</label>
+                            </div> --}}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <label>Deskripsi</label>
+                            <textarea required="" class="form-control" id="deskripsi" name="deskripsi"
+                                placeholder="Deskripsi" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary" href="#">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL HAPUS -->
+<div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Hapus Mata Pelajaran?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="user" action="{{route('adminhapuscarousel')}}" method="POST">
+                    @csrf
+                    <input type="hidden" class="form-control" id="id" name="id">
+                    <div class="form-group row">
+                        <div class="col">
+                            <label>Nama</label>
+                            <input type="text" class="form-control" placeholder="Nama" id="nama" name="nama"
+                                disabled="">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger" href="#">Hapus</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('js')
@@ -131,6 +209,24 @@
 <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
 
 <script>
+    $('#editModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that trigg  ered the modal
+        var modal = $(this)
+
+        modal.find('.modal-body #id').val(button.data('id'))
+        modal.find('.modal-body #nama').val(button.data('nama'))
+        modal.find('.modal-body #file').val(button.data('foto'))
+        modal.find('.modal-body #deskripsi').val(button.data('deskripsi'))
+        })
+
+    $('#hapusModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that trigg  ered the modal
+        var modal = $(this)
+
+        modal.find('.modal-body #id').val(button.data('id'))
+        modal.find('.modal-body #nama').val(button.data('nama'))
+        })
+
     $(".custom-file-input").on("change", function() {
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);

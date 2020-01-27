@@ -60,7 +60,9 @@ Route::prefix('4dm1n')->group(function () {
     Route::POST('/kelola-matpel/hapus', 'userController@adminhapusmatpel')->name('adminhapusmatpel');
     #end manage matpel
 
-    Route::get('/kelola-carousel','userController@adminkelolacarousel')->name('adminkelolacarousel');
-    Route::post('/kelola-carousel/tambah','userController@admintambahcarousel')->name('admintambahcarousel');
+    Route::get('/kelola-carousel', 'userController@adminkelolacarousel')->name('adminkelolacarousel');
+    Route::post('/kelola-carousel/tambah', 'userController@admintambahcarousel')->name('admintambahcarousel');
+    Route::post('/kelola-carousel/edit', 'userController@admineditcarousel')->name('admineditcarousel');
+    Route::post('/kelola-carousel/hapus', 'userController@adminhapuscarousel')->name('adminhapuscarousel');
     #end manage website
 });

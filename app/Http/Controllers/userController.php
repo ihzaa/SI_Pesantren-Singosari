@@ -666,8 +666,36 @@ class userController extends Controller
             Session::flash('pesan', 'Berhasil menambah carousel');
             return back();
         }
+    }
+
+    public function admineditcarousel(Request $request)
+    {
+        $this->cekAdminLogin();
+
+        // if ($request->file != null) {
+        //     $file = $request->file('file');
+        //     $nama_file = $request->nama . '.' . $file->getClientOriginalExtension();
+        //     $tujuan_upload = 'carousel/';
+        //     $lengkap = $tujuan_upload . $nama_file;
+        //     $file->move($tujuan_upload, $nama_file);
+
+        \App\carousel::where('id', $request->id)->update([
+            'nama' => $request->nama,
+            'deskripsi' => $request->deskripsi
+        ]);
+
+        Session::flash('color', 'alert-success');
+        Session::flash('pesan', 'Berhasil merubah carousel');
+        return back();
+    }
+
+    public function adminhapuscarousel(Request $request)
+    {
+        $this->cekAdminLogin();
+        \App\carousel::where('id', $request->id)->delete();
+
         Session::flash('color', 'alert-danger');
-        Session::flash('pesan', 'Berhasil menambah carousel');
+        Session::flash('pesan', 'Berhasil menghapus carousel');
         return back();
     }
 
