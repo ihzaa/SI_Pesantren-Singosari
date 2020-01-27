@@ -174,6 +174,16 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">@yield('Judul')</h1>
                     </div>
+                    @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        Upload Validation Error<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                     @if(Session::get('pesan'))
                     <div class="alert {{Session::get('color')}} alert-dismissible fade show">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>

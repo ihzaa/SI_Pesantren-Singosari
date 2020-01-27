@@ -176,7 +176,9 @@ class userController extends Controller
         $sesi_admin = Session::get('adminlogin');
         if ($sesi_admin) {
             $file = $request->file('file');
-
+            $this->validate($request, [
+                'file'  => 'required|mimes:csv|max:10048'
+            ]);
             // File Details
             $filename = $file->getClientOriginalName();
             $extension = $file->getClientOriginalExtension();
@@ -389,6 +391,9 @@ class userController extends Controller
         if ($sesi_admin) {
             if ($request->file != null) {
 
+                $this->validate($request, [
+                    'file'  => 'required|mimes:csv|max:10048'
+                ]);
                 $file = $request->file('file');
 
                 // File Details
@@ -649,6 +654,10 @@ class userController extends Controller
     {
         $this->cekAdminLogin();
 
+        $this->validate($request, [
+            'file'  => 'required|image|mimes:jpg,png,jpeg|max:2048'
+        ]);
+
         if ($request->file != null) {
             $file = $request->file('file');
             $nama_file = $request->nama . '.' . $file->getClientOriginalExtension();
@@ -692,8 +701,8 @@ class userController extends Controller
     public function adminhapuscarousel(Request $request)
     {
         $this->cekAdminLogin();
+        File::delete(public_path(\App\carousel::where('id',$request->id)->first()->foto));
         \App\carousel::where('id', $request->id)->delete();
-
         Session::flash('color', 'alert-danger');
         Session::flash('pesan', 'Berhasil menghapus carousel');
         return back();
