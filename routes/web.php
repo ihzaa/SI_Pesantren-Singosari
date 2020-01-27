@@ -64,5 +64,7 @@ Route::prefix('4dm1n')->group(function () {
     Route::post('/kelola-carousel/tambah', 'userController@admintambahcarousel')->name('admintambahcarousel');
     Route::post('/kelola-carousel/edit', 'userController@admineditcarousel')->name('admineditcarousel');
     Route::post('/kelola-carousel/hapus', 'userController@adminhapuscarousel')->name('adminhapuscarousel');
+    Route::post('/kelola-carousel/nonaktif', 'userController@adminnonaktifcarousel')->name('adminnonaktifcarousel');
+    Route::post('/kelola-carousel/aktif', 'userController@adminaktifcarousel')->name('adminaktifcarousel');
     #end manage website
 });

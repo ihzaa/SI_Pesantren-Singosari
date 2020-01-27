@@ -701,11 +701,29 @@ class userController extends Controller
     public function adminhapuscarousel(Request $request)
     {
         $this->cekAdminLogin();
-        File::delete(public_path(\App\carousel::where('id',$request->id)->first()->foto));
+        File::delete(public_path(\App\carousel::where('id', $request->id)->first()->foto));
         \App\carousel::where('id', $request->id)->delete();
         Session::flash('color', 'alert-danger');
         Session::flash('pesan', 'Berhasil menghapus carousel');
         return back();
+    }
+
+    public function adminaktifcarousel(Request $request)
+    {
+        $this->cekAdminLogin();
+        \App\carousel::where('id', $request->idcar)->update([
+            'status' => 'aktif'
+        ]);
+        return 1;
+    }
+
+    public function adminnonaktifcarousel(Request $request)
+    {
+        $this->cekAdminLogin();
+        \App\carousel::where('id', $request->idcar)->update([
+            'status' => 'nonaktif'
+        ]);
+        return 1;
     }
 
     private function cekAdminLogin()
