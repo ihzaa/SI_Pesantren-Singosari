@@ -638,6 +638,39 @@ class userController extends Controller
         return back();
     }
 
+    public function adminkelolacarousel()
+    {
+        $this->cekAdminLogin();
+        $cl = \App\carousel::get();
+        return view('admin.kelolacarousel', compact('cl'));
+    }
+
+    public function admintambahcarousel(Request $request)
+    {
+        $this->cekAdminLogin();
+
+        if ($request->file != null) {
+            $file = $request->file('file');
+            $nama_file = $request->nama . '.' . $file->getClientOriginalExtension();
+            $tujuan_upload = 'carousel/';
+            $lengkap = $tujuan_upload . $nama_file;
+            $file->move($tujuan_upload, $nama_file);
+
+            DB::table('carousel')->insert([
+                'nama' => $request->nama,
+                'foto' => $lengkap,
+                'deskripsi' => $request->deskripsi
+            ]);
+
+            Session::flash('color', 'alert-success');
+            Session::flash('pesan', 'Berhasil menambah carousel');
+            return back();
+        }
+        Session::flash('color', 'alert-danger');
+        Session::flash('pesan', 'Berhasil menambah carousel');
+        return back();
+    }
+
     private function cekAdminLogin()
     {
         $sesi_admin = Session::get('adminlogin');

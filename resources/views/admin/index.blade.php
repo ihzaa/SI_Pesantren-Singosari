@@ -5,4 +5,8 @@
 @section('content')
 <p>halo</p>
 
-@stop
+@endsection
+
+@section('js')
+
+@endsection

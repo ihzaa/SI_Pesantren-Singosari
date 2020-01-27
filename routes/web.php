@@ -59,4 +59,8 @@ Route::prefix('4dm1n')->group(function () {
     Route::POST('/kelola-matpel/edit', 'userController@admineditmatpel')->name('admineditmatpel');
     Route::POST('/kelola-matpel/hapus', 'userController@adminhapusmatpel')->name('adminhapusmatpel');
     #end manage matpel
+
+    Route::get('/kelola-carousel','userController@adminkelolacarousel')->name('adminkelolacarousel');
+    Route::post('/kelola-carousel/tambah','userController@admintambahcarousel')->name('admintambahcarousel');
+    #end manage website
 });
