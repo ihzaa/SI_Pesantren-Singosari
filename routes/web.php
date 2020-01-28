@@ -15,6 +15,8 @@ Route::post('/logincek', 'userController@cek');
 
 Route::get('/login', 'userController@index')->name('login');
 
+Route::get('/', 'front_end@index');
+
 Route::prefix('santri')->group(function () {
     Route::get('/', 'userController@santriidx')->name('santriidx');
 });
