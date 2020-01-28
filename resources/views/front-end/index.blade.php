@@ -61,14 +61,14 @@
     data-ride="carousel">
     <div class="carousel-inner">
       <div class="container">
-        <?php 
-          $i=0; 
+        <?php
+          $i=0;
         ?>
         @foreach (\App\carousel::where('status','aktif')->get() as $item)
         @if($i == 0)
         <div class="carousel-item active">
-          <?php 
-          $i=1; 
+          <?php
+          $i=1;
           ?>
           @else
           <div class="carousel-item">

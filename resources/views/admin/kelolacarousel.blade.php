@@ -60,35 +60,36 @@
                         <td>{{str_limit($s->deskripsi,10)}}</td>
                         <td>{{$s->dibuat}}</td>
                         <td>
-                           <div class="row justify-content-center">
-                            @if($s->status == 'nonaktif')
-                            <button type="button" class="btn btn-outline-info btn-sm btn-aktif"
-                                data-target="{{$i}}">Aktifkan</button>
-                            <button type="button" class="btn btn-outline-danger btn-sm btn-nonaktif"
-                                style="display: none;" data-target="{{$i}}">Nonaktifkan</button>
-                            <button class="btn btn-outline-primary btn-sm btn-loading" type="submit" style="display: none;">
-                                <span class="spinner-border spinner-border-sm"></span>
-                            </button>
-                            <input type="hidden" name="idcar{{$i}}" value="{{$s->id}}">
-                            @else
-                            <button type="button" class="btn btn-outline-info btn-sm btn-aktif"
-                                data-target="{{$s->id}}" style="display: none;">Aktifkan</button>
-                            <button type="button" class="btn btn-outline-danger btn-sm btn-nonaktif"
-                                data-target="{{$s->id}}">Nonaktifkan</button>
-                            <button class="btn btn-outline-primary btn-sm btn-loading" type="submit"
-                                style="display: none;">
-                                <span class="spinner-border spinner-border-sm"></span>
-                            </button>
-                            <input type="hidden" name="idcar{{$s->id}}" value="{{$s->id}}">
-                            @endif
-                           </div>
+                            <div class="row justify-content-center">
+                                @if($s->status == 'nonaktif')
+                                <button type="button" class="btn btn-outline-info btn-sm btn-aktif"
+                                    data-target="{{$i}}">Aktifkan</button>
+                                <button type="button" class="btn btn-outline-danger btn-sm btn-nonaktif"
+                                    style="display: none;" data-target="{{$i}}">Nonaktifkan</button>
+                                <button class="btn btn-outline-primary btn-sm btn-loading" type="submit"
+                                    style="display: none;">
+                                    <span class="spinner-border spinner-border-sm"></span>
+                                </button>
+                                <input type="hidden" name="idcar{{$i}}" value="{{$s->id}}">
+                                @else
+                                <button type="button" class="btn btn-outline-info btn-sm btn-aktif"
+                                    data-target="{{$s->id}}" style="display: none;">Aktifkan</button>
+                                <button type="button" class="btn btn-outline-danger btn-sm btn-nonaktif"
+                                    data-target="{{$s->id}}">Nonaktifkan</button>
+                                <button class="btn btn-outline-primary btn-sm btn-loading" type="submit"
+                                    style="display: none;">
+                                    <span class="spinner-border spinner-border-sm"></span>
+                                </button>
+                                <input type="hidden" name="idcar{{$s->id}}" value="{{$s->id}}">
+                                @endif
+                            </div>
                         </td>
                         <td>
                             <div class="row justify-content-center">
                                 {{-- <a href="#" class="btn btn-info btn-circle btn-sm" title="Edit" data-toggle="modal"
                                     data-target="#editModal" data-id="{{$s->id}}" data-nama="{{$s->nama}}"
-                                    data-deskripsi="{{$s->deskripsi}}">
-                                    <i class="fas fa-user-edit text-light"></i>
+                                data-deskripsi="{{$s->deskripsi}}">
+                                <i class="fas fa-user-edit text-light"></i>
                                 </a> --}}
                                 <a href="#" class="btn btn-danger btn-circle btn-sm" title="Hapus" data-toggle="modal"
                                     data-target="#hapusModal" data-id="{{$s->id}}" data-nama="{{$s->nama}}">
@@ -162,36 +163,35 @@
             </div>
             <div class="modal-body">
                 <form class="user" action="{{route('admineditcarousel')}}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" id="id" name="id">
-                    <div class="form-group row">
-                        <div class="col-6">
-                            <label>Nama</label>
-                            <input type="text" class="form-control" placeholder="Nama" id="nama" name="nama"
-                                required="">
-                        </div>
-                        <div class="col-6">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="file" name="file" required="">
-                                <label class="custom-file-label" for="customFile">Pilih Foto</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col">
-                            <label>Deskripsi</label>
-                            <textarea required="" class="form-control" id="deskripsi" name="deskripsi"
-                                placeholder="Deskripsi" rows="3"></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary" href="#">Simpan</button>
-                    </div>
-                </form>
-            </div>
+@csrf
+<input type="hidden" id="id" name="id">
+<div class="form-group row">
+    <div class="col-6">
+        <label>Nama</label>
+        <input type="text" class="form-control" placeholder="Nama" id="nama" name="nama" required="">
+    </div>
+    <div class="col-6">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="file" name="file" required="">
+            <label class="custom-file-label" for="customFile">Pilih Foto</label>
         </div>
     </div>
+</div>
+<div class="form-group row">
+    <div class="col">
+        <label>Deskripsi</label>
+        <textarea required="" class="form-control" id="deskripsi" name="deskripsi" placeholder="Deskripsi"
+            rows="3"></textarea>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+    <button type="submit" class="btn btn-primary" href="#">Simpan</button>
+</div>
+</form>
+</div>
+</div>
+</div>
 </div> --}}
 
 <!-- MODAL HAPUS -->

@@ -16,7 +16,7 @@ class CreateTableCarousel extends Migration
         Schema::create('carousel', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama');
-            $table->string('foto');
+            $table->string('foto')->nullable();
             $table->string('deskripsi');
             $table->string('status')->default('nonaktif');
             $table->dateTime('dibuat')->useCurrent();

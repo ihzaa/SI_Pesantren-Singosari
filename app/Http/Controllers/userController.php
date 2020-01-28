@@ -658,17 +658,21 @@ class userController extends Controller
             'file'  => 'required|image|mimes:jpg,png,jpeg|max:2048'
         ]);
 
+
+        $foto = DB::table('carousel')->insertGetId([
+            'nama' => $request->nama,
+            'deskripsi' => $request->deskripsi
+        ]);
+
         if ($request->file != null) {
             $file = $request->file('file');
-            $nama_file = $request->nama . '.' . $file->getClientOriginalExtension();
+            $nama_file = $foto . '.' . $file->getClientOriginalExtension();
             $tujuan_upload = 'carousel/';
             $lengkap = $tujuan_upload . $nama_file;
             $file->move($tujuan_upload, $nama_file);
 
-            DB::table('carousel')->insert([
-                'nama' => $request->nama,
-                'foto' => $lengkap,
-                'deskripsi' => $request->deskripsi
+            \App\carousel::where('id',$foto)->update([
+                'foto' => $lengkap
             ]);
 
             Session::flash('color', 'alert-success');
