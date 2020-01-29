@@ -27,9 +27,10 @@ Route::prefix('pengajar')->group(function () {
     Route::get('/', 'userController@pengajaridx')->name('pengajaridx');
 });
 
-Route::prefix('4dm1n')->group(function () {
+Route::get('4dm1n/login', 'userController@index')->name('loginadmin');
 
-    Route::get('/login', 'userController@index')->name('loginadmin');
+
+Route::prefix('4dm1n')->group(function () {
 
     Route::get('/', 'userController@adminidx')->name('adminidx');
     Route::get('kelola-santri', 'userController@adminkelolasantri')->name('adminkelalosantri');

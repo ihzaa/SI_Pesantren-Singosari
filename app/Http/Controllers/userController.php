@@ -39,7 +39,7 @@ class userController extends Controller
             }
         }
         Session::flash('pesan', 'Username atau Password Salah');
-        return redirect('/login');
+        return redirect('/4dm1n/login');
     }
 
     public function adminidx()
@@ -51,7 +51,7 @@ class userController extends Controller
     public function logout()
     {
         Session::flush();
-        return redirect('/login');
+        return redirect('/4dm1n/login');
     }
 
     public function adminkelolasantri()
@@ -691,7 +691,7 @@ class userController extends Controller
     private function cekAdminLogin()
     {
         $sesi_admin = Session::get('adminlogin');
-        if ($sesi_admin){
+        if ($sesi_admin == ''){
             return redirect('/4dm1n/login');
         }
     }
