@@ -652,4 +652,27 @@ class adminController extends Controller
         ]);
         return 1;
     }
+
+    public function adminaktifpembelajaran(Request $request)
+    {
+        // $count = \App\tahun_ajaran::where('status', 'aktif')->get();
+        // return count($count) == '0' .'asd';
+        // if(count($count) == '0') {
+        \App\tahun_ajaran::where('id', $request->idcar)->update([
+            'status' => 'aktif'
+        ]);
+        return 1;
+        // }
+        // else {
+        //     return 0;
+        // }
+    }
+
+    public function adminnonaktifpembelajaran(Request $request)
+    {
+        \App\tahun_ajaran::where('id', $request->idcar)->update([
+            'status' => 'nonaktif'
+        ]);
+        return 1;
+    }
 }

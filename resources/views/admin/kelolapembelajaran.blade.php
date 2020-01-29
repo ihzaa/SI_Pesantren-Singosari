@@ -3,6 +3,7 @@
 @section('Judul','Kelola Pembelajaran')
 
 @section('css')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- Custom styles for this page -->
 <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 @endsection
@@ -32,6 +33,7 @@
                         <th>Jumlah Santri</th>
                         <th>Jumlah Mata Pelajaran</th>
                         <th>Dibuat Pada</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -44,6 +46,7 @@
                         <th>Jumlah Santri</th>
                         <th>Jumlah Mata Pelajaran</th>
                         <th>Dibuat Pada</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
@@ -71,15 +74,40 @@
                         <td>{{$s->dibuat}}</td>
                         <td>
                             <div class="row justify-content-center">
+                                @if($s->status == 'nonaktif')
+                                <button type="button" class="btn btn-outline-info btn-sm btn-aktif"
+                                    data-target="{{$i}}">Aktifkan</button>
+                                <button type="button" class="btn btn-outline-danger btn-sm btn-nonaktif"
+                                    style="display: none;" data-target="{{$i}}">Nonaktifkan</button>
+                                <button class="btn btn-outline-primary btn-sm btn-loading" type="submit"
+                                    style="display: none;">
+                                    <span class="spinner-border spinner-border-sm"></span>
+                                </button>
+                                <input type="hidden" name="idcar{{$i}}" value="{{$s->id}}">
+                                @else
+                                <button type="button" class="btn btn-outline-info btn-sm btn-aktif"
+                                    data-target="{{$s->id}}" style="display: none;">Aktifkan</button>
+                                <button type="button" class="btn btn-outline-danger btn-sm btn-nonaktif"
+                                    data-target="{{$s->id}}">Nonaktifkan</button>
+                                <button class="btn btn-outline-primary btn-sm btn-loading" type="submit"
+                                    style="display: none;">
+                                    <span class="spinner-border spinner-border-sm"></span>
+                                </button>
+                                <input type="hidden" name="idcar{{$s->id}}" value="{{$s->id}}">
+                                @endif
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row justify-content-center">
                                 <a href="#" class="btn btn-info btn-circle btn-sm" title="Edit" data-toggle="modal"
                                     data-target="#editModal" data-id="{{$s->id}}" data-nama="{{$s->nama}}"
                                     data-semester="{{$s->semester}}">
                                     <i class="fas fa-user-edit text-light"></i>
                                 </a>
-                                    <a href="/4dm1n/kelola-pembelajaran/{{$s->id}}-{{$s->semester}}" class="btn btn-success btn-circle btn-sm"
-                                        title="Kelola Tahun Ajaran">
-                                        <i class="fas fa-cog text-light"></i>
-                                    </a>
+                                <a href="/4dm1n/kelola-pembelajaran/{{$s->id}}-{{$s->semester}}"
+                                    class="btn btn-success btn-circle btn-sm" title="Kelola Tahun Ajaran">
+                                    <i class="fas fa-cog text-light"></i>
+                                </a>
                                 <a href="#" class="btn btn-danger btn-circle btn-sm" title="Hapus" data-toggle="modal"
                                     data-target="#hapusModal" data-id="{{$s->id}}" data-nama="{{$s->nama}}"
                                     data-nip="{{$s->semester}}">
@@ -91,6 +119,10 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+        <div class="row">
+            <div class="container"><p><br><strong>Catatan : </strong>Hanya dapat mengaktifkan 1 tahun ajaran</p></div>
+
         </div>
     </div>
 </div>
@@ -235,6 +267,72 @@
         modal.find('.modal-body #nama').val(button.data('nama'))
         modal.find('.modal-body #nip').val(button.data('nip'))
         })
+
+    $(".btn-aktif").click(function(){
+        $(this).next().next().toggle();
+        $(this).hide();
+        var a = $(this);
+        $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+        });
+        $.ajax({
+            type: 'post',
+            url: '/4dm1n/kelola-pembelajaran/aktif',
+            data: {
+                'idcar':  $('input[name=idcar'+$(this).data('target')+']').val()
+            },
+            success: function(data) {
+                // if(data == 1)
+                    akt(a);
+                // else if(data == 0){
+                //     akt2(a);
+                // }
+            },
+            error: function(data){
+                alert("Hanya dapat mengaktifkan 1");
+            }
+        });
+        });
+
+    $(".btn-nonaktif").click(function(){
+
+        $(this).next(".btn-loading").toggle();
+        $(this).hide();
+        var a = $(this);
+        $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+        });
+        $.ajax({
+            type: 'post',
+            url: '/4dm1n/kelola-pembelajaran/nonaktif',
+            data: {
+                'idcar':  $('input[name=idcar'+$(this).data('target')+']').val()
+            },
+            success: function(data) {
+                non(a);
+            },
+            error: function(data){
+                alert("fail");
+            }
+        });
+    });
+
+    function akt($btn){
+    $btn.next(".btn-nonaktif").toggle();
+    $btn.next().next().hide();
+    }
+    function akt2($btn){
+    $btn.toogle();
+    $btn.next().next().hide();
+    }
+    function non($btn){
+    $btn.prev(".btn-aktif").toggle();
+    $btn.next(".btn-loading").hide();
+    }
 </script>
 
 @endsection

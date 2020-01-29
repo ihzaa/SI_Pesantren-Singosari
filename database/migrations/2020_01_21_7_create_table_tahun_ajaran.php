@@ -17,6 +17,7 @@ class CreateTableTahunAjaran extends Migration
             $table->bigIncrements('id');
             $table->string('nama');
             $table->set('semester',['ganjil','genap']);
+            $table->string('status')->default('nonaktif');
             $table->dateTime('dibuat')->useCurrent();
         });
     }

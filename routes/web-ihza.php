@@ -41,6 +41,8 @@ Route::prefix('4dm1n')->middleware('CekStatusAdmin')->group(function () {
     Route::get('/kelola-pembelajaran/{id}-{semester}', 'adminController@timeline_tahuna_ajaran')->name('timeline_tahuna_ajaran');
     Route::POST('/kelola-pembelajaran/kelola-tahun-ajaran/hapus-matpel', 'adminController@adminhapusmatpeldita')->name('adminhapusmatpeldita');
     Route::POST('/kelola-pembelajaran/kelola-tahun-ajaran/tambah-metpen', 'adminController@admin_tambah_mp_ta')->name('admin_tambah_mp_ta');
+    Route::post('/kelola-pembelajaran/nonaktif', 'adminController@adminnonaktifpembelajaran')->name('adminnonaktifcarousel');
+    Route::post('/kelola-pembelajaran/aktif', 'adminController@adminaktifpembelajaran')->name('adminaktifcarousel');
     #end manage pembelajaran
 
     Route::get('/kelola-matpel', 'adminController@adminkelolamatpel')->name('adminkelolamatpel');
