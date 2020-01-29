@@ -57,12 +57,12 @@
 
 
   <!-- Carousel -->
-  <div id="carouselExampleControls" style="background-color: rgb(209, 219, 255);" class="carousel slide mt-5"
+  <div id="carousel" style="background-color: rgb(209, 219, 255);" class="carousel slide mt-5"
     data-ride="carousel">
     <ol class="carousel-indicators">
-            <li data-target="#carousel3" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel3" data-slide-to="1"></li>
-            <li data-target="#carousel3" data-slide-to="2"></li>
+            <li data-target="#carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel" data-slide-to="1"></li>
+            <li data-target="#carousel" data-slide-to="2"></li>
           </ol>
     <div class="carousel-inner">
       <div class="container">
@@ -97,6 +97,13 @@
 
 
         </div>
+        <a href="#carousel3" class="carousel-control-prev" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </a>
+
+          <a href="#carousel3" class="carousel-control-next" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </a>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
