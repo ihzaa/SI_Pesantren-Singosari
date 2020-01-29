@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Response;
 use \App\santri;
 
-class userController extends Controller
+class adminController extends Controller
 {
     /**
      * Display a listing of the resource.

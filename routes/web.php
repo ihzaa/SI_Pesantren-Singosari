@@ -10,70 +10,66 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::post('/logincek', 'userController@cek');
-
-Route::get('/login', 'userController@index')->name('login');
-
-
-
 Route::get('/', 'front_end@index');
 
+
+
+Route::post('/logincek', 'adminController@cek');
+Route::get('/login', 'adminController@index')->name('login');
+
 Route::prefix('santri')->group(function () {
-    Route::get('/', 'userController@santriidx')->name('santriidx');
+    Route::get('/', 'adminController@santriidx')->name('santriidx');
 });
-
 Route::prefix('pengajar')->group(function () {
-    Route::get('/', 'userController@pengajaridx')->name('pengajaridx');
+    Route::get('/', 'adminController@pengajaridx')->name('pengajaridx');
 });
 
-Route::get('4dm1n/login', 'userController@index')->name('loginadmin');
+Route::get('4dm1n/login', 'adminController@index')->name('loginadmin');
 
 Route::prefix('4dm1n')->middleware('CekStatus')->group(function () {
 
-    Route::get('/', 'userController@adminidx')->name('adminidx');
+    Route::get('/', 'adminController@adminidx')->name('adminidx');
 
-    // Route::get('/', 'userController@adminidx')->name('adminidx');
-    Route::get('kelola-santri', 'userController@adminkelolasantri')->name('adminkelalosantri');
-    Route::post('/kelola-santri/changedata', 'userController@changedatasantri')->name('admin_ubah_data_santri');
-    Route::post('/kelola-santri/tambahsantri', 'userController@tambahsantri')->name('admin_tambah_santri');
-    Route::post('/kelola-santri/tambahfilesantri', 'userController@tambahfilesantri')->name('admin_tambah_file_santri');
-    Route::post('/kelola-santri/hapussantri', 'userController@hapussantri')->name('admin_hapus_santri');
-    Route::get('/downloadexcsvsantri', 'userController@downloadexcsvsantri')->name('exfilecsvsantri');
+    Route::get('kelola-santri', 'adminController@adminkelolasantri')->name('adminkelalosantri');
+    Route::post('/kelola-santri/changedata', 'adminController@changedatasantri')->name('admin_ubah_data_santri');
+    Route::post('/kelola-santri/tambahsantri', 'adminController@tambahsantri')->name('admin_tambah_santri');
+    Route::post('/kelola-santri/tambahfilesantri', 'adminController@tambahfilesantri')->name('admin_tambah_file_santri');
+    Route::post('/kelola-santri/hapussantri', 'adminController@hapussantri')->name('admin_hapus_santri');
+    Route::get('/downloadexcsvsantri', 'adminController@downloadexcsvsantri')->name('exfilecsvsantri');
     #end manage santri
 
 
-    Route::get('logout', 'userController@logout')->name('adminlogout');
+    Route::get('logout', 'adminController@logout')->name('adminlogout');
 
 
-    Route::get('/kelola-pengajar', 'userController@adminkelolapengajar')->name('adminkelolapengajar');
-    Route::post('/kelola-pengajar/changedata', 'userController@changedatapengajar')->name('admin_ubah_data_pengajar');
-    Route::post('/kelola-pengajar/tambahpengajar', 'userController@tambahpengajar')->name('admin_tambah_pengajar');
-    Route::post('/kelola-pengajar/tambahfilepengajar', 'userController@tambahfilepengajar')->name('admin_tambah_file_pengajar');
-    Route::post('/kelola-pengajar/hapuspengajar', 'userController@hapuspengajar')->name('admin_hapus_pengajar');
-    Route::get('/downloadexcsvpengajar', 'userController@downloadexcsvpengajar')->name('exfilecsvpengajar');
+    Route::get('/kelola-pengajar', 'adminController@adminkelolapengajar')->name('adminkelolapengajar');
+    Route::post('/kelola-pengajar/changedata', 'adminController@changedatapengajar')->name('admin_ubah_data_pengajar');
+    Route::post('/kelola-pengajar/tambahpengajar', 'adminController@tambahpengajar')->name('admin_tambah_pengajar');
+    Route::post('/kelola-pengajar/tambahfilepengajar', 'adminController@tambahfilepengajar')->name('admin_tambah_file_pengajar');
+    Route::post('/kelola-pengajar/hapuspengajar', 'adminController@hapuspengajar')->name('admin_hapus_pengajar');
+    Route::get('/downloadexcsvpengajar', 'adminController@downloadexcsvpengajar')->name('exfilecsvpengajar');
     #end manage pengajar
 
-    Route::get('/kelola-pembelajaran', 'userController@adminkelolapembelajaran')->name('adminkelolapembelajaran');
-    Route::POST('/kelola-pembelajaran/tambah-tahun-ajaran', 'userController@admin_tambah_tahun_ajaran')->name('admin_tambah_tahun_ajaran');
-    Route::POST('/kelola-pembelajaran/edit-tahun-ajaran', 'userController@admin_edit_tahun_ajaran')->name('admin_edit_tahun_ajaran');
-    Route::POST('/kelola-pembelajaran/hapus-tahun-ajaran', 'userController@admin_hapus_tahun_ajaran')->name('admin_hapus_tahun_ajaran');
-    Route::get('/kelola-pembelajaran/{id}-{semester}', 'userController@timeline_tahuna_ajaran')->name('timeline_tahuna_ajaran');
-    Route::POST('/kelola-pembelajaran/kelola-tahun-ajaran/hapus-matpel', 'userController@adminhapusmatpeldita')->name('adminhapusmatpeldita');
-    Route::POST('/kelola-pembelajaran/kelola-tahun-ajaran/tambah-metpen', 'userController@admin_tambah_mp_ta')->name('admin_tambah_mp_ta');
+    Route::get('/kelola-pembelajaran', 'adminController@adminkelolapembelajaran')->name('adminkelolapembelajaran');
+    Route::POST('/kelola-pembelajaran/tambah-tahun-ajaran', 'adminController@admin_tambah_tahun_ajaran')->name('admin_tambah_tahun_ajaran');
+    Route::POST('/kelola-pembelajaran/edit-tahun-ajaran', 'adminController@admin_edit_tahun_ajaran')->name('admin_edit_tahun_ajaran');
+    Route::POST('/kelola-pembelajaran/hapus-tahun-ajaran', 'adminController@admin_hapus_tahun_ajaran')->name('admin_hapus_tahun_ajaran');
+    Route::get('/kelola-pembelajaran/{id}-{semester}', 'adminController@timeline_tahuna_ajaran')->name('timeline_tahuna_ajaran');
+    Route::POST('/kelola-pembelajaran/kelola-tahun-ajaran/hapus-matpel', 'adminController@adminhapusmatpeldita')->name('adminhapusmatpeldita');
+    Route::POST('/kelola-pembelajaran/kelola-tahun-ajaran/tambah-metpen', 'adminController@admin_tambah_mp_ta')->name('admin_tambah_mp_ta');
     #end manage pembelajaran
 
-    Route::get('/kelola-matpel', 'userController@adminkelolamatpel')->name('adminkelolamatpel');
-    Route::POST('/kelola-matpel/tambah', 'userController@admintambahmatpel')->name('admintambahmatpel');
-    Route::POST('/kelola-matpel/edit', 'userController@admineditmatpel')->name('admineditmatpel');
-    Route::POST('/kelola-matpel/hapus', 'userController@adminhapusmatpel')->name('adminhapusmatpel');
+    Route::get('/kelola-matpel', 'adminController@adminkelolamatpel')->name('adminkelolamatpel');
+    Route::POST('/kelola-matpel/tambah', 'adminController@admintambahmatpel')->name('admintambahmatpel');
+    Route::POST('/kelola-matpel/edit', 'adminController@admineditmatpel')->name('admineditmatpel');
+    Route::POST('/kelola-matpel/hapus', 'adminController@adminhapusmatpel')->name('adminhapusmatpel');
     #end manage matpel
 
-    Route::get('/kelola-carousel', 'userController@adminkelolacarousel')->name('adminkelolacarousel');
-    Route::post('/kelola-carousel/tambah', 'userController@admintambahcarousel')->name('admintambahcarousel');
-    Route::post('/kelola-carousel/edit', 'userController@admineditcarousel')->name('admineditcarousel');
-    Route::post('/kelola-carousel/hapus', 'userController@adminhapuscarousel')->name('adminhapuscarousel');
-    Route::post('/kelola-carousel/nonaktif', 'userController@adminnonaktifcarousel')->name('adminnonaktifcarousel');
-    Route::post('/kelola-carousel/aktif', 'userController@adminaktifcarousel')->name('adminaktifcarousel');
+    Route::get('/kelola-carousel', 'adminController@adminkelolacarousel')->name('adminkelolacarousel');
+    Route::post('/kelola-carousel/tambah', 'adminController@admintambahcarousel')->name('admintambahcarousel');
+    Route::post('/kelola-carousel/edit', 'adminController@admineditcarousel')->name('admineditcarousel');
+    Route::post('/kelola-carousel/hapus', 'adminController@adminhapuscarousel')->name('adminhapuscarousel');
+    Route::post('/kelola-carousel/nonaktif', 'adminController@adminnonaktifcarousel')->name('adminnonaktifcarousel');
+    Route::post('/kelola-carousel/aktif', 'adminController@adminaktifcarousel')->name('adminaktifcarousel');
     #end manage website
 });
