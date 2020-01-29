@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Session;
 use Closure;
 use Auth;
 
-class CekStatus
+class CekStatusAdmin
 {
     /**
      * Handle an incoming request.
