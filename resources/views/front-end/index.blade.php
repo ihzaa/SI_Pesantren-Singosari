@@ -91,28 +91,23 @@
           </div>
           @endforeach
 
-
-
-
-
-
         </div>
-        <a href="#carousel3" class="carousel-control-prev" data-slide="prev">
+        <a href="#carousel" class="carousel-control-prev" data-slide="prev">
             <span class="carousel-control-prev-icon"></span>
           </a>
 
-          <a href="#carousel3" class="carousel-control-next" data-slide="next">
+          <a href="#carousel" class="carousel-control-next" data-slide="next">
             <span class="carousel-control-next-icon"></span>
           </a>
       </div>
-      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+      <!-- <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
       </a>
       <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
-      </a>
+      </a> -->
     </div>
     <!-- Akhir Carousel -->
 
