@@ -44,8 +44,11 @@ class userController extends Controller
 
     public function adminidx()
     {
-        $this->cekAdminLogin();
-        return view('admin.index');
+        $sesi_admin = Session::get('adminlogin');
+        if ($sesi_admin) {
+            return view('admin.index');
+        }
+        return redirect('/4dm1n/login');
     }
 
     public function logout()
@@ -691,7 +694,7 @@ class userController extends Controller
     private function cekAdminLogin()
     {
         $sesi_admin = Session::get('adminlogin');
-        if ($sesi_admin == ''){
+        if (!$sesi_admin) {
             return redirect('/4dm1n/login');
         }
     }
