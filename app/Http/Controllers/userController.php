@@ -650,13 +650,6 @@ class userController extends Controller
     {
         $this->cekAdminLogin();
 
-        // if ($request->file != null) {
-        //     $file = $request->file('file');
-        //     $nama_file = $request->nama . '.' . $file->getClientOriginalExtension();
-        //     $tujuan_upload = 'carousel/';
-        //     $lengkap = $tujuan_upload . $nama_file;
-        //     $file->move($tujuan_upload, $nama_file);
-
         \App\carousel::where('id', $request->id)->update([
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi
@@ -698,7 +691,7 @@ class userController extends Controller
     private function cekAdminLogin()
     {
         $sesi_admin = Session::get('adminlogin');
-        if ($sesi_admin == null){
+        if ($sesi_admin){
             return redirect('/4dm1n/login');
         }
     }
