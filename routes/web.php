@@ -15,6 +15,8 @@ Route::post('/logincek', 'userController@cek');
 
 Route::get('/login', 'userController@index')->name('login');
 
+
+
 Route::get('/', 'front_end@index');
 
 Route::prefix('santri')->group(function () {
@@ -26,6 +28,9 @@ Route::prefix('pengajar')->group(function () {
 });
 
 Route::prefix('4dm1n')->group(function () {
+
+    Route::get('/login', 'userController@index')->name('loginadmin');
+
     Route::get('/', 'userController@adminidx')->name('adminidx');
     Route::get('kelola-santri', 'userController@adminkelolasantri')->name('adminkelalosantri');
     Route::post('/kelola-santri/changedata', 'userController@changedatasantri')->name('admin_ubah_data_santri');
