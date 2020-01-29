@@ -31,10 +31,6 @@ class userController extends Controller
                 if ($user->role == 1) {
                     Session::put('adminlogin', $user->admin);
                     return redirect('/4dm1n/');
-                } else if ($user->role == 2) {
-                    return $user->pengajar;
-                } else {
-                    return $user->santri;
                 }
             }
         }
@@ -44,11 +40,7 @@ class userController extends Controller
 
     public function adminidx()
     {
-        $sesi_admin = Session::get('adminlogin');
-        if ($sesi_admin) {
-            return view('admin.index');
-        }
-        return redirect('/4dm1n/login');
+        return view('admin.index');
     }
 
     public function logout()
@@ -59,14 +51,12 @@ class userController extends Controller
 
     public function adminkelolasantri()
     {
-        $this->cekAdminLogin();
         $santri = \App\santri::get();
         return view('admin.kelolasantri', compact('santri'));
     }
 
     public function changedatasantri(Request $request)
     {
-        $this->cekAdminLogin();
         $validatedData = Validator::make(request()->all(), [
             'nama' => 'required|max:255',
             'tahun_masuk' => 'required|max:4',
@@ -103,7 +93,6 @@ class userController extends Controller
 
     public function tambahsantri(Request $request)
     {
-        $this->cekAdminLogin();
         $validatedData = Validator::make(request()->all(), [
             'nama' => 'required|max:255',
             'nis' => 'require',
@@ -153,7 +142,6 @@ class userController extends Controller
 
     public function hapussantri(Request $request)
     {
-        $this->cekAdminLogin();
         \App\user::where('id', $request->id)->delete();
         Session::flash('color', 'alert-success');
         Session::flash('pesan', 'Berhasil Menghapus Data');
@@ -162,7 +150,6 @@ class userController extends Controller
 
     public function tambahfilesantri(Request $request)
     {
-        $this->cekAdminLogin();
         $file = $request->file('file');
         $this->validate($request, [
             'file'  => 'required|mimes:csv|max:10048'
@@ -284,14 +271,12 @@ class userController extends Controller
 
     public function adminkelolapengajar()
     {
-        $this->cekAdminLogin();
         $pengajar = \App\pengajar::get();
         return view('admin.kelolapengajar', compact('pengajar'));
     }
 
     public function changedatapengajar(Request $request)
     {
-        $this->cekAdminLogin();
         $validatedData = Validator::make(request()->all(), [
             'nama' => 'required|max:255',
             'telp' => 'required',
@@ -323,7 +308,6 @@ class userController extends Controller
 
     public function tambahpengajar(Request $request)
     {
-        $this->cekAdminLogin();
         $validatedData = Validator::make(request()->all(), [
             'nama' => 'required|max:255',
             'telp' => 'required',
@@ -365,7 +349,6 @@ class userController extends Controller
 
     public function tambahfilepengajar(Request $request)
     {
-        $this->cekAdminLogin();
         if ($request->file != null) {
 
             $this->validate($request, [
@@ -482,7 +465,6 @@ class userController extends Controller
 
     public function hapuspengajar(Request $request)
     {
-        $this->cekAdminLogin();
         \App\user::where('id', $request->id)->delete();
         Session::flash('color', 'alert-success');
         Session::flash('pesan', 'Berhasil Menghapus Data');
@@ -496,14 +478,12 @@ class userController extends Controller
 
     public function adminkelolapembelajaran()
     {
-        $this->cekAdminLogin();
         $ta = \App\tahun_ajaran::get();
         return view('admin.kelolapembelajaran', compact('ta'));
     }
 
     public function admin_tambah_tahun_ajaran(Request $request)
     {
-        $this->cekAdminLogin();
         DB::table('tahun_ajaran')->insert([
             'nama' => $request->nama,
             'semester' => $request->semester
@@ -515,7 +495,6 @@ class userController extends Controller
 
     public function admin_edit_tahun_ajaran(Request $request)
     {
-        $this->cekAdminLogin();
         \App\tahun_ajaran::where('id', $request->id)->update([
             'nama' => $request->nama,
             'semester' => $request->semester
@@ -527,7 +506,6 @@ class userController extends Controller
 
     public function admin_hapus_tahun_ajaran(Request $request)
     {
-        $this->cekAdminLogin();
         \App\tahun_ajaran::where('id', $request->id)->delete();
         Session::flash('color', 'alert-success');
         Session::flash('pesan', 'Berhasil menghapus tahun ajaran');
@@ -536,22 +514,19 @@ class userController extends Controller
 
     public function timeline_tahuna_ajaran($id)
     {
-        $this->cekAdminLogin();
         $ta = \App\tahun_ajaran::where('id', $id)->first();
         return view('admin.kelolatahunajaran', compact('ta'));
     }
 
     public function adminkelolamatpel()
     {
-        $this->cekAdminLogin();
+
         $mp = \App\mata_pelajaran::get();
         return view('admin.kelolamatpel', compact('mp'));
     }
 
     public function admintambahmatpel(Request $request)
     {
-        $this->cekAdminLogin();
-
         DB::table('mata_pelajaran')->insert([
             'nama' => $request->nama
         ]);
@@ -563,7 +538,6 @@ class userController extends Controller
 
     public function admineditmatpel(Request $request)
     {
-        $this->cekAdminLogin();
         \App\mata_pelajaran::where('id', $request->id)->update([
             'nama' => $request->nama
         ]);
@@ -574,7 +548,6 @@ class userController extends Controller
 
     public function adminhapusmatpel(Request $request)
     {
-        $this->cekAdminLogin();
         \App\mata_pelajaran::where('id', $request->id)->delete();
         Session::flash('color', 'alert-success');
         Session::flash('pesan', 'Berhasil menghapus mata pelajaran');
@@ -583,7 +556,6 @@ class userController extends Controller
 
     public function adminhapusmatpeldita(Request $request)
     {
-        $this->cekAdminLogin();
         \App\mata_pelajaran_tahun_ajaran::where('id', $request->id)->delete();
         Session::flash('color', 'alert-success');
         Session::flash('pesan', 'Berhasil menghapus mata pelajaran');
@@ -592,8 +564,6 @@ class userController extends Controller
 
     public function admin_tambah_mp_ta(Request $request)
     {
-        $this->cekAdminLogin();
-
         $cek = \App\mata_pelajaran_tahun_ajaran::where('id_tahun_ajaran')->where('id_mata_pelajaran')->get();
 
         if ($cek) {
@@ -613,15 +583,12 @@ class userController extends Controller
 
     public function adminkelolacarousel()
     {
-        $this->cekAdminLogin();
         $cl = \App\carousel::get();
         return view('admin.kelolacarousel', compact('cl'));
     }
 
     public function admintambahcarousel(Request $request)
     {
-        $this->cekAdminLogin();
-
         $this->validate($request, [
             'file'  => 'required|image|mimes:jpg,png,jpeg|max:2048'
         ]);
@@ -651,8 +618,6 @@ class userController extends Controller
 
     public function admineditcarousel(Request $request)
     {
-        $this->cekAdminLogin();
-
         \App\carousel::where('id', $request->id)->update([
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi
@@ -665,7 +630,6 @@ class userController extends Controller
 
     public function adminhapuscarousel(Request $request)
     {
-        $this->cekAdminLogin();
         File::delete(public_path(\App\carousel::where('id', $request->id)->first()->foto));
         \App\carousel::where('id', $request->id)->delete();
         Session::flash('color', 'alert-danger');
@@ -675,7 +639,6 @@ class userController extends Controller
 
     public function adminaktifcarousel(Request $request)
     {
-        $this->cekAdminLogin();
         \App\carousel::where('id', $request->idcar)->update([
             'status' => 'aktif'
         ]);
@@ -684,18 +647,9 @@ class userController extends Controller
 
     public function adminnonaktifcarousel(Request $request)
     {
-        $this->cekAdminLogin();
         \App\carousel::where('id', $request->idcar)->update([
             'status' => 'nonaktif'
         ]);
         return 1;
-    }
-
-    private function cekAdminLogin()
-    {
-        $sesi_admin = Session::get('adminlogin');
-        if (!$sesi_admin) {
-            return redirect('/4dm1n/login');
-        }
     }
 }

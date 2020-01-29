@@ -29,10 +29,11 @@ Route::prefix('pengajar')->group(function () {
 
 Route::get('4dm1n/login', 'userController@index')->name('loginadmin');
 
-
-Route::prefix('4dm1n')->group(function () {
+Route::prefix('4dm1n')->middleware('CekStatus')->group(function () {
 
     Route::get('/', 'userController@adminidx')->name('adminidx');
+
+    // Route::get('/', 'userController@adminidx')->name('adminidx');
     Route::get('kelola-santri', 'userController@adminkelolasantri')->name('adminkelalosantri');
     Route::post('/kelola-santri/changedata', 'userController@changedatasantri')->name('admin_ubah_data_santri');
     Route::post('/kelola-santri/tambahsantri', 'userController@tambahsantri')->name('admin_tambah_santri');
