@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/login', function(){
-    return view('auth.loginuser');
-})->name('userlogin');
+Route::get('/login', 'UserController@login')->name('userlogin');
 
 Route::post('/login/cek', 'UserController@cek')->name('userlogincek');
 

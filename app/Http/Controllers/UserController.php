@@ -34,9 +34,17 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function login()
     {
-        //
+        if(!Session::get('pengajarlogin') && !Session::get('santrilogin')){
+            return view('auth.loginuser');
+        }
+        if(Session::get('santrilogin')){
+            return Session::get('santrilogin');
+        }
+        if(Session::get('pengajarlogin')){
+            return Session::get('pengajarlogin');
+        }
     }
 
     /**
