@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Support\Facades\Session;
 use Closure;
+use Illuminate\Support\Facades\Session;
 
-class CekStatusAdmin
+class CekStatusPengajar
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,10 @@ class CekStatusAdmin
      */
     public function handle($request, Closure $next)
     {
-
-        if (Session::get('adminlogin')) {
+        if (Session::get('pengajarlogin')) {
             return $next($request);
         } else {
-            return redirect('4dm1n/login');
+            return redirect('/login');
         }
     }
 }

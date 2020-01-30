@@ -20,7 +20,9 @@ class adminController extends Controller
      */
     public function index()
     {
-        return view('auth.login');
+        if (!Session::get('adminlogin'))
+            return view('auth.loginadmin');
+        return redirect('/4dm1n/');
     }
 
     public function cek(Request $request)
@@ -41,12 +43,6 @@ class adminController extends Controller
     public function adminidx()
     {
         return view('admin.index');
-    }
-
-    public function logout()
-    {
-        Session::flush();
-        return redirect('/4dm1n/login');
     }
 
     public function adminkelolasantri()
@@ -655,17 +651,17 @@ class adminController extends Controller
 
     public function adminaktifpembelajaran(Request $request)
     {
-        // $count = \App\tahun_ajaran::where('status', 'aktif')->get();
+        $count = \App\tahun_ajaran::where('status', 'aktif')->get();
         // return count($count) == '0' .'asd';
-        // if(count($count) == '0') {
+        if(count($count) == '0') {
         \App\tahun_ajaran::where('id', $request->idcar)->update([
             'status' => 'aktif'
         ]);
         return 1;
-        // }
-        // else {
-        //     return 0;
-        // }
+        }
+        else {
+            return 0;
+        }
     }
 
     public function adminnonaktifpembelajaran(Request $request)

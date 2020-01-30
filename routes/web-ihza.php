@@ -1,13 +1,6 @@
 <?php
 Route::post('/logincek', 'adminController@cek');
 
-Route::prefix('santri')->group(function () {
-    Route::get('/', 'adminController@santriidx')->name('santriidx');
-});
-Route::prefix('pengajar')->group(function () {
-    Route::get('/', 'adminController@pengajaridx')->name('pengajaridx');
-});
-
 Route::get('4dm1n/login', 'adminController@index')->name('loginadmin');
 
 Route::prefix('4dm1n')->middleware('CekStatusAdmin')->group(function () {
@@ -21,10 +14,6 @@ Route::prefix('4dm1n')->middleware('CekStatusAdmin')->group(function () {
     Route::post('/kelola-santri/hapussantri', 'adminController@hapussantri')->name('admin_hapus_santri');
     Route::get('/downloadexcsvsantri', 'adminController@downloadexcsvsantri')->name('exfilecsvsantri');
     #end manage santri
-
-
-    Route::get('logout', 'adminController@logout')->name('adminlogout');
-
 
     Route::get('/kelola-pengajar', 'adminController@adminkelolapengajar')->name('adminkelolapengajar');
     Route::post('/kelola-pengajar/changedata', 'adminController@changedatapengajar')->name('admin_ubah_data_pengajar');
