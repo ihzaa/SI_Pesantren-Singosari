@@ -8,12 +8,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  
+
 
   <title>Pengajar</title>
 
   <!-- Custom fonts for this template-->
-  <script src="/https://use.fontawesome.com/f3589b507b.js"></script>
   <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
@@ -59,7 +58,7 @@
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-pencil-user-edit"></i>
+          <i class="fas fa-fw fa fa-pencil-square-o"></i>
           <span>Nilai</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -196,7 +195,7 @@
                 <i class="fas fa-bell fa-fw"></i> -->
                 <!-- Counter - Alerts -->
                 <!-- <span class="badge badge-danger badge-counter">3+</span>
-              </a> -->  
+              </a> -->
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
@@ -383,6 +382,7 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
+  <script src="/js/fa5.js" crossorigin="anonymous"></script>
   <script src="/vendor/jquery/jquery.min.js"></script>
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
