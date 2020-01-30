@@ -17,11 +17,11 @@ class CreateTableKhs extends Migration
             $table->bigIncrements('id');
             $table->integer('nilai');
             $table->unsignedBigInteger('id_santri');
-            $table->unsignedBigInteger('id_kelas');
-            $table->unsignedBigInteger('id_pengajar_mata_pelajaran');
+            $table->unsignedBigInteger('id_kelas_tahun_ajaran');
+            $table->unsignedBigInteger('id_mata_pelajaran_tahun_ajaran');
             $table->foreign('id_santri')->references('id')->on('santri')->onDelete('cascade');
-            $table->foreign('id_kelas')->references('id')->on('kelas')->onDelete('cascade');
-            $table->foreign('id_pengajar_mata_pelajaran')->references('id')->on('pengajar_mata_pelajaran')->onDelete('cascade');
+            $table->foreign('id_kelas_tahun_ajaran')->references('id')->on('kelas_tahun_ajaran')->onDelete('cascade');
+            $table->foreign('id_mata_pelajaran_tahun_ajaran')->references('id')->on('mata_pelajaran_tahun_ajaran')->onDelete('cascade');
         });
     }
 
