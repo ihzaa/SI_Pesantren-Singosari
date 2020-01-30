@@ -19,7 +19,7 @@
   <!-- My CSS -->
   <link rel="stylesheet" href="/css/style.css">
 
-  <title>Hefa Store</title>
+  <title>Pondok Pesantren Negeri Akhirat</title>
 </head>
 
 <body>
