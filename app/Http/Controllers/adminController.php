@@ -590,7 +590,7 @@ class adminController extends Controller
     public function admintambahcarousel(Request $request)
     {
         $this->validate($request, [
-            'file'  => 'required|image|mimes:jpg,png,jpeg|max:2048'
+            'file'  => 'required|image|mimes:jpg,png,jpeg|max:10048'
         ]);
 
 
