@@ -11,4 +11,17 @@
 |
 */
 
-Route::get('/login', 'adminController@index')->name('login');
+Route::get('/login', function(){
+    return view('auth.loginuser');
+})->name('userlogin');
+
+Route::post('/login/cek', 'UserController@cek')->name('userlogincek');
+
+Route::prefix('santri')->middleware('CekStatusSantri')->group(function () {
+    Route::get('/', 'SantriController@index')->name('santriidx');
+});
+Route::prefix('pengajar')->middleware('CekStatusPengajar')->group(function () {
+    Route::get('/', 'PengajarController@index')->name('pengajaridx');
+});
+
+

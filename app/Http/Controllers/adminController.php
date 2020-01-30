@@ -20,7 +20,9 @@ class adminController extends Controller
      */
     public function index()
     {
-        return view('auth.login');
+        if (!Session::get('adminlogin'))
+            return view('auth.loginadmin');
+        return redirect('/4dm1n/');
     }
 
     public function cek(Request $request)
