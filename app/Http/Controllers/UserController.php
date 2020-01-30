@@ -20,7 +20,7 @@ class UserController extends Controller
             if (Hash::check($request->password, $usr->password)) {
                 if ($usr->role == 2) {
                     Session::put('pengajarlogin', $usr->pengajar);
-                    return  $usr->pengajar;
+                    return view('Pengajar.halamanutamapengajar');
                 } else if ($usr->role == 3) {
                     Session::put('santrilogin', $usr->santri);
                     return $usr->santri;
@@ -43,7 +43,7 @@ class UserController extends Controller
             return Session::get('santrilogin');
         }
         if(Session::get('pengajarlogin')){
-            return Session::get('pengajarlogin');
+            return view('Pengajar.halamanutamapengajar');
         }
     }
 

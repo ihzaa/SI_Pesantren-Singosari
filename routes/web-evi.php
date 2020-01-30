@@ -1,4 +1,9 @@
 <?php
 
+Route::prefix('pengajar')->middleware('CekStatusPengajar')->group(function () {
 
-Route::get('/loginpengajar','pengajarController@index');
+Route::get('/','PengajarController@index');
+
+
+
+});
