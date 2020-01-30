@@ -12,7 +12,7 @@
 	  <div id="formContent">
 	    <!-- Tabs Titles -->
 		<div class="fadeIn first">
-	    	<h3 class="h2">Masuk</h3>
+	    	<h3 class="h2">Login Admin</h3>
         </div>
         @if(Session::get('pesan'))
           <div class="alert alert-danger alert-dismissible fade show">

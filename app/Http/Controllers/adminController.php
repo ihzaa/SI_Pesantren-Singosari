@@ -20,7 +20,9 @@ class adminController extends Controller
      */
     public function index()
     {
-        return view('auth.login');
+        if (!Session::get('adminlogin'))
+            return view('auth.loginadmin');
+        return redirect('/4dm1n/');
     }
 
     public function cek(Request $request)
@@ -590,7 +592,7 @@ class adminController extends Controller
     public function admintambahcarousel(Request $request)
     {
         $this->validate($request, [
-            'file'  => 'required|image|mimes:jpg,png,jpeg|max:2048'
+            'file'  => 'required|image|mimes:jpg,png,jpeg|max:10048'
         ]);
 
 

@@ -1,13 +1,6 @@
 <?php
 Route::post('/logincek', 'adminController@cek');
 
-Route::prefix('santri')->group(function () {
-    Route::get('/', 'adminController@santriidx')->name('santriidx');
-});
-Route::prefix('pengajar')->group(function () {
-    Route::get('/', 'adminController@pengajaridx')->name('pengajaridx');
-});
-
 Route::get('4dm1n/login', 'adminController@index')->name('loginadmin');
 
 Route::prefix('4dm1n')->middleware('CekStatusAdmin')->group(function () {
