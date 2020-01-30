@@ -36,15 +36,16 @@ class UserController extends Controller
      */
     public function login()
     {
-        if(!Session::get('pengajarlogin') && !Session::get('santrilogin')){
-            return redirect('/login');
-        }
+        // if(!Session::get('pengajarlogin') && !Session::get('santrilogin')){
+
+        // }else
         if(Session::get('santrilogin')){
             return Session::get('santrilogin');
-        }
+        }else
         if(Session::get('pengajarlogin')){
             return redirect('/pengajar');
         }
+        return view('auth.loginuser');
     }
 
     /**
