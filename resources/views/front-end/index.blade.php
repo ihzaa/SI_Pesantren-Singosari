@@ -109,7 +109,7 @@
                     <span class="carousel-control-next-icon"></span>
                 </a>
             </div>
-          </div>
+        </div>
         <!-- Akhir Carousel -->
 
         <!-- Donasi -->
@@ -124,17 +124,33 @@
                             <div class="card-body" style="height: 700px;">
                                 <div class="row" style="height: 90%;">
                                     <div class="col-6 align-content-center justify-content-center">
-                                        
+
                                     </div>
                                     <div class="col-2">
 
                                     </div>
                                     <div class="col-4">
-                                      <div class="row ml-5 ">Donasi Yang Diperlukan <p><br></p></div>
-                                    <div class="row ml-5"><strong>Rp.</strong>{{\App\donasi::first()->Target}} <p><br></p></div>
-                                      <div class="progress" style="height: 70px;">
+                                        <div class="row ml-5 ">Donasi Yang Diperlukan <p><br></p>
+                                        </div>
                                         <?php
-                                          $i = \App\donasi::first()->Target;
+                                            $i = \App\donasi::first()->Target;
+                                            $i_arr = str_split(strrev($i),3);
+                                            $tlt = "";
+                                            for($a = 0; $a < count($i_arr);$a++){
+                                                if($a == (count($i_arr)-1)){
+                                                    $tlt = $tlt .''. $i_arr[$a];
+                                                    continue;
+                                                }
+                                                $tlt = $tlt .''. $i_arr[$a].'.';
+                                            }
+                                            // implode($tlt);
+                                            $tlt = strrev($tlt);
+                                        ?>
+                                        <div class="row ml-5"><strong>Rp. {{$tlt}}</strong>
+                                            <p><br></p>
+                                        </div>
+                                        <div class="progress" style="height: 70px;">
+                                            <?php
                                           $j = \App\donasi_masuk::get()->pluck('nominal');
                                           $total = 0;
                                           for($a = 0; $a < count($j); $a++){
@@ -143,10 +159,11 @@
 
                                           $persen = $total / $i *100;
                                         ?>
-                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                            role="progressbar" style="width: {{$persen}}%;" aria-valuenow="{{$persen}}"
-                                        aria-valuemin="0" aria-valuemax="100">{{$persen}} %<br></div>
-                                    </div>
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                role="progressbar" style="width: {{$persen}}%;"
+                                                aria-valuenow="{{$persen}}" aria-valuemin="0" aria-valuemax="100">
+                                                {{$persen}} %<br></div>
+                                        </div>
                                     </div>
                                 </div>
                                 <hr>
@@ -161,49 +178,49 @@
         </section>
         <!-- Akhir Donasi -->
 
-{{-- Alamat--}}
-<section class="features bg-secondary p-5">
-  <div class="container-fluid">
-      <div class="row">
-          <div class="col-xl-12">
-              <div class="card shadow mb-4 align-content-center">
-                  <div class="card-header py-3 text-center">
-                      <h6 class="m-0 font-weight-bold text-primary">Alamat</h6>
-                  </div>
-                  <div class="card-body">
-                      <div class="row">
-                          <div class="col-4 align-content-center justify-content-center">
-                              <div class="progress" style="height: 100px;">
-                                  <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                      role="progressbar" style="width: 25%;" aria-valuenow="25"
-                                      aria-valuemin="0" aria-valuemax="100">25%<br></div>
-                              </div>
-                          </div>
-                          
-                      </div>
-                      <hr>
-                      
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</section>
+        {{-- Alamat--}}
+        <section class="features bg-secondary p-5">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card shadow mb-4 align-content-center">
+                            <div class="card-header py-3 text-center">
+                                <h6 class="m-0 font-weight-bold text-primary">Alamat</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-4 align-content-center justify-content-center">
+                                        <div class="progress" style="height: 100px;">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                role="progressbar" style="width: 25%;" aria-valuenow="25"
+                                                aria-valuemin="0" aria-valuemax="100">25%<br></div>
+                                        </div>
+                                    </div>
 
-{{-- Akhir Alamat --}}
+                                </div>
+                                <hr>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {{-- Akhir Alamat --}}
 
         <!-- Footer -->
         <footer class="border-top p-5">
-        
+
             <div class="container">
-            <!-- <i class="fas fa-mosque"></i> -->
+                <!-- <i class="fas fa-mosque"></i> -->
                 <div class="row justify-content-between">
                     <div class="col-1">
-                       
+
                         <i class="fas fa-mosque"></i>
-                       
+
                     </div>
-                    </div>
+                </div>
                 <div class="row mt-3 justify-content-between">
                     <div class="col-5">
                         <p>All Rights Reserved by Hefa Store Copyright 2019.</p>
