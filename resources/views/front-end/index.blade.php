@@ -5,7 +5,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/css/bootstrap.css">
 
@@ -120,44 +121,59 @@
                             </div>
                             <div class="card-body" style="height: 700px;">
                                 <div class="row" style="height: 90%;">
-                                    <div class="col-6 align-content-center justify-content-center">
+                                    <div class="col-8">
+                                        <div class="row ml-2">
+                                            Dengan mengharapkan Ridho Allah subhana wa ta'ala, kami sedang melakukan
+                                            <br>
+                                            pembangunan Pondok Pesantren Tahfiz
+                                            <br>
+                                            Dengan demikian.............
+                                        </div>
+                                        <div class="row ml-2 mt-2" style="width: 500px;height: 500px;">
+                                            <img src="/img/star wars.jpg" class="img-fluid" alt="Gambar apa gitu">
+                                        </div>
                                     </div>
-                                    <div class="col-2">
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="row ml-5 ">Donasi Yang Diperlukan <p><br></p>
+                                    <div class="col-4 card py-3 border-left-secondary">
+
+                                        <div class="row ml-2 ">Donasi Yang Diperlukan <p><br></p>
                                         </div>
                                         <?php
-                                            $i = \App\donasi::first()->Target;
-                                            $i_arr = str_split(strrev($i),3);
-                                            $tlt = "";
-                                            for($a = 0; $a < count($i_arr);$a++){
-                                                if($a == (count($i_arr)-1)){
-                                                    $tlt = $tlt .''. $i_arr[$a];
-                                                    continue;
+                                                $i = \App\donasi::first()->Target;
+                                                $i_arr = str_split(strrev($i),3);
+                                                $tlt = "";
+                                                for($a = 0; $a < count($i_arr);$a++){
+                                                    if($a == (count($i_arr)-1)){
+                                                        $tlt = $tlt .''. $i_arr[$a];
+                                                        continue;
+                                                    }
+                                                    $tlt = $tlt .''. $i_arr[$a].'.';
                                                 }
-                                                $tlt = $tlt .''. $i_arr[$a].'.';
-                                            }
-                                            // implode($tlt);
-                                            $tlt = strrev($tlt);
-                                        ?>
-                                        <div class="row ml-5"><strong>Rp. {{$tlt}}</strong>
-                                            <p><br></p>
+                                                // implode($tlt);
+                                                $tlt = strrev($tlt);
+                                            ?>
+                                        <div class="row ml-2">
+                                            <h3><strong>Rp. {{$tlt}}</strong></h3>
+                                            <p><br><br></p>
                                         </div>
                                         <div class="progress" style="height: 70px;">
                                             <?php
-                                            $j = \App\donasi_masuk::get()->pluck('nominal');
-                                            $total = 0;
-                                            for($a = 0; $a < count($j); $a++){
-                                            $total += $j[$a];
-                                        }
-                                          $persen = $total / $i *100;
-                                        ?>
+                                                $j = \App\donasi_masuk::get()->pluck('nominal');
+                                                $total = 0;
+                                                for($a = 0; $a < count($j); $a++){
+                                                $total += $j[$a];
+                                            }
+                                              $persen = $total / $i *100;
+                                            ?>
                                             <div class="progress-bar progress-bar-striped progress-bar-animated"
                                                 role="progressbar" style="width: {{$persen}}%;"
                                                 aria-valuenow="{{$persen}}" aria-valuemin="0" aria-valuemax="100">
                                                 {{$persen}} %<br></div>
                                         </div>
+                                        <div class="row mt-2 text-center align-content-center justify-content-center">
+                                            <p><br></p>
+                                            Donasi yang terkumpul
+                                        </div>
+
                                     </div>
                                 </div>
                                 <hr>
