@@ -39,9 +39,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav text-uppercase mx-auto">
-                    <!-- <li class="nav-item active">
-            <a class="nav-link" href="#">Home</a>
-          </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="#">Informasi Pondok</a>
                     </li>
@@ -64,8 +61,8 @@
     <div id="carousel" style="background-color: rgb(209, 219, 255);" class="carousel slide mt-4" data-ride="carousel">
         <ol class="carousel-indicators">
             <?php
-             $cnt = count(\App\carousel::where('status','aktif')->get());
-             $j = 0;
+            $cnt = count(\App\carousel::where('status','aktif')->get());
+            $j = 0;
             ?>
             @while($j < $cnt) @if($j==0) <li data-target="#carousel" data-slide-to="{{$j++}}" class="active">
                 </li>
@@ -77,7 +74,7 @@
         <div class="carousel-inner">
             <div class="container">
                 <?php
-          $i=0;
+                    $i=0;
         ?>
                 @foreach (\App\carousel::where('status','aktif')->get() as $item)
                 @if($i == 0)
@@ -124,10 +121,8 @@
                             <div class="card-body" style="height: 700px;">
                                 <div class="row" style="height: 90%;">
                                     <div class="col-6 align-content-center justify-content-center">
-
                                     </div>
                                     <div class="col-2">
-
                                     </div>
                                     <div class="col-4">
                                         <div class="row ml-5 ">Donasi Yang Diperlukan <p><br></p>
@@ -151,12 +146,11 @@
                                         </div>
                                         <div class="progress" style="height: 70px;">
                                             <?php
-                                          $j = \App\donasi_masuk::get()->pluck('nominal');
-                                          $total = 0;
-                                          for($a = 0; $a < count($j); $a++){
+                                            $j = \App\donasi_masuk::get()->pluck('nominal');
+                                            $total = 0;
+                                            for($a = 0; $a < count($j); $a++){
                                             $total += $j[$a];
-                                          }
-
+                                        }
                                           $persen = $total / $i *100;
                                         ?>
                                             <div class="progress-bar progress-bar-striped progress-bar-animated"
@@ -196,10 +190,8 @@
                                                 aria-valuemin="0" aria-valuemax="100">25%<br></div>
                                         </div>
                                     </div>
-
                                 </div>
                                 <hr>
-
                             </div>
                         </div>
                     </div>
@@ -211,14 +203,11 @@
 
         <!-- Footer -->
         <footer class="border-top p-5">
-
             <div class="container">
                 <!-- <i class="fas fa-mosque"></i> -->
                 <div class="row justify-content-between">
                     <div class="col-1">
-
                         <i class="fas fa-mosque"></i>
-
                     </div>
                 </div>
                 <div class="row mt-3 justify-content-between">
@@ -237,11 +226,6 @@
             </div>
         </footer>
         <!-- Akhir Footer -->
-
-
-
-
-
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
