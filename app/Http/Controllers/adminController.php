@@ -35,6 +35,8 @@ class adminController extends Controller
                     return redirect('/4dm1n/');
                 }
             }
+            Session::flash('pesan', 'Username atau Password Salah');
+            return redirect('/login');
         }
         Session::flash('pesan', 'Username atau Password Salah');
         return redirect('/4dm1n/login');

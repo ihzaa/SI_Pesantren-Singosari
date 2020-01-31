@@ -27,6 +27,11 @@ class UserController extends Controller
                     return redirect('/santri');
                 }
             }
+            Session::flash('pesan', 'Username atau Password Salah');
+            return redirect('/login');
+        } else {
+            Session::flash('pesan', 'Username atau Password Salah');
+            return redirect('/login');
         }
     }
 
