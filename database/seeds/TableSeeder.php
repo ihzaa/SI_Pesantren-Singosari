@@ -47,7 +47,7 @@ class TableSeeder extends Seeder
 
         DB::table('donasi')->insert([
             'id' => 1,
-            'Target' => 0,
+            'Target' => 1,
         ]);
     }
 }

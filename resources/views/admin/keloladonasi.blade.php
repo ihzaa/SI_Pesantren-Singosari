@@ -13,7 +13,6 @@
 @section('content')
 <div class="card shadow mb-4">
     <div class="card-header py-3 align-items-center justify-content-between d-sm-flex">
-        <h6 class="mb-0 font-weight-bold text-primary">Donasi</h6>
         <div class="col-4">
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -24,8 +23,9 @@
                     aria-describedby="basic-addon2">
                 <div class="input-group-append">
                     <button type="submit" class="btn btn-sm btn-primary btn-dnsi">
-                        <span class="icon text-white-50 fa fa-check">
-                        </span>
+                        <span id="cek" class="icon text-white-50 fa fa-check"></span>
+                        <div id="ldg" class="spinner-border spinner-border-sm text-primary" role="status"
+                            style="display:none;"></div>
                     </button>
                 </div>
             </div>
@@ -272,6 +272,7 @@
         })
 
         $(".btn-dnsi").click(function(){
+            wadaw();
             $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -284,6 +285,7 @@
                     'target':  $('input[name=target]').val()
                 },
                 success: function(data) {
+                    wadaw1();
                     $('#suksesModal').modal('show');
                 },
                 error: function(data){
@@ -291,6 +293,20 @@
                 }
             });
             });
+
+            function wadaw() {
+                var x = document.getElementById('cek');
+                var z = document.getElementById('ldg');
+                z.style.display = "block";
+                x.style.display = "none";
+            }
+
+            function wadaw1() {
+                var x = document.getElementById('cek');
+                var z = document.getElementById('ldg');
+                x.style.display = "block";
+                z.style.display = "none";
+            }
 </script>
 
 @endsection

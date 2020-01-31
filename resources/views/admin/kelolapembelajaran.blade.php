@@ -347,7 +347,6 @@
         alert('Hanya 1 Tahun ajaran yang boleh aktif dalam waktu yang sama');
         x.style.display = "block";
         z.style.display = "none";
-
     }
 </script>
 
