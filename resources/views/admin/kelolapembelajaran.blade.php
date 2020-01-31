@@ -6,6 +6,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- Custom styles for this page -->
 <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/centang.css">
 @endsection
 
 @section('content')
@@ -243,6 +244,37 @@
         </div>
     </div>
 </div>
+
+<!-- MODAL GAGAL -->
+<div class="modal fade" id="gagalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Hanya 1 Tahun ajaran yang boleh aktif dalam waktu yang
+                    sama</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex;">
+                            <span class="swal2-x-mark">
+                                <span class="swal2-x-mark-line-left"></span>
+                                <span class="swal2-x-mark-line-right"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('js')
@@ -295,6 +327,7 @@
                     akt(a);
                 else if(data == 0){
                     wadaw(c);
+                    $('#gagalModal').modal('show');
                 }
             },
             error: function(data){
@@ -344,7 +377,7 @@
     function wadaw($a) {
         var x = document.getElementById('btnaktf'+$a);
         var z = document.getElementById('btnldng'+$a);
-        alert('Hanya 1 Tahun ajaran yang boleh aktif dalam waktu yang sama');
+        // alert('Hanya 1 Tahun ajaran yang boleh aktif dalam waktu yang sama');
         x.style.display = "block";
         z.style.display = "none";
     }
