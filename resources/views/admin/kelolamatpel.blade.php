@@ -89,7 +89,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary" href="#">Simpan</button>
+                        <button type="submit" class="btn btn-primary" href="#">Tambah</button>
                     </div>
                 </form>
             </div>
@@ -103,7 +103,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Tahun Ajaran</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Mata Pelajaran</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -152,7 +152,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-danger" href="#">Hapus</button>
                     </div>
                 </form>

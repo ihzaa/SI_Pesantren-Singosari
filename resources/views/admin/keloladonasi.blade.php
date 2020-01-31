@@ -7,6 +7,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- Custom styles for this page -->
 <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/centang.css">
 @endsection
 
 @section('content')
@@ -16,13 +17,13 @@
         <div class="col-4">
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Target : Rp.</span>
+                    <span class="input-group-text" id="inputGroup-sizing-default">Target Donasi</span>
                 </div>
-                <input type="number" id="intarget" class="form-control" name="target"
+                <input type="number" min="1" id="intarget" class="form-control" name="target"
                     value="{{\App\donasi::first()->Target}}" placeholder="Target Donasi"
                     aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button type="submit" class="btn btn-sm btn-info btn-dnsi">
+                    <button type="submit" class="btn btn-sm btn-primary btn-dnsi">
                         <span class="icon text-white-50 fa fa-check">
                         </span>
                     </button>
@@ -94,10 +95,10 @@
 <!-- MODAL SUKSES -->
 <div class="modal fade" id="suksesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Sukses rubah donasi T4Rg3t</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Sukses Merubah Target Donasi</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -105,11 +106,20 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col">
-                        BERHASIL MERUBAH DONASI TARGET
+                        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex;">
+                            <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);">
+                            </div>
+                            <span class="swal2-success-line-tip"></span>
+                            <span class="swal2-success-line-long"></span>
+                            <div class="swal2-success-ring"></div>
+                            <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+                            <div class="swal2-success-circular-line-right"
+                                style="background-color: rgb(255, 255, 255);"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">OK</button>
+                    <button class="btn btn-primary" type="button" data-dismiss="modal">OK</button>
                 </div>
             </div>
         </div>
@@ -122,7 +132,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Tahun Ajaran</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Donasi Masuk</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -140,13 +150,13 @@
                     <div class="form-group row">
                         <div class="col">
                             <label>Nominal</label>
-                            <input type="number" class="form-control" placeholder="Nominal" id="nama" name="nominal"
-                                required="">
+                            <input type="number" min="1" class="form-control" placeholder="Nominal" id="nama"
+                                name="nominal" required="">
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary" href="#">Simpan</button>
+                        <button type="submit" class="btn btn-primary" href="#">Tambah</button>
                     </div>
                 </form>
             </div>
@@ -160,7 +170,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Tahun Ajaran</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Donasi Masuk</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -179,8 +189,8 @@
                     <div class="form-group row">
                         <div class="col">
                             <label>Nominal</label>
-                            <input type="number" class="form-control" placeholder="Nominal" id="nominal" name="nominal"
-                                required="">
+                            <input type="number" min="1" class="form-control" placeholder="Nominal" id="nominal"
+                                name="nominal" required="">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -199,7 +209,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Hapus Mata Pelajaran?</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Hapus Donasi Masuk?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
