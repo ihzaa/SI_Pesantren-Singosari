@@ -87,12 +87,13 @@
                     <div class="carousel-item">
                         @endif
                         <div class="row pt-5 justify-content-center">
-                            <div class="col-6 col-sm-4 col-md-6 col-lg-5">
+                            <div class="col-6 col-sm-4 col-md-6 col-lg-5 col-xs-6">
                                 <h1 class="mb-4">{{$item->nama}}</h1>
                                 <p class="mb-4">{{$item->deskripsi}}</p>
-                                <a href="" class="btn btn-warning text-white">Get It Now</a>
+                                {{-- <a href="" class="btn btn-warning text-white">Get It Now</a> --}}
                             </div>
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 d-none d-sm-block offset-1">
+                            {{-- d-none d-sm-block --}}
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xs-6  offset-1">
                                 <img src="/{{$item->foto}}" class="img-fluid">
                             </div>
                         </div>
@@ -119,9 +120,9 @@
                             <div class="card-header py-3 text-center">
                                 <h6 class="m-0 font-weight-bold text-primary">Informasi Donasi</h6>
                             </div>
-                            <div class="card-body" style="height: 700px;">
-                                <div class="row" style="height: 90%;">
-                                    <div class="col-8">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                         <div class="row ml-2">
                                             Dengan mengharapkan Ridho Allah subhana wa ta'ala, kami sedang melakukan
                                             <br>
@@ -129,11 +130,13 @@
                                             <br>
                                             Dengan demikian.............
                                         </div>
-                                        <div class="row ml-2 mt-2" style="width: 500px;height: 500px;">
-                                            <img src="/img/star wars.jpg" class="img-fluid" alt="Gambar apa gitu">
+                                        <div class="row ml-2 mt-2 mr-2 mb-2">
+                                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                                <img src="/img/star wars.jpg" class="img-fluid" alt="Gambar apa gitu">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-4 card py-3 border-left-secondary">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-sm-12 border-left-secondary">
 
                                         <div class="row ml-2 ">Donasi Yang Diperlukan <p><br></p>
                                         </div>
@@ -226,7 +229,7 @@
                         <i class="fas fa-mosque"></i>
                     </div>
                 </div>
-                <div class="row mt-3 justify-content-between">
+                {{-- <div class="row mt-3 justify-content-between">
                     <div class="col-5">
                         <p>All Rights Reserved by Hefa Store Copyright 2019.</p>
                     </div>
@@ -238,7 +241,7 @@
                             <a class="nav-link pr-0" href="#">Privacy Policy</a>
                         </nav>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </footer>
         <!-- Akhir Footer -->
