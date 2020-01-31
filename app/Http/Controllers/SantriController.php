@@ -14,7 +14,7 @@ class SantriController extends Controller
      */
     public function index()
     {
-        return Session::get('santrilogin');
+        return view('Santri.halamanutamasantri');
     }
 
     /**

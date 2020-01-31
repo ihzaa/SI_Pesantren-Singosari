@@ -15,11 +15,4 @@ Route::get('/login', 'UserController@login')->name('userlogin');
 Route::post('/login/cek', 'UserController@cek')->name('userlogincek');
 Route::get('logout', 'UserController@logout')->name('logout');
 
-Route::prefix('santri')->middleware('CekStatusSantri')->group(function () {
-    Route::get('/', 'SantriController@index')->name('santriidx');
-});
-Route::prefix('pengajar')->middleware('CekStatusPengajar')->group(function () {
-    Route::get('/', 'PengajarController@index')->name('pengajaridx');
-});
-
 

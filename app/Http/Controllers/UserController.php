@@ -24,7 +24,7 @@ class UserController extends Controller
                     return redirect('/pengajar');
                 } else if ($usr->role == 3) {
                     Session::put('santrilogin', $usr->santri);
-                    return $usr->santri;
+                    return redirect('/santri');
                 }
             }
         }
@@ -41,7 +41,7 @@ class UserController extends Controller
 
         // }else
         if (Session::get('santrilogin')) {
-            return Session::get('santrilogin');
+            return redirect('/santri');
         } else
         if (Session::get('pengajarlogin')) {
             return redirect('/pengajar');
