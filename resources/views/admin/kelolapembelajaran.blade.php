@@ -77,20 +77,22 @@
                                 @if($s->status == 'nonaktif')
                                 <button type="button" id="btnaktf{{$i}}" class="btn btn-outline-info btn-sm btn-aktif"
                                     data-target="{{$i}}">Aktifkan</button>
-                                <button type="button" id="btnnaktf{{$i}}" class="btn btn-outline-danger btn-sm btn-nonaktif"
-                                    style="display: none;" data-target="{{$i}}">Nonaktifkan</button>
-                                <button id="btnldng{{$i}}" class="btn btn-outline-primary btn-sm btn-loading" type="submit"
-                                    style="display: none;">
+                                <button type="button" id="btnnaktf{{$i}}"
+                                    class="btn btn-outline-danger btn-sm btn-nonaktif" style="display: none;"
+                                    data-target="{{$i}}">Nonaktifkan</button>
+                                <button id="btnldng{{$i}}" class="btn btn-outline-primary btn-sm btn-loading"
+                                    type="submit" style="display: none;">
                                     <span class="spinner-border spinner-border-sm"></span>
                                 </button>
                                 <input type="hidden" name="idcar{{$i}}" value="{{$s->id}}">
                                 @else
                                 <button type="button" id="btnaktf{{$i}}" class="btn btn-outline-info btn-sm btn-aktif"
                                     data-target="{{$s->id}}" style="display: none;">Aktifkan</button>
-                                <button type="button" id="btnnaktf{{$i}}" class="btn btn-outline-danger btn-sm btn-nonaktif"
+                                <button type="button" id="btnnaktf{{$i}}"
+                                    class="btn btn-outline-danger btn-sm btn-nonaktif"
                                     data-target="{{$s->id}}">Nonaktifkan</button>
-                                <button id="btnldng{{$i}}" class="btn btn-outline-primary btn-sm btn-loading" type="submit"
-                                    style="display: none;">
+                                <button id="btnldng{{$i}}" class="btn btn-outline-primary btn-sm btn-loading"
+                                    type="submit" style="display: none;">
                                     <span class="spinner-border spinner-border-sm"></span>
                                 </button>
                                 <input type="hidden" name="idcar{{$s->id}}" value="{{$s->id}}">
@@ -274,6 +276,9 @@
         $(this).next().next().toggle();
         $(this).hide();
         var a = $(this);
+        var b = $(this).attr('id');
+        var c = $(this).data('target');
+        // var c = $(this).next().next().arrt('id');
         $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -289,7 +294,7 @@
                 if(data == 1)
                     akt(a);
                 else if(data == 0){
-                    wadaw($(this).attr('id'));
+                    wadaw(c);
                 }
             },
             error: function(data){
@@ -337,11 +342,11 @@
     }
 
     function wadaw($a) {
-        var x = document.getElementById($a);
-        // var z = document.getElementById("btnldng"+$a);
-
+        var x = document.getElementById('btnaktf'+$a);
+        var z = document.getElementById('btnldng'+$a);
+        alert('Hanya 1 Tahun ajaran yang boleh aktif dalam waktu yang sama');
         x.style.display = "block";
-        // z.style.display = "none";
+        z.style.display = "none";
 
     }
 </script>
