@@ -127,6 +127,7 @@
                                 required="">
                         </div>
                         <div class="col-6">
+                            <label>File Foto</label>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="file" name="file" required="">
                                 <label class="custom-file-label" for="customFile">Pilih Foto</label>
