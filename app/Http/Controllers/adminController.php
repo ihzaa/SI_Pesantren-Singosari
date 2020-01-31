@@ -653,13 +653,12 @@ class adminController extends Controller
     {
         $count = \App\tahun_ajaran::where('status', 'aktif')->get();
         // return count($count) == '0' .'asd';
-        if(count($count) == '0') {
-        \App\tahun_ajaran::where('id', $request->idcar)->update([
-            'status' => 'aktif'
-        ]);
-        return 1;
-        }
-        else {
+        if (count($count) == '0') {
+            \App\tahun_ajaran::where('id', $request->idcar)->update([
+                'status' => 'aktif'
+            ]);
+            return 1;
+        } else {
             return 0;
         }
     }
@@ -670,5 +669,49 @@ class adminController extends Controller
             'status' => 'nonaktif'
         ]);
         return 1;
+    }
+
+    public function adminkeloladonasi()
+    {
+        $d = \App\donasi_masuk::get();
+        return view('admin.keloladonasi', compact('d'));
+    }
+
+    public function adminedittotaldonasi(Request $request)
+    {
+        \App\donasi::where('id', 1)->update([
+            'Target' => $request->target
+        ]);
+        return 1;
+    }
+
+    public function admintambahdonasimasuk(Request $request)
+    {
+        DB::table('donasi_masuk')->insert([
+            'dari_rekening' => $request->rek,
+            'nominal' => $request->nominal
+        ]);
+        Session::flash('color', 'alert-success');
+        Session::flash('pesan', 'Berhasil menambah donasi');
+        return back();
+    }
+
+    public function admineditdonasimasuk(Request $request)
+    {
+        \App\donasi_masuk::where('id', $request->id)->update([
+            'dari_rekening' => $request->rek,
+            'nominal' => $request->nominal
+        ]);
+        Session::flash('color', 'alert-success');
+        Session::flash('pesan', 'Berhasil merubah carousel');
+        return back();
+    }
+
+    public function adminhapusdonasimasuk(Request $request)
+    {
+        \App\donasi_masuk::where('id', $request->id)->delete();
+        Session::flash('color', 'alert-success');
+        Session::flash('pesan', 'Berhasil hapus carousel');
+        return back();
     }
 }

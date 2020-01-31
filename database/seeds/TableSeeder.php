@@ -44,5 +44,10 @@ class TableSeeder extends Seeder
             'telp_wali' => '9080890',
             'id_user' => 3,
         ]);
+
+        DB::table('donasi')->insert([
+            'id' => 1,
+            'Target' => 0,
+        ]);
     }
 }
