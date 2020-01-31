@@ -108,6 +108,12 @@
                     <span>Kelola Carousel</span></a>
             </li>
 
+            <li class="nav-item {{request()->is('4dm1n/kelola-donasi') ? 'active open' : ''}}">
+                <a class="nav-link" href="{{route('adminkeloladonasi')}}">
+                    <i class="fas fa-fw fa fa-donate"></i>
+                    <span>Kelola Donasi</span></a>
+            </li>
+
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -137,7 +143,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span
                                     class="mr-2 d-none d-lg-inline text-gray-600 small">{{Session::get('adminlogin')[0]->nama}}</span>
-
+                                <i class="fas fa-user fa-lg fa-fw"></i>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

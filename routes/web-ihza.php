@@ -46,5 +46,18 @@ Route::prefix('4dm1n')->middleware('CekStatusAdmin')->group(function () {
     Route::post('/kelola-carousel/hapus', 'adminController@adminhapuscarousel')->name('adminhapuscarousel');
     Route::post('/kelola-carousel/nonaktif', 'adminController@adminnonaktifcarousel')->name('adminnonaktifcarousel');
     Route::post('/kelola-carousel/aktif', 'adminController@adminaktifcarousel')->name('adminaktifcarousel');
-    #end manage website
+    #end manage website - carousel
+
+    Route::get('/kelola-donasi', 'adminController@adminkeloladonasi')->name('adminkeloladonasi');
+
+    // Route::post('/kelola-donasi/total/tambah', 'adminController@admintambahtotaldonasi')->name('admintambahtotaldonasi');
+    Route::post('/kelola-donasi/total/edit', 'adminController@adminedittotaldonasi')->name('adminedittotaldonasi');
+    // Route::post('/kelola-donasi/total/hapus', 'adminController@adminhapustotaldonasi')->name('adminhapustotaldonasi');
+
+    Route::post('/kelola-donasi/masuk/tambah', 'adminController@admintambahdonasimasuk')->name('admintambahdonasimasuk');
+    Route::post('/kelola-donasi/masuk/edit', 'adminController@admineditdonasimasuk')->name('admineditdonasimasuk');
+    Route::post('/kelola-donasi/masuk/hapus', 'adminController@adminhapusdonasimasuk')->name('adminhapusdonasimasuk');
+    // Route::post('/kelola-donasi/nonaktif', 'adminController@adminnonaktifcarousel')->name('adminnonaktifcarousel');
+    // Route::post('/kelola-donasi/aktif', 'adminController@adminaktifcarousel')->name('adminaktifcarousel');
+    #end manage website - donasi
 });

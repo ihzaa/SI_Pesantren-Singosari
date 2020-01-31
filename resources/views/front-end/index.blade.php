@@ -19,7 +19,10 @@
     <!-- My CSS -->
     <link rel="stylesheet" href="/css/style.css">
 
-    <title>Pesantren Singosari</title>
+    <<<<<<< HEAD <title>Pondok Pesantren Negeri Akhirat</title>
+        =======
+        <title>Pesantren Singosari</title>
+        >>>>>>> db904bd9ed3a7b1cc97491c758550224f13994dc
 </head>
 
 <body>
@@ -58,7 +61,7 @@
 
 
     <!-- Carousel -->
-    <div id="carousel" style="background-color: rgb(209, 219, 255);" class="carousel slide mt-5" data-ride="carousel">
+    <div id="carousel" style="background-color: rgb(209, 219, 255);" class="carousel slide mt-4" data-ride="carousel">
         <ol class="carousel-indicators">
             <?php
              $cnt = count(\App\carousel::where('status','aktif')->get());
@@ -117,38 +120,9 @@
         </div>
         <!-- Akhir Carousel -->
 
-        <!-- Brands -->
-        <section class="brands">
-            <div class="container">
-                <div class="row p-5 text-center">
-                    <div class="col-md">
-                        <img src="img/brand/cc.png" class="img-fluid">
-                    </div>
-                    <div class="col-md">
-                        <img src="img/brand/nike.png" class="img-fluid">
-                    </div>
-                    <div class="col-md">
-                        <img src="img/brand/pnb.png" class="img-fluid">
-                    </div>
-                    <div class="col-md">
-                        <img src="img/brand/uniqlo.png" class="img-fluid">
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Akhir Brands -->
-
-
         <!-- Features -->
         <section class="features bg-light p-5">
-            <div class="container">
-                <div class="row mb-3">
-                    <div class="col">
-                        <h3>Special Eid</h3>
-                        <p>Promo pakaian cocok untuk lebaran</p>
-                    </div>
-                </div>
-
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="card shadow mb-4 align-content-center">
