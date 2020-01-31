@@ -109,18 +109,10 @@
                     <span class="carousel-control-next-icon"></span>
                 </a>
             </div>
-            <!-- <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a> -->
-        </div>
+          </div>
         <!-- Akhir Carousel -->
 
-        <!-- Features -->
+        <!-- Donasi -->
         <section class="features bg-light p-5">
             <div class="container-fluid">
                 <div class="row">
@@ -129,115 +121,89 @@
                             <div class="card-header py-3 text-center">
                                 <h6 class="m-0 font-weight-bold text-primary">Informasi Donasi</h6>
                             </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-4 align-content-center justify-content-center">
-                                        <div class="progress" style="height: 100px;">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                                role="progressbar" style="width: 25%;" aria-valuenow="25"
-                                                aria-valuemin="0" aria-valuemax="100">25%<br><strong
-                                                    style="color: black">Nominal Terkumpul</strong></div>
-                                        </div>
+                            <div class="card-body" style="height: 700px;">
+                                <div class="row" style="height: 90%;">
+                                    <div class="col-6 align-content-center justify-content-center">
+                                        
                                     </div>
-                                    <div class="col-6">
-                                        Info Donasi?????????
+                                    <div class="col-2">
+
+                                    </div>
+                                    <div class="col-4">
+                                      <div class="row ml-5 ">Donasi Yang Diperlukan <p><br></p></div>
+                                    <div class="row ml-5"><strong>Rp.</strong>{{\App\donasi::first()->Target}} <p><br></p></div>
+                                      <div class="progress" style="height: 70px;">
+                                        <?php
+                                          $i = \App\donasi::first()->Target;
+                                          $j = \App\donasi_masuk::get()->pluck('nominal');
+                                          $total = 0;
+                                          for($a = 0; $a < count($j); $a++){
+                                            $total += $j[$a];
+                                          }
+
+                                          $persen = $total / $i *100;
+                                        ?>
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                            role="progressbar" style="width: {{$persen}}%;" aria-valuenow="{{$persen}}"
+                                        aria-valuemin="0" aria-valuemax="100">{{$persen}} %<br></div>
+                                    </div>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="">
                                     <h5>Untuk donasi kirim kesini guys</h5>
                                 </div>
-
                             </div>
                         </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </section>
-        <!-- Akhir Features -->
-
-        <!-- Designer -->
-        <section class="designer p-5">
-            <div class="container">
-                <div class="row mb-3">
-                    <div class="col">
-                        <h3>Our Designers</h3>
-                        <p>Pakaian terbaik dari designer profesional</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-6 col-sm-3 text-center">
-                        <figure class="figure">
-                            <img src="img/designer/1.png" class="figure-img img-fluid">
-                            <figcaption class="figure-caption text-center">
-                                <h5>Anne Mortgery</h5>
-                                <p>Artistic Cloth</p>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="col-6 col-sm-3 text-center">
-                        <figure class="figure">
-                            <img src="img/designer/1.png" class="figure-img img-fluid">
-                            <figcaption class="figure-caption text-center">
-                                <h5>Anne Mortgery</h5>
-                                <p>Artistic Cloth</p>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="col-6 col-sm-3 text-center">
-                        <figure class="figure">
-                            <img src="img/designer/1.png" class="figure-img img-fluid">
-                            <figcaption class="figure-caption text-center">
-                                <h5>Anne Mortgery</h5>
-                                <p>Artistic Cloth</p>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="col-6 col-sm-3 text-center">
-                        <figure class="figure">
-                            <img src="img/designer/1.png" class="figure-img img-fluid">
-                            <figcaption class="figure-caption text-center">
-                                <h5>Anne Mortgery</h5>
-                                <p>Artistic Cloth</p>
-                            </figcaption>
-                        </figure>
-                    </div>
-                </div>
-
-                <div class="row m-3">
-                    <div class="col text-center">
-                        <a href="">See All Our Designers</a>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- Akhir Designer -->
+        <!-- Akhir Donasi -->
 
+{{-- Alamat--}}
+<section class="features bg-secondary p-5">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-xl-12">
+              <div class="card shadow mb-4 align-content-center">
+                  <div class="card-header py-3 text-center">
+                      <h6 class="m-0 font-weight-bold text-primary">Alamat</h6>
+                  </div>
+                  <div class="card-body">
+                      <div class="row">
+                          <div class="col-4 align-content-center justify-content-center">
+                              <div class="progress" style="height: 100px;">
+                                  <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                      role="progressbar" style="width: 25%;" aria-valuenow="25"
+                                      aria-valuemin="0" aria-valuemax="100">25%<br></div>
+                              </div>
+                          </div>
+                          
+                      </div>
+                      <hr>
+                      
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+{{-- Akhir Alamat --}}
 
         <!-- Footer -->
         <footer class="border-top p-5">
+        
             <div class="container">
+            <!-- <i class="fas fa-mosque"></i> -->
                 <div class="row justify-content-between">
                     <div class="col-1">
-                        <a href="">
-                            <img src="img/logo_small.png">
-                        </a>
+                       
+                        <i class="fas fa-mosque"></i>
+                       
                     </div>
-                    <div class="col-4 text-right">
-                        <a href="">
-                            <img src="img/social/fb.png">
-                        </a>
-                        <a href="">
-                            <img src="/img/social/thttp://127.0.0.1:8000>tter.png">
-                        </a>
-                        <a href="">
-                            <img src="/img/social/ig.png">
-                        </a>
                     </div>
-                </div>
                 <div class="row mt-3 justify-content-between">
                     <div class="col-5">
                         <p>All Rights Reserved by Hefa Store Copyright 2019.</p>
