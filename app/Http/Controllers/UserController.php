@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\pengajar;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -20,7 +21,7 @@ class UserController extends Controller
             if (Hash::check($request->password, $usr->password)) {
                 if ($usr->role == 2) {
                     Session::put('pengajarlogin', $usr->pengajar);
-                    return view('Pengajar.halamanutamapengajar');
+                    return redirect('/pengajar');
                 } else if ($usr->role == 3) {
                     Session::put('santrilogin', $usr->santri);
                     return $usr->santri;
@@ -39,24 +40,19 @@ class UserController extends Controller
         // if(!Session::get('pengajarlogin') && !Session::get('santrilogin')){
 
         // }else
-        if(Session::get('santrilogin')){
+        if (Session::get('santrilogin')) {
             return Session::get('santrilogin');
-        }else
-        if(Session::get('pengajarlogin')){
+        } else
+        if (Session::get('pengajarlogin')) {
             return redirect('/pengajar');
         }
         return view('auth.loginuser');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function logout()
     {
-        //
+        Session::flush();
+        return redirect('/');
     }
 
     /**

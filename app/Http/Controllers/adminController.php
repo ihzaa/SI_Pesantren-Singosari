@@ -45,12 +45,6 @@ class adminController extends Controller
         return view('admin.index');
     }
 
-    public function logout()
-    {
-        Session::flush();
-        return redirect('/4dm1n/login');
-    }
-
     public function adminkelolasantri()
     {
         $santri = \App\santri::get();

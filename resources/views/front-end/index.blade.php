@@ -165,7 +165,6 @@
                                                     style="color: black">Nominal Terkumpul</strong></div>
                                         </div>
                                     </div>
-                                    <div class=""></div>
                                     <div class="col-6">
                                         Info Donasi?????????
                                     </div>

@@ -15,10 +15,6 @@ Route::prefix('4dm1n')->middleware('CekStatusAdmin')->group(function () {
     Route::get('/downloadexcsvsantri', 'adminController@downloadexcsvsantri')->name('exfilecsvsantri');
     #end manage santri
 
-
-    Route::get('logout', 'adminController@logout')->name('adminlogout');
-
-
     Route::get('/kelola-pengajar', 'adminController@adminkelolapengajar')->name('adminkelolapengajar');
     Route::post('/kelola-pengajar/changedata', 'adminController@changedatapengajar')->name('admin_ubah_data_pengajar');
     Route::post('/kelola-pengajar/tambahpengajar', 'adminController@tambahpengajar')->name('admin_tambah_pengajar');
