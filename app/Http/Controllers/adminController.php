@@ -148,10 +148,14 @@ class adminController extends Controller
 
     public function tambahfilesantri(Request $request)
     {
-        $file = $request->file('file');
-        $this->validate($request, [
-            'file'  => 'required|mimes:csv|max:10048'
+
+        // $this->validate($request, [
+        //     'file'  => 'required|mimes:csv|max:8048'
+        // ]);
+        $request->validate([
+            'file' => 'required|mimes:csv,txt',
         ]);
+        $file = $request->file('file');
         // File Details
         $filename = $file->getClientOriginalName();
         $extension = $file->getClientOriginalExtension();
@@ -201,7 +205,7 @@ class adminController extends Controller
                         if (array_diff($theRightColumn, $importData_arr[$i])) {
                             Session::flash('color', 'alert-danger');
                             Session::flash('pesan', 'Kolom tidak sesuai dengan contoh file');
-                            return $importData_arr[$i];
+                            return back();
                         }
                     }
                     for ($c = 0; $c < $num && !$pertama; $c++) {
@@ -236,8 +240,8 @@ class adminController extends Controller
                         'nis' => $importData[1],
                         'tahun_masuk' => $importData[8],
                         'nama_wali' => $importData[9],
-                        'telp_wali' => $importData[10],
-                        'telp' => $importData[6],
+                        'telp_wali' => '0' . $importData[10],
+                        'telp' => '0' . $importData[6],
                         'alamat' => $importData[7],
                         'tempat_lahir' => $importData[4],
                         'tanggal_lahir' => $importData[5],
@@ -349,8 +353,11 @@ class adminController extends Controller
     {
         if ($request->file != null) {
 
-            $this->validate($request, [
-                'file'  => 'required|mimes:csv|max:10048'
+            // $this->validate($request, [
+            //     'file'  => 'required|mimes:csv|max:10048'
+            // ]);
+            $request->validate([
+                'file' => 'required|mimes:csv,txt',
             ]);
             $file = $request->file('file');
 
@@ -436,7 +443,7 @@ class adminController extends Controller
                         DB::table('pengajar')->insert([
                             'nama' => $importData[2],
                             'nip' => $importData[1],
-                            'telp' => $importData[3],
+                            'telp' => '0' . $importData[3],
                             'tempat_lahir' => $importData[4],
                             'tanggal_lahir' => $importData[5],
                             'jenis_kelamin' => $importData[6],

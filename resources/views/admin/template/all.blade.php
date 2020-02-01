@@ -104,7 +104,7 @@
 
             <li class="nav-item {{request()->is('4dm1n/kelola-carousel') ? 'active open' : ''}}">
                 <a class="nav-link" href="{{route('adminkelolacarousel')}}">
-                    <i class="fas fa-fw fa fa-picture-o"></i>
+                    <i class="far fa-images"></i>
                     <span>Kelola Carousel</span></a>
             </li>
 
