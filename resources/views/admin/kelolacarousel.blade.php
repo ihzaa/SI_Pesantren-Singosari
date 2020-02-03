@@ -136,8 +136,8 @@
                     </div>
                     <div class="form-group row">
                         <div class="col">
-                            <label>Deskripsi</label>
-                            <textarea required="" class="form-control" name="deskripsi" placeholder="Deskripsi"
+                            <label>Deskripsi <strong>Jika dikosongkan maka hanya akan di tampilkan gambar</strong></label>
+                            <textarea class="form-control" name="deskripsi" placeholder="Deskripsi"
                                 rows="3"></textarea>
                         </div>
                     </div>

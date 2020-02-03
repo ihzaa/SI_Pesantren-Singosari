@@ -11,7 +11,59 @@
 @endsection
 
 @section('content')
-<div class="card shadow mb-4">
+<div id="menu1" class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Kolom kiri Donasi</h6>
+    </div>
+    <div class="card-body">
+        <form method="POST" id="form_kiri" enctype="multipart/form-data" class="user">
+            @csrf
+            <?php
+                $data = \App\donasi::first();
+            ?>
+            <div class="form-group row">
+                <div class="col">
+                    <label>Judul</label>
+                    <input type="text" class="form-control" value="{{$data->judul}}" placeholder="Judul" id="judul"
+                        name="judul" required="">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col">
+                    <label>Deskripsi</label>
+                    <textarea class="form-control" placeholder="Deskripsi" name="desc" id="desc" rows="4"
+                        required="">{{$data->deskripsi}}</textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="file" name="file">
+                        <label class="custom-file-label" for="customFile">{{$data->foto}}</label>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-8">
+                            <img class="img-fluid" id="view" src="{{$data->foto}}" alt="image" width="500" height="500">
+                        </div>
+                        <div class="col-4">
+                            <p>Syarat foto: </p>
+                            <ul>
+                                <li>Ekstensi jpg, jpeg</li>
+                                <li>Ukuran max : 5MB</li>
+                                <li>Resolusi 500 x 500</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="submit" id="btn-simpan" class="btn btn-primary" href="#">Simpan</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="menu2" class="card shadow mb-4">
     <div class="card-header py-3 align-items-center justify-content-between d-sm-flex">
         <div class="col-4">
             <div class="input-group">
@@ -45,7 +97,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Dari Rek.</th>
+                        <th>Nama</th>
                         <th>Nominal</th>
                         <th>Dibuat</th>
                         <th>Action</th>
@@ -54,7 +106,7 @@
                 <tfoot>
                     <tr>
                         <th>No</th>
-                        <th>Dari Rek.</th>
+                        <th>Nama</th>
                         <th>Nominal</th>
                         <th>Dibuat</th>
                         <th>Action</th>
@@ -62,23 +114,23 @@
                 </tfoot>
                 <tbody>
                     <?php
-                        $i = 1;
-                    ?>
+                            $i = 1;
+                        ?>
                     @foreach($d as $s)
                     <tr>
                         <td>{{$i++}}</td>
-                        <td>{{$s->dari_rekening}}</td>
+                        <td>{{$s->nama}}</td>
                         <td>{{$s->nominal}}</td>
                         <td>{{$s->dibuat}}</td>
                         <td>
                             <div class="row justify-content-center">
                                 <a href="#" class="btn btn-info btn-circle btn-sm" title="Edit" data-toggle="modal"
-                                    data-target="#editModal" data-id="{{$s->id}}" data-rek="{{$s->dari_rekening}}"
+                                    data-target="#editModal" data-id="{{$s->id}}" data-rek="{{$s->nama}}"
                                     data-nominal="{{$s->nominal}}">
                                     <i class="fas fa-user-edit text-light"></i>
                                 </a>
                                 <a href="#" class="btn btn-danger btn-circle btn-sm" title="Hapus" data-toggle="modal"
-                                    data-target="#hapusModal" data-id="{{$s->id}}" data-rek="{{$s->dari_rekening}}"
+                                    data-target="#hapusModal" data-id="{{$s->id}}" data-rek="{{$s->nama}}"
                                     data-nominal="{{$s->nominal}}">
                                     <i class=" fas fa-trash text-light"></i>
                                 </a>
@@ -88,6 +140,70 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL SUKSES KOLOM KIRI -->
+<div class="modal fade" id="kirisuksesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Perubahan Disimpan</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex;">
+                            <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);">
+                            </div>
+                            <span class="swal2-success-line-tip"></span>
+                            <span class="swal2-success-line-long"></span>
+                            <div class="swal2-success-ring"></div>
+                            <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+                            <div class="swal2-success-circular-line-right"
+                                style="background-color: rgb(255, 255, 255);"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL GAGAL KOLOM KIRI -->
+<div class="modal fade" id="kirigagalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Perubahan Tidak Disimpan Syarat Foto Tidak Memenuhi</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex;">
+                            <span class="swal2-x-mark">
+                                <span class="swal2-x-mark-line-left"></span>
+                                <span class="swal2-x-mark-line-right"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" data-dismiss="modal">OK</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -142,8 +258,8 @@
                     @csrf
                     <div class="form-group row">
                         <div class="col">
-                            <label>No Rek.</label>
-                            <input type="text" class="form-control" placeholder="Nomer Rekening" id="nama" name="rek"
+                            <label>Nama</label>
+                            <input type="text" class="form-control" placeholder="Nama Pengirim" id="nama" name="rek"
                                 required="">
                         </div>
                     </div>
@@ -181,8 +297,8 @@
                     @csrf
                     <div class="form-group row">
                         <div class="col">
-                            <label>No Rek.</label>
-                            <input type="text" class="form-control" placeholder="Nomer Rekening" id="rek" name="rek"
+                            <label>Nama</label>
+                            <input type="text" class="form-control" placeholder="Nama Pengirim" id="rek" name="rek"
                                 required="">
                         </div>
                     </div>
@@ -220,8 +336,8 @@
                     @csrf
                     <div class="form-group row">
                         <div class="col">
-                            <label>No Rek.</label>
-                            <input type="text" disabled="" class="form-control" placeholder="Nomer Rekening" id="rek"
+                            <label>Nama</label>
+                            <input type="text" disabled="" class="form-control" placeholder="Nama Pengirim" id="rek"
                                 name="rek" required="">
                         </div>
                     </div>
@@ -307,6 +423,53 @@
                 x.style.display = "block";
                 z.style.display = "none";
             }
+
+    $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+
+    function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+        $('#view').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+    }
+
+    $("#file").change(function() {
+    readURL(this);
+    });
+
+        $("#form_kiri").on('submit',function(){
+            event.preventDefault();
+            $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+            });
+            $.ajax({
+                method: 'post',
+                url: '{{route('simpankolokkiridonasi')}}',
+                data:new FormData(this),
+                dataType:'JSON',
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    if(data == 1)
+                        $('#kirisuksesModal').modal('show');
+                    else if(data == 2)
+                        $('#kirigagalModal').modal('show');
+                },
+                error: function(xhr, status, error) {
+                    var err = eval("(" + xhr.responseText + ")");
+                    alert(err.Message);
+                }
+            });
+            });
 </script>
 
 @endsection

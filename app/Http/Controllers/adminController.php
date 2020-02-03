@@ -697,7 +697,7 @@ class adminController extends Controller
     public function admintambahdonasimasuk(Request $request)
     {
         DB::table('donasi_masuk')->insert([
-            'dari_rekening' => $request->rek,
+            'nama' => $request->rek,
             'nominal' => $request->nominal
         ]);
         Session::flash('color', 'alert-success');
@@ -708,7 +708,7 @@ class adminController extends Controller
     public function admineditdonasimasuk(Request $request)
     {
         \App\donasi_masuk::where('id', $request->id)->update([
-            'dari_rekening' => $request->rek,
+            'nama' => $request->rek,
             'nominal' => $request->nominal
         ]);
         Session::flash('color', 'alert-success');
@@ -722,5 +722,36 @@ class adminController extends Controller
         Session::flash('color', 'alert-success');
         Session::flash('pesan', 'Berhasil hapus carousel');
         return back();
+    }
+
+    public function simpankolokkiridonasi(Request $request)
+    {
+        if ($request->file == null) {
+            \App\donasi::where('id', 1)->update([
+                'judul' => $request->judul,
+                'deskripsi' => $request->desc
+            ]);
+            return 1;
+        }
+        else if ($request->file != null) {
+            $validation = Validator::make($request->all(), [
+                'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:8048'
+            ]);
+            if (!$validation->passes()) {
+                return 2;
+            }
+            $file = $request->file('file');
+            $nama_file =  'foto' . '.' . $file->getClientOriginalExtension();
+            $tujuan_upload = 'donasi/';
+            $lengkap = $tujuan_upload . $nama_file;
+            $file->move($tujuan_upload, $nama_file);
+
+            \App\donasi::where('id', 1)->update([
+                'judul' => $request->judul,
+                'deskripsi' => $request->desc,
+                'foto' => '/' . $lengkap
+            ]);
+            return 1;
+        }
     }
 }
