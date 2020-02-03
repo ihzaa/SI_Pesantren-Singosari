@@ -121,18 +121,19 @@
                                 <h6 class="m-0 font-weight-bold text-primary">Informasi Donasi</h6>
                             </div>
                             <div class="card-body">
+                                <?php
+                                    $i = \App\donasi::first();
+                                ?>
                                 <div class="row">
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                         <div class="row ml-2">
-                                            Dengan mengharapkan Ridho Allah subhana wa ta'ala, kami sedang melakukan
+                                            {{$i->judul}}
                                             <br>
-                                            pembangunan Pondok Pesantren Tahfiz
-                                            <br>
-                                            Dengan demikian.............
+                                            {{$i->deskripsi}}
                                         </div>
                                         <div class="row ml-2 mt-2 mr-2 mb-2">
                                             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                                <img src="/img/star wars.jpg" class="img-fluid" alt="Gambar apa gitu">
+                                            <img src="{{$i->foto}}" class="img-fluid" alt="Gambar apa gitu">
                                             </div>
                                         </div>
                                     </div>
