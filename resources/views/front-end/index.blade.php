@@ -126,19 +126,20 @@
                                 ?>
                                 <div class="row">
                                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                        <div class="row ml-2">
+                                        <div class="row ml-2 justify-content-center">
                                             {{$i->judul}}
-                                            <br>
+
+                                        </div>
+                                        <div class="row ml-2 mr-2">
                                             {{$i->deskripsi}}
                                         </div>
-                                        <div class="row mt-4 justify-content-center">
-                                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                            <img src="{{$i->foto}}" class="img-fluid" alt="Gambar apa gitu">
+                                        <div class="row mt-4 justify-content-center text-center align-content-center">
+                                            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                                <img src="{{$i->foto}}" class="img-fluid" alt="Gambar apa gitu">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-sm-12 col-sm-12 border-left-secondary">
-
                                         <div class="row ml-2 ">Donasi Yang Diperlukan <p><br></p>
                                         </div>
                                         <?php
@@ -168,14 +169,27 @@
                                             }
                                               $persen = $total / $i *100;
                                             ?>
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated "
                                                 role="progressbar" style="width: {{$persen}}%;"
                                                 aria-valuenow="{{$persen}}" aria-valuemin="0" aria-valuemax="100">
-                                                {{$persen}} %<br></div>
+                                                <h4> {{$persen}} %</h4>
+
+                                            </div>
                                         </div>
                                         <div class="row mt-2 text-center align-content-center justify-content-center">
                                             <p><br></p>
                                             Donasi yang terkumpul
+                                        </div>
+                                        <div class="row mt-2 text-center align-content-center justify-content-center">
+                                        
+                                        
+                                                @foreach (\App\donasi_masuk::orderBy('dibuat','desc')->take(3)->get() as $item)
+                                                <?php 
+                                                echo ucfirst($item->nama)
+                                                ?>
+                                                 - Rp. {{$item->nominal}}<br>
+                                                @endforeach
+
                                         </div>
 
                                     </div>
