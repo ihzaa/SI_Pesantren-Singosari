@@ -15,7 +15,7 @@ class CreateTableDonasiMasuk extends Migration
     {
         Schema::create('donasi_masuk', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('dari_rekening');
+            $table->string('nama');
             $table->string('nominal');
             $table->dateTime('dibuat')->useCurrent();
         });

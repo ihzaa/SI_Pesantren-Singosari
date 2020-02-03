@@ -26,6 +26,7 @@ class CreateTableSantri extends Migration
             $table->string('nama_wali');
             $table->string('telp_wali');
             $table->unsignedBigInteger('id_user');
+            $table->string('foto')->default('user/santri/default.png');
             $table->foreign('id_user')->references('id')->on('user')->onDelete('cascade');
         });
     }

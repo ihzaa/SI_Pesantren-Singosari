@@ -48,6 +48,9 @@ class TableSeeder extends Seeder
         DB::table('donasi')->insert([
             'id' => 1,
             'Target' => 1,
+            'judul' => 'judul disini',
+            'deskripsi' => 'disini deskripsi',
+            'foto' => '/donasi/foto.jpg',
         ]);
     }
 }
