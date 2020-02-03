@@ -131,7 +131,7 @@
                                             <br>
                                             {{$i->deskripsi}}
                                         </div>
-                                        <div class="row ml-2 mt-2 mr-2 mb-2">
+                                        <div class="row mt-4 justify-content-center">
                                             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                             <img src="{{$i->foto}}" class="img-fluid" alt="Gambar apa gitu">
                                             </div>
