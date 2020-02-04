@@ -741,7 +741,7 @@ class adminController extends Controller
                 return 2;
             }
             $file = $request->file('file');
-            $nama_file =  'foto' . '.' . $file->getClientOriginalExtension();
+            $nama_file =  'foto'. date('H-i-s', time()) . '.' . $file->getClientOriginalExtension();
             $tujuan_upload = 'donasi/';
             $lengkap = $tujuan_upload . $nama_file;
             $file->move($tujuan_upload, $nama_file);
