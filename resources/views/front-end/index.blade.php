@@ -207,7 +207,7 @@
         <!-- Akhir Donasi -->
 
         {{-- Alamat--}}
-        <section class="features bg-secondary p-5">
+        {{-- <section class="features bg-secondary p-5">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-12">
@@ -231,7 +231,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
 
         {{-- Akhir Alamat --}}
 
