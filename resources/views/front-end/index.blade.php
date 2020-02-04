@@ -236,29 +236,48 @@
         {{-- Akhir Alamat --}}
 
         <!-- Footer -->
-        <footer class="border-top p-5">
+        <div class="mt-5 pt-5 pb-5 footer bg-secondary">
             <div class="container">
-                <!-- <i class="fas fa-mosque"></i> -->
-                <div class="row justify-content-between">
-                    <div class="col-1">
-                        <i class="fas fa-mosque"></i>
+                <div class="row">
+                    <div class="col-lg-5 col-xs-12 about-company">
+                        <h2 class="font-weight-bold">Negeri Akhirat</h2>
+                        <p class="pr-5 text-white-50">Disini isi deskripsi singkat tentang Pondok </p>
+                        <p><a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a href="#"><i
+                                    class="fa fa-linkedin-square"></i></a></p>
+                    </div>
+                    <div class="col-lg-3 col-xs-12 links">
+                        <h4 class="mt-lg-0 mt-sm-3">Links</h4>
+                        <ul class="m-0 p-0">
+                            <li>- <a href="#">Profil</a></li>
+                            <li>- <a href="#">Akademik</a></li>
+                            <li>- <a href="#">Pengumuman</a></li>
+                            <li>- <a href="#">Donasi</a></li>
+                            
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-xs-12 location">
+                        <h4 class="mt-lg-0 mt-sm-4">Location</h4>
+                        <p>Alamat Pondok jalan Singasari</p>
+                        <p class="mb-0"><i class="fa fa-phone mr-3"></i>(541) 754-3010</p>
+                        <p><i class="fa fa-envelope-o mr-3"></i>info@hsdf.com</p>
                     </div>
                 </div>
-                {{-- <div class="row mt-3 justify-content-between">
-                    <div class="col-5">
-                        <p>All Rights Reserved by Hefa Store Copyright 2019.</p>
+                <div class="row mt-5">
+                    <div class="col copyright">
+                        <p class=""><small class="text-white-50">© 2019. All Rights Reserved.</small></p>
                     </div>
-                    <div class="col-6">
-                        <nav class="nav justify-content-end text-uppercase">
-                            <a class="nav-link active" href="#">Jobs</a>
-                            <a class="nav-link" href="#">Developer</a>
-                            <a class="nav-link" href="#">Terms</a>
-                            <a class="nav-link pr-0" href="#">Privacy Policy</a>
-                        </nav>
-                    </div>
-                </div> --}}
+                </div>
             </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2020 Copyright:
+            <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+        </div>
+        <!-- Copyright -->
+
         </footer>
+        <!-- Footer -->
         <!-- Akhir Footer -->
 
         <!-- Optional JavaScript -->
