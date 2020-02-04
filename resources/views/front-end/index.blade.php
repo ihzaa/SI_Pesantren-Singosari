@@ -41,10 +41,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav text-uppercase mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Informasi Pondok</a>
+                        <a class="nav-link" href="#">Profil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Donasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pengumuman</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Informasi</a>
@@ -182,7 +185,8 @@
                                         <div class="row mt-2 text-center align-content-center justify-content-center">
 
 
-                                            @foreach (\App\donasi_masuk::orderBy('dibuat','desc')->take(3)->get() as $item)
+                                            @foreach (\App\donasi_masuk::orderBy('dibuat','desc')->take(3)->get() as
+                                            $item)
                                             {{ucfirst($item->nama)}} - Rp. {{$item->nominal}}<br>
                                             @endforeach
 
