@@ -257,7 +257,7 @@
                     </div>
                     <div class="col-lg-4 col-xs-12 location">
                         <h4 class="mt-lg-0 mt-sm-4">Location</h4>
-                        <p>Alamat Pondok jalan Singasari</p>
+                        <p>Jl. Sempit, Biru, Gunungrejo, Kec. Singosari, Malang, Jawa Timur 65153</p>
                         <p class="mb-0"><i class="fa fa-phone mr-3"></i>(541) 754-3010</p>
                         <p><i class="fa fa-envelope-o mr-3"></i>info@hsdf.com</p>
                     </div>
