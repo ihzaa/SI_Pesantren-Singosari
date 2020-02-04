@@ -173,7 +173,6 @@
                                                 role="progressbar" style="width: {{$persen}}%;"
                                                 aria-valuenow="{{$persen}}" aria-valuemin="0" aria-valuemax="100">
                                                 <h4> {{$persen}} %</h4>
-
                                             </div>
                                         </div>
                                         <div class="row mt-2 text-center align-content-center justify-content-center">
@@ -181,14 +180,11 @@
                                             Donasi yang terkumpul
                                         </div>
                                         <div class="row mt-2 text-center align-content-center justify-content-center">
-                                        
-                                        
-                                                @foreach (\App\donasi_masuk::orderBy('dibuat','desc')->take(3)->get() as $item)
-                                                <?php 
-                                                echo ucfirst($item->nama)
-                                                ?>
-                                                 - Rp. {{$item->nominal}}<br>
-                                                @endforeach
+
+
+                                            @foreach (\App\donasi_masuk::orderBy('dibuat','desc')->take(3)->get() as $item)
+                                            {{ucfirst($item->nama)}} - Rp. {{$item->nominal}}<br>
+                                            @endforeach
 
                                         </div>
 
