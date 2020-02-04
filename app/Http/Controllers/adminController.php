@@ -182,7 +182,7 @@ class adminController extends Controller
                 $file->move($location, $filename);
 
                 // Import CSV to Database
-                $filepath = public_path($location . "/" . $filename);
+                $filepath = $location . "/" . $filename;
 
                 // Reading file
                 $file = fopen($filepath, "r");
@@ -222,7 +222,7 @@ class adminController extends Controller
                     $i++;
                 }
                 fclose($file);
-                File::delete(public_path($location . "/" . $filename));
+                File::delete($location . "/" . $filename);
                 $i = 0;
                 // Insert to MySQL database
                 foreach ($importData_arr as $importData) {
@@ -387,7 +387,7 @@ class adminController extends Controller
                     $file->move($location, $filename);
 
                     // Import CSV to Database
-                    $filepath = public_path($location . "/" . $filename);
+                    $filepath = $location . "/" . $filename;
 
                     // Reading file
                     $file = fopen($filepath, "r");
@@ -427,7 +427,7 @@ class adminController extends Controller
                         $i++;
                     }
                     fclose($file);
-                    File::delete(public_path($location . "/" . $filename));
+                    File::delete($location . "/" . $filename);
                     $i = 0;
                     // Insert to MySQL database
                     foreach ($importData_arr as $importData) {
