@@ -44,13 +44,13 @@
                         <a class="nav-link" href="#">Profil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Donasi</a>
+                        <a class="nav-link" href="#">Akademik</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pengumuman</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Informasi</a>
+                        <a class="nav-link" href="#">Donasi</a>
                     </li>
                 </ul>
                 <a href="{{route('userlogin')}}" type="button" class="btn btn-sm btn-outline-info text-white">Masuk<i
