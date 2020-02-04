@@ -59,6 +59,9 @@
             </div>
             <div class="modal-footer">
                 <button type="submit" id="btn-simpan" class="btn btn-primary" href="#">Simpan</button>
+                <button class="btn btn-outline-primary btn-loading" id="btn-ldg-atas" style="display: none;" type="submit" >
+                    <span class="spinner-border"></span>
+                </button>
             </div>
         </form>
     </div>
@@ -444,6 +447,7 @@
     });
 
         $("#form_kiri").on('submit',function(){
+            hideldgatas();
             event.preventDefault();
             $.ajaxSetup({
             headers: {
@@ -459,6 +463,7 @@
                 cache: false,
                 processData: false,
                 success: function(data) {
+                    tampilinldgatas();
                     if(data == 1)
                         $('#kirisuksesModal').modal('show');
                     else if(data == 2)
@@ -470,6 +475,16 @@
                 }
             });
             });
+
+            function hideldgatas(){
+                document.getElementById('btn-ldg-atas').style.display = "block";
+                document.getElementById('btn-simpan').style.display = "none";
+            }
+            function tampilinldgatas()
+            {
+                document.getElementById('btn-simpan').style.display = "block";
+                document.getElementById('btn-ldg-atas').style.display = "none";
+            }
 </script>
 
 @endsection
