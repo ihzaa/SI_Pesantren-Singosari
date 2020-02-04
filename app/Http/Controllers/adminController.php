@@ -93,7 +93,7 @@ class adminController extends Controller
     {
         $validatedData = Validator::make(request()->all(), [
             'nama' => 'required|max:255',
-            'nis' => 'require',
+            'nis' => 'required',
             'tahun_masuk' => 'required|max:4',
             'nama_wali' => 'required|max:255',
             'telp_wali' => 'required|max:255',
