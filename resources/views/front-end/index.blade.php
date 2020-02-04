@@ -196,7 +196,7 @@
                                 </div>
                                 <hr>
                                 <div class="">
-                                    <h5>Untuk donasi kirim kesini guys</h5>
+                                    <h5></h5>
                                 </div>
                             </div>
                         </div>
