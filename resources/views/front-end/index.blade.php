@@ -248,10 +248,10 @@
                     <div class="col-lg-3 col-xs-12 links">
                         <h4 class="mt-lg-0 mt-sm-3">Links</h4>
                         <ul class="m-0 p-0">
-                            <li>- <a href="#">Profil</a></li>
-                            <li>- <a href="#">Akademik</a></li>
-                            <li>- <a href="#">Pengumuman</a></li>
-                            <li>- <a href="#">Donasi</a></li>
+                            <li><a href="#">Profil</a></li>
+                            <li><a href="#">Akademik</a></li>
+                            <li><a href="#">Pengumuman</a></li>
+                            <li><a href="#">Donasi</a></li>
                             
                         </ul>
                     </div>
