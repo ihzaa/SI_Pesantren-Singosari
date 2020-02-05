@@ -123,7 +123,7 @@
                 <div class="row justify-content-center" style="background-color: #4281A7;">
 
                     @foreach(\App\pengumuman::get()->take(4) as $p)
-                    <div class="col-3 mt-4 ">
+                    <div class="col-xl-3 col-md-3 col-sm-12 col-xs-12  mt-4 ">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">{{$p->judul}}</h6>
