@@ -7,6 +7,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- Custom styles for this page -->
 <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/centang.css">
 @endsection
 
 @section('content')
@@ -62,7 +63,7 @@
                         <td>{{$s->dibuat}}</td>
                         <td>
                             <div class="row justify-content-center">
-                                @if($s->status == 'n')
+                                @if($s->prioritas == 'n')
                                 <button type="button" id="btnprior{{$i}}" class="btn btn-outline-info btn-sm btn-prior"
                                     data-target="{{$i}}">Prioritaskan</button>
                                 <button type="button" id="btnnonprior{{$i}}"
@@ -72,7 +73,7 @@
                                     type="submit" style="display: none;">
                                     <span class="spinner-border spinner-border-sm"></span>
                                 </button>
-                                <input type="hidden" id="idnya" name="id{{$i}}" value="{{$s->id}}">
+                                <input type="hidden" id="idnya{{$i}}" value="{{$s->id}}">
                                 @else
                                 <button type="button" id="btnprior{{$i}}" class="btn btn-outline-info btn-sm btn-prior"
                                     data-target="{{$i}}" style="display: none;">Prioritaskan</button>
@@ -83,7 +84,7 @@
                                     type="submit" style="display: none;">
                                     <span class="spinner-border spinner-border-sm"></span>
                                 </button>
-                                <input type="hidden" id="idnya" name="id{{$i}}" value="{{$s->id}}">
+                                <input type="hidden" id="idnya{{$i}}" value="{{$s->id}}">
                                 @endif
                             </div>
                         </td>
@@ -139,6 +140,36 @@
     </div>
 </div>
 
+<!-- MODAL GAGAL -->
+<div class="modal fade" id="gagalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Maaf!!! Maksimal 4 Pengumuman yang dapat di Prioritaskan!
+                </h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex;">
+                            <span class="swal2-x-mark">
+                                <span class="swal2-x-mark-line-left"></span>
+                                <span class="swal2-x-mark-line-right"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('js')
@@ -156,9 +187,64 @@
         modal.find('.modal-body #id').val(button.data('id'))
         modal.find('.modal-body #judul').val(button.data('judul'))
         })
-</script>
 
-<script>
+        $(".btn-prior").click(function(){
+            var a = $(this).data('target');
+            $('#btnldng'+a).toggle();
+            $(this).toggle();
+            $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+            });
+            $.ajax({
+                type: 'post',
+                url: '{{route('adminmemprioritaskan')}}',
+                data: {
+                    'id':  $('#idnya'+a).val()
+                },
+                success: function(data) {
+                    if(data == 1){
+                        wadaw('btnnonprior'+a,'btnldng'+a);
+                    }
+                    if(data == 2){
+                        $('#gagalModal').modal('show');
+                        wadaw('btnprior'+a,'btnldng'+a);
+                    }
+                },
+                error: function(data){
+                    alert(a);
+                }
+            });
+        });
 
+        $(".btn-nonprior").click(function(){
+            var a = $(this).data('target');
+            $('#btnldng'+a).toggle();
+            $(this).toggle();
+            $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+            });
+            $.ajax({
+                type: 'post',
+                url: '{{route('adminnonprioritaskan')}}',
+                data: {
+                    'id':  $('#idnya'+a).val()
+                },
+                success: function(data) {
+                    wadaw('btnprior'+a,'btnldng'+a);
+                },
+                error: function(data){
+                    alert(a);
+                }
+            });
+        });
+
+        function wadaw(a,b){
+            document.getElementById(a).style.display = "block";
+            document.getElementById(b).style.display = "none";
+        }
 </script>
 @endsection

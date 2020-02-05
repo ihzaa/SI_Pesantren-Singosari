@@ -787,8 +787,21 @@ class adminController extends Controller
 
     public function adminmemprioritaskan(Request $request)
     {
+        $count = \App\pengumuman::where('prioritas', 'y')->count();
+        if ($count < 4) {
+            \App\pengumuman::where('id', $request->id)->update([
+                'prioritas' => 'y'
+            ]);
+            return 1;
+        }else{
+            return 2;
+        }
+    }
+
+    public function adminnonprioritaskan(Request $request)
+    {
         \App\pengumuman::where('id', $request->id)->update([
-            'prioritas' => 'y'
+            'prioritas' => 'n'
         ]);
         return 1;
     }
