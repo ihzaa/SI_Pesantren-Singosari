@@ -69,8 +69,9 @@
         <h5 class="" id="exampleModalLabel">Edit Tahun Ajaran</h5>
     </div>
     <div class="card-body">
-        <form class="user" action="{{route('admintambahpengumumanya')}}" method="POST" enctype="multipart/form-data">
+        <form class="user" action="{{route('admineditpengumumanya')}}" method="POST" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="id" value="{{$p->id}}">
             <div class="form-group row">
                 <div class="col">
                     <label>Judul</label>
@@ -91,7 +92,7 @@
             <div class="form-group row">
                 <div class="col">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="file" name="file" required="">
+                        <input type="file" class="custom-file-input" id="file" name="file">
                     <label class="custom-file-label" for="customFile">{{$p->foto}}</label>
                     </div>
                     <div class="row mt-3">
@@ -112,7 +113,7 @@
             <div class="modal-footer">
                 <a href="{{route('adminkelolapengumuman')}}" class="btn btn-secondary" type="button"
                     data-dismiss="modal">Kembali</a>
-                <button type="submit" class="btn btn-primary" href="#">Tambah</button>
+                <button type="submit" class="btn btn-primary" href="#">Simapn</button>
             </div>
         </form>
     </div>

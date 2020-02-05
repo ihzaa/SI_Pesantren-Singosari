@@ -811,23 +811,33 @@ class adminController extends Controller
 
     public function admineditpengumumanya(Request $request)
     {
-        $request->validate([
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:8048'
-        ]);
+        if ($request->file != null) {
+            $request->validate([
+                'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:8048'
+            ]);
 
-        $file = $request->file('file');
-        $nama_file =  $request->id . '.' . $file->getClientOriginalExtension();
-        $tujuan_upload = 'pengumuman/';
-        $lengkap = $tujuan_upload . $nama_file;
-        $file->move($tujuan_upload, $nama_file);
+            $file = $request->file('file');
+            $nama_file =  $request->id . '.' . $file->getClientOriginalExtension();
+            $tujuan_upload = 'pengumuman/';
+            $lengkap = $tujuan_upload . $nama_file;
+            $file->move($tujuan_upload, $nama_file);
 
-        \App\pengumuman::where('id', $request->id)->update([
-            'judul' => $request->judul,
-            'isi' => $request->isi,
-            'foto' => $lengkap
-        ]);
-        Session::flash('color', 'alert-success');
-        Session::flash('pesan', 'Berhasil Edit Pengumuman');
-        return redirect('/4dm1n/kelola-pengumuman');
+            \App\pengumuman::where('id', $request->id)->update([
+                'judul' => $request->judul,
+                'isi' => $request->isi,
+                'foto' => $lengkap
+            ]);
+            Session::flash('color', 'alert-success');
+            Session::flash('pesan', 'Berhasil Edit Pengumuman');
+            return redirect('/4dm1n/kelola-pengumuman');
+        } else {
+            \App\pengumuman::where('id', $request->id)->update([
+                'judul' => $request->judul,
+                'isi' => $request->isi
+            ]);
+            Session::flash('color', 'alert-danger');
+            Session::flash('pesan', 'Berhasil Edit Pengumuman');
+            return redirect('/4dm1n/kelola-pengumuman');
+        }
     }
 }

@@ -89,11 +89,10 @@
                         </td>
                         <td>
                             <div class="row justify-content-center">
-                                {{-- <a href="#" class="btn btn-info btn-circle btn-sm" title="Edit" data-toggle="modal"
-                                    data-target="#editModal" data-id="{{$s->id}}" data-nama="{{$s->nama}}"
-                                data-deskripsi="{{$s->deskripsi}}">
-                                <i class="fas fa-user-edit text-light"></i>
-                                </a> --}}
+                                <a href="/4dm1n/kelola-pengumuman/edit/{{$s->id}}/{{$s->judul}}"
+                                    class="btn btn-info btn-circle btn-sm" title="Edit">
+                                    <i class="fas fa-user-edit text-light"></i>
+                                </a>
                                 <a href="#" class="btn btn-danger btn-circle btn-sm" title="Hapus" data-toggle="modal"
                                     data-target="#hapusModal" data-id="{{$s->id}}" data-judul="{{$s->judul}}">
                                     <i class=" fas fa-trash text-light"></i>
