@@ -64,7 +64,7 @@
 
 
     <!-- Carousel -->
-    <div id="carousel" style="background-color: rgb(209, 219, 255);" class="carousel slide mt-4" data-ride="carousel">
+    <div id="carousel" style="background-color: rgb(68, 160, 215);" class="carousel slide mt-4" data-ride="carousel">
         <ol class="carousel-indicators">
             <?php
             $cnt = count(\App\carousel::where('status','aktif')->get());
@@ -126,8 +126,8 @@
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">{{$p->judul}}</h6>
                         </div>
-                        <div class="card-body justify-content-center align-content-center">
-                            <div class="row justify-content-center align-content-center">
+                        <div class="card-body">
+                            <div class="row">
                                 <div class="col ">
                                     <img src="{{$p->foto}}" alt="image" class="img-fluid">
 
@@ -187,9 +187,9 @@
             </div>
         </div>
         <!-- Donasi -->
-        <section class="features bg-light p-5">
+        <section class="features p-5" style="background-color: #4192C2">
             <div class="container-fluid">
-                <div class="row" style="background-color: rgb(209, 219, 255);">
+                <div class="row" style="">
                     <div class="col-xl-12">
                         <div class="card shadow mb-4 align-content-center">
                             <div class="card-header py-3 text-center">
