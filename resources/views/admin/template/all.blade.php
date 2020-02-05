@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -114,6 +115,12 @@
                     <span>Kelola Donasi</span></a>
             </li>
 
+            {{-- <li class="nav-item {{request()->is('4dm1n/kelola-pengumuman') ? 'active open' : ''}}">
+                <a class="nav-link" href="{{route('adminkelolapengumuman')}}">
+                    <i class="fas fa-fw fa fa-donate"></i>
+                    <span>Kelola Pengumuman</span></a>
+            </li> --}}
+
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -151,14 +158,6 @@
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">

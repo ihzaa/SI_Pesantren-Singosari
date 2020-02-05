@@ -18,6 +18,7 @@ class CreateTablePengumuman extends Migration
             $table->string('judul');
             $table->string('foto');
             $table->string('deskripsi');
+            $table->string('prioritas')->default('n');
             $table->dateTime('dibuat')->useCurrent();
         });
     }
