@@ -22,10 +22,9 @@
     <!-- My CSS -->
     <link rel="stylesheet" href="/css/style.css">
 
-    <<<<<<< HEAD <title>Pondok Pesantren Negeri Akhirat</title>
-        =======
+    <title>Pondok Pesantren Negeri Akhirat</title>
+
         <title>Pesantren Singosari</title>
-        >>>>>>> db904bd9ed3a7b1cc97491c758550224f13994dc
 </head>
 
 <body>
@@ -42,12 +41,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav text-uppercase mx-auto">
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="#">Profil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Akademik</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pengumuman</a>
                     </li>
@@ -132,9 +131,9 @@
                                     <img src="{{$p->foto}}" alt="image" class="img-fluid">
 
                                 </div>
-                                
+
                             </div>
-                            <p class="text-lg mb-0">{{$p->isi}}</p>
+                            <p class="text-lg mb-0">{{str_limit($p->isi,160)}}</p>
                         </div>
                     </div>
                 </div>
