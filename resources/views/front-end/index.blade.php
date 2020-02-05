@@ -24,7 +24,7 @@
 
     <title>Pondok Pesantren Negeri Akhirat</title>
 
-        <title>Pesantren Singosari</title>
+    <title>Pesantren Singosari</title>
 </head>
 
 <body>
@@ -48,10 +48,10 @@
                         <a class="nav-link" href="#">Akademik</a>
                     </li> --}}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pengumuman</a>
+                        <a class="nav-link" href="#pengumuman">Pengumuman</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Donasi</a>
+                        <a class="nav-link" href="#donasi">Donasi</a>
                     </li>
                 </ul>
                 <a href="{{route('userlogin')}}" type="button" class="btn btn-sm btn-outline-info text-white"
@@ -116,7 +116,7 @@
         <!-- Akhir Carousel -->
 
         {{-- Pengumuman --}}
-        <div class="container-fluid">
+        <div id="pengumuman" class="container-fluid">
             {{-- #428bca --}}
             <div class="row justify-content-center" style="background-color: #4281A7;">
                 @foreach(\App\pengumuman::get()->take(4) as $p)
@@ -186,7 +186,7 @@
             </div>
         </div>
         <!-- Donasi -->
-        <section class="features bg-light p-5">
+        <section id="donasi" class="features bg-light p-5">
             <div class="container-fluid">
                 <div class="row" style="background-color: rgb(209, 219, 255);">
                     <div class="col-xl-12">
@@ -357,6 +357,34 @@
         <script src="/js/popper.min.js"></script>
         <script src="/js/bootstrap.js"></script>
         <script src="/js/all.js"></script>
+        <script>
+            $(document).ready(function(){
+                // Add scrollspy to <body>
+                $('body').scrollspy({target: ".navbar"});
+
+                // Add smooth scrolling on all links inside the navbar
+                $("#navbarNav a").on('click', function(event) {
+                    // Make sure this.hash has a value before overriding default behavior
+                    if (this.hash !== "") {
+                    // Prevent default anchor click behavior
+                    event.preventDefault();
+
+                    // Store hash
+                    var hash = this.hash;
+
+                    // Using jQuery's animate() method to add smooth page scroll
+                    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800, function(){
+
+                        // Add hash (#) to URL when done scrolling (default click behavior)
+                        window.location.hash = hash;
+                    });
+                    }  // End if
+                });
+                });
+        </script>
 </body>
 
 </html>
