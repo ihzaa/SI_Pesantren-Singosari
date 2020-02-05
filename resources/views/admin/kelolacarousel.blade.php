@@ -56,7 +56,13 @@
                     <tr>
                         <td>{{$i++}}</td>
                         <td>{{$s->nama}}</td>
-                        <td>{{$s->foto}}</td>
+                        <td style="width: 150px;">
+
+                                {{-- <div class="col-6 "> --}}
+                                    <img src="/{{$s->foto}}" alt="fotonya" class="img-fluid">
+                                {{-- </div> --}}
+
+                        </td>
                         <td>{{str_limit($s->deskripsi,10)}}</td>
                         <td>{{$s->dibuat}}</td>
                         <td>
@@ -136,9 +142,9 @@
                     </div>
                     <div class="form-group row">
                         <div class="col">
-                            <label>Deskripsi <strong>Jika dikosongkan maka hanya akan di tampilkan gambar</strong></label>
-                            <textarea class="form-control" name="deskripsi" placeholder="Deskripsi"
-                                rows="3"></textarea>
+                            <label>Deskripsi <strong>Jika dikosongkan maka hanya akan di tampilkan
+                                    gambar</strong></label>
+                            <textarea class="form-control" name="deskripsi" placeholder="Deskripsi" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
