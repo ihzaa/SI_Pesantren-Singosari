@@ -16,7 +16,7 @@ class CreateTablePengumuman extends Migration
         Schema::create('pengumuman', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('judul');
-            $table->string('foto');
+            $table->string('foto')->nullable();
             $table->string('isi');
             $table->string('prioritas')->default('n');
             $table->dateTime('dibuat')->useCurrent();

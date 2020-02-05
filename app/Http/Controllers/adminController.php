@@ -635,7 +635,7 @@ class adminController extends Controller
 
     public function adminhapuscarousel(Request $request)
     {
-        File::delete(public_path(\App\carousel::where('id', $request->id)->first()->foto));
+        File::delete(\App\carousel::where('id', $request->id)->first()->foto);
         \App\carousel::where('id', $request->id)->delete();
         Session::flash('color', 'alert-danger');
         Session::flash('pesan', 'Berhasil menghapus carousel');
@@ -758,5 +758,76 @@ class adminController extends Controller
     {
         $p = \App\pengumuman::get();
         return view('admin.kelolapengumuman', compact('p'));
+    }
+
+    public function admintambahpengumuman(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:8048'
+        ]);
+
+        $id = DB::table('pengumuman')->insertGetId([
+            'judul' => $request->judul,
+            'isi' => $request->isi
+        ]);
+
+        $file = $request->file('file');
+        $nama_file =  $id . '.' . $file->getClientOriginalExtension();
+        $tujuan_upload = 'pengumuman/';
+        $lengkap = $tujuan_upload . $nama_file;
+        $file->move($tujuan_upload, $nama_file);
+
+        \App\pengumuman::where('id', $id)->update([
+            'foto' => $lengkap
+        ]);
+        Session::flash('color', 'alert-success');
+        Session::flash('pesan', 'Berhasil Menambah Pengumuman');
+        return redirect('/4dm1n/kelola-pengumuman');
+    }
+
+    public function adminmemprioritaskan(Request $request)
+    {
+        \App\pengumuman::where('id', $request->id)->update([
+            'prioritas' => 'y'
+        ]);
+        return 1;
+    }
+
+    public function adminhapuspengumuman(Request $request)
+    {
+        File::delete(\App\pengumuman::where('id', $request->id)->pluck('foto')[0]);
+        \App\pengumuman::where('id', $request->id)->delete();
+        Session::flash('color', 'alert-danger');
+        Session::flash('pesan', 'Berhasil Hapus Pengumuman');
+        return back();
+    }
+
+
+    public function admineditpengumuman($id, $judul)
+    {
+        $p = \App\pengumuman::where('id', $id)->first();
+        return view('admin.tambahpengumuman', compact('p'));
+    }
+
+    public function admineditpengumumanya(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:8048'
+        ]);
+
+        $file = $request->file('file');
+        $nama_file =  $request->id . '.' . $file->getClientOriginalExtension();
+        $tujuan_upload = 'pengumuman/';
+        $lengkap = $tujuan_upload . $nama_file;
+        $file->move($tujuan_upload, $nama_file);
+
+        \App\pengumuman::where('id', $request->id)->update([
+            'judul' => $request->judul,
+            'isi' => $request->isi,
+            'foto' => $lengkap
+        ]);
+        Session::flash('color', 'alert-success');
+        Session::flash('pesan', 'Berhasil Edit Pengumuman');
+        return redirect('/4dm1n/kelola-pengumuman');
     }
 }

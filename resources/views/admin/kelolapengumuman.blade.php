@@ -14,7 +14,7 @@
     <div class="card-header py-3 align-items-center justify-content-between d-sm-flex">
         <h6 class="mb-0 font-weight-bold text-primary">Pengumuman</h6>
         <div>
-            <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#tambahModal">
+            <a href="{{route('admintambahpengumuman')}}" class="btn btn-primary btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fa fa-plus"></i>
                 </span>
@@ -95,7 +95,7 @@
                                 <i class="fas fa-user-edit text-light"></i>
                                 </a> --}}
                                 <a href="#" class="btn btn-danger btn-circle btn-sm" title="Hapus" data-toggle="modal"
-                                    data-target="#hapusModal" data-id="{{$s->id}}" data-nama="{{$s->nama}}">
+                                    data-target="#hapusModal" data-id="{{$s->id}}" data-judul="{{$s->judul}}">
                                     <i class=" fas fa-trash text-light"></i>
                                 </a>
                             </div>
@@ -104,6 +104,38 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL HAPUS -->
+<div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Hapus Pengumuman?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="user" action="{{route('adminhapuspengumuman')}}" method="POST">
+                    <input type="hidden" name="id" id="id">
+                    @csrf
+                    <div class="form-group row">
+                        <div class="col">
+                            <label>Judul</label>
+                            <input type="text" disabled="" class="form-control" placeholder="Judul" id="judul"
+                                name="judul" required="">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary" href="#">Hapus</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -117,5 +149,17 @@
 <!-- Page level custom scripts -->
 <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
 
+<script>
+    $('#hapusModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that trigg  ered the modal
+        var modal = $(this)
 
+        modal.find('.modal-body #id').val(button.data('id'))
+        modal.find('.modal-body #judul').val(button.data('judul'))
+        })
+</script>
+
+<script>
+
+</script>
 @endsection

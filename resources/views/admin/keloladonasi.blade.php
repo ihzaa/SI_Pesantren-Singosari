@@ -48,14 +48,13 @@
                         <div class="col-4">
                             <p>Syarat foto: </p>
                             <ul>
-                                <li>Ekstensi jpg, jpeg</li>
+                                <li>Ekstensi jpg, jpeg, png</li>
                                 <li>Ukuran max : 5MB</li>
                                 <li>Resolusi 500 x 500</li>
                             </ul>
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="modal-footer">
                 <button type="submit" id="btn-simpan" class="btn btn-primary" href="#">Simpan</button>
