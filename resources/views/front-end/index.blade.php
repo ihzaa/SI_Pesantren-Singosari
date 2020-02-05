@@ -14,10 +14,12 @@
     <link rel="stylesheet" href="/css/all.css">
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Montserrat:200,400,600&display=swap"
+    
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- My CSS -->
+    <!-- My CSS --> 
     <link rel="stylesheet" href="/css/style.css">
 
     <<<<<<< HEAD <title>Pondok Pesantren Negeri Akhirat</title>
@@ -29,7 +31,7 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #4281A7" >
         <div class="container">
             <a class="navbar-brand" href="#">
                 <i class="fas fa-mosque"></i>
@@ -53,8 +55,8 @@
                         <a class="nav-link" href="#">Donasi</a>
                     </li>
                 </ul>
-                <a href="{{route('userlogin')}}" type="button" class="btn btn-sm btn-outline-info text-white">Masuk<i
-                        class="fas fa-sign-in-alt"></i></a>
+                <a href="{{route('userlogin')}}" type="button" class="btn btn-sm btn-outline-info text-white" style="border-style: none;">LOGIN<i
+                        class=""></i></a>
             </div>
         </div>
     </nav>
@@ -114,10 +116,61 @@
         </div>
         <!-- Akhir Carousel -->
 
+        {{-- Pengumuman --}}
+        <div class="container-fluid">
+            {{-- #428bca --}}
+            <div class="row justify-content-center" style="background-color: #4281A7;">
+                <div class="col-3 mt-4 ">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Custom Font Size Utilities</h6>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-xs">.text-xs</p>
+                            <p class="text-lg mb-0">.text-lg</p>
+                        </div>
+                    </div>
+                </div>
+                {{-- <div class="col-3 mt-4">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Custom Font Size Utilities</h6>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-xs">.text-xs</p>
+                            <p class="text-lg mb-0">.text-lg</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 mt-4">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Custom Font Size Utilities</h6>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-xs">.text-xs</p>
+                            <p class="text-lg mb-0">.text-lg</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 mt-4">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Custom Font Size Utilities</h6>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-xs">.text-xs</p>
+                            <p class="text-lg mb-0">.text-lg</p>
+                        </div>
+                    </div>
+                </div> --}}
+
+            </div>
+        </div>
         <!-- Donasi -->
-        <section class="features bg-light p-5">
-            <div class="container-fluid">
-                <div class="row">
+        <section class="features bg-light p-5" >
+            <div class="container-fluid" >
+                <div class="row" style="background-color: rgb(209, 219, 255);">
                     <div class="col-xl-12">
                         <div class="card shadow mb-4 align-content-center">
                             <div class="card-header py-3 text-center">
@@ -252,7 +305,7 @@
                             <li><a href="#">Akademik</a></li>
                             <li><a href="#">Pengumuman</a></li>
                             <li><a href="#">Donasi</a></li>
-                            
+
                         </ul>
                     </div>
                     <div class="col-lg-4 col-xs-12 location">

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\pengajar;
+use App\Pengajar;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Santri;
 
 class UserController extends Controller
 {
