@@ -146,37 +146,36 @@
         </div>
         <!-- Donasi -->
         <section id="donasi" class="features p-1 pt-4" style="background-color: #4192C2">
-                <div class="container-fluid">
-                    <div class="row" style="">
-                        <div class="col-xl-12">
-                            <div class="card shadow mb-4 align-content-center">
-                                <div class="card-header py-3 text-center">
-                                    <h6 class="m-0 font-weight-bold text-primary">Informasi Donasi</h6>
-                                </div>
-                                <div class="card-body">
-                                    <?php
+            <div class="container-fluid">
+                <div class="row" style="">
+                    <div class="col-xl-12">
+                        <div class="card shadow mb-4 align-content-center">
+                            <div class="card-header py-3 text-center">
+                                <h6 class="m-0 font-weight-bold text-primary">Informasi Donasi</h6>
+                            </div>
+                            <div class="card-body">
+                                <?php
                                     $i = \App\donasi::first();
                                 ?>
-                                    <div class="row">
-                                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                            <div class="row ml-2 justify-content-center">
-                                                {{$i->judul}}
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <div class="row ml-2 justify-content-center">
+                                            {{$i->judul}}
 
-                                            </div>
-                                            <div class="row ml-2 mr-2">
-                                                {{$i->deskripsi}}
-                                            </div>
-                                            <div
-                                                class="row mt-4 justify-content-center text-center align-content-center">
-                                                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                                                    <img src="{{$i->foto}}" class="img-fluid" alt="Gambar apa gitu">
-                                                </div>
+                                        </div>
+                                        <div class="row ml-2 mr-2">
+                                            {{$i->deskripsi}}
+                                        </div>
+                                        <div class="row mt-4 justify-content-center text-center align-content-center">
+                                            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                                <img src="{{$i->foto}}" class="img-fluid" alt="Gambar apa gitu">
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-4 col-sm-12 col-sm-12 border-left-secondary">
-                                            <div class="row ml-2 ">Donasi Yang Diperlukan <p><br></p>
-                                            </div>
-                                            <?php
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-sm-12 border-left-secondary">
+                                        <div class="row ml-2 ">Donasi Yang Diperlukan <p><br></p>
+                                        </div>
+                                        <?php
                                                 $i = \App\donasi::first()->Target;
                                                 $i_arr = str_split(strrev($i),3);
                                                 $tlt = "";
@@ -190,12 +189,12 @@
                                                 // implode($tlt);
                                                 $tlt = strrev($tlt);
                                             ?>
-                                            <div class="row ml-2">
-                                                <h3><strong>Rp. {{$tlt}}</strong></h3>
-                                                <p><br><br></p>
-                                            </div>
-                                            <div class="progress" style="height: 70px;">
-                                                <?php
+                                        <div class="row ml-2">
+                                            <h3><strong>Rp. {{$tlt}}</strong></h3>
+                                            <p><br><br></p>
+                                        </div>
+                                        <div class="progress" style="height: 70px;">
+                                            <?php
                                                 $j = \App\donasi_masuk::get()->pluck('nominal');
                                                 $total = 0;
                                                 for($a = 0; $a < count($j); $a++){
@@ -203,39 +202,52 @@
                                             }
                                               $persen = $total / $i *100;
                                             ?>
-                                                <div class="progress-bar progress-bar-striped progress-bar-animated "
-                                                    role="progressbar" style="width: {{$persen}}%;"
-                                                    aria-valuenow="{{$persen}}" aria-valuemin="0" aria-valuemax="100">
-                                                    <h4> {{$persen}} %</h4>
-                                                </div>
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated "
+                                                role="progressbar" style="width: {{$persen}}%;"
+                                                aria-valuenow="{{$persen}}" aria-valuemin="0" aria-valuemax="100">
+                                                <h4> {{round($persen)}} %</h4>
                                             </div>
-                                            <div
-                                                class="row mt-2 text-center align-content-center justify-content-center">
-                                                <p><br></p>
-                                                Donasi yang terkumpul
-                                            </div>
-                                            <div
-                                                class="row mt-2 text-center align-content-center justify-content-center">
+                                        </div>
+                                        <div class="row mt-2 text-center align-content-center justify-content-center">
+                                            <p><br></p>
+                                            Donasi yang terkumpul
+                                        </div>
+                                        <div class="row mt-2 text-center align-content-center justify-content-center">
 
 
-                                                @foreach (\App\donasi_masuk::orderBy('dibuat','desc')->take(3)->get() as
-                                                $item)
-                                                {{ucfirst($item->nama)}} - Rp. {{$item->nominal}}<br>
-                                                @endforeach
+                                            @foreach (\App\donasi_masuk::orderBy('dibuat','desc')->take(3)->get() as
+                                            $item)
+                                            <?php
+                                                    $i = $item->nominal;
+                                                    $i_arr = str_split(strrev($i),3);
+                                                    $tlt = "";
+                                                    for($a = 0; $a < count($i_arr);$a++){
+                                                        if($a == (count($i_arr)-1)){
+                                                            $tlt = $tlt .''. $i_arr[$a];
+                                                            continue;
+                                                        }
+                                                        $tlt = $tlt .''. $i_arr[$a].'.';
+                                                    }
+                                                    // implode($tlt);
+                                                    $tlt = strrev($tlt);
+                                                    ?>
 
-                                            </div>
+                                            {{ucfirst($item->nama)}} - Rp. {{$tlt}}<br>
+                                            @endforeach
 
                                         </div>
+
                                     </div>
-                                    <hr>
-                                    <div class="">
-                                        <h5></h5>
-                                    </div>
+                                </div>
+                                <hr>
+                                <div class="">
+                                    <h5></h5>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
             <!-- Akhir Donasi -->
 
             {{-- Alamat--}}
@@ -268,7 +280,7 @@
         {{-- Akhir Alamat --}}
 
         <!-- Footer -->
-        <div class="pt-5 pb-5 footer" style="background-color: #4281A7" >
+        <div class="pt-5 pb-5 footer" style="background-color: #4281A7">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-5 col-xs-12 about-company">

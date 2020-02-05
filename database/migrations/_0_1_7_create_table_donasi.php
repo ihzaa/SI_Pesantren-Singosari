@@ -16,8 +16,8 @@ class CreateTableDonasi extends Migration
         Schema::create('donasi', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('Target');
-            $table->string('judul');
-            $table->string('deskripsi');
+            $table->string('judul')->nullable();
+            $table->string('deskripsi')->nullable();
             $table->string('foto');
         });
     }

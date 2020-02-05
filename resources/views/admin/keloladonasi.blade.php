@@ -25,14 +25,14 @@
                 <div class="col">
                     <label>Judul</label>
                     <input type="text" class="form-control" value="{{$data->judul}}" placeholder="Judul" id="judul"
-                        name="judul" required="">
+                        name="judul">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col">
                     <label>Deskripsi</label>
-                    <textarea class="form-control" placeholder="Deskripsi" name="desc" id="desc" rows="4"
-                        required="">{{$data->deskripsi}}</textarea>
+                    <textarea class="form-control" placeholder="Deskripsi" name="desc" id="desc"
+                        rows="4">{{$data->deskripsi}}</textarea>
                 </div>
             </div>
             <div class="form-group row">
@@ -58,7 +58,8 @@
             </div>
             <div class="modal-footer">
                 <button type="submit" id="btn-simpan" class="btn btn-primary" href="#">Simpan</button>
-                <button class="btn btn-outline-primary btn-loading" id="btn-ldg-atas" style="display: none;" type="submit" >
+                <button class="btn btn-outline-primary btn-loading" id="btn-ldg-atas" style="display: none;"
+                    type="submit">
                     <span class="spinner-border"></span>
                 </button>
             </div>
