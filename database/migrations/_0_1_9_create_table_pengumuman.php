@@ -17,7 +17,7 @@ class CreateTablePengumuman extends Migration
             $table->bigIncrements('id');
             $table->string('judul');
             $table->string('foto');
-            $table->string('deskripsi');
+            $table->string('isi');
             $table->string('prioritas')->default('n');
             $table->dateTime('dibuat')->useCurrent();
         });
