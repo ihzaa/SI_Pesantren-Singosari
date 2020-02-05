@@ -22,10 +22,9 @@
     <!-- My CSS -->
     <link rel="stylesheet" href="/css/style.css">
 
-    <<<<<<< HEAD <title>Pondok Pesantren Negeri Akhirat</title>
-        =======
-        <title>Pesantren Singosari</title>
-        >>>>>>> db904bd9ed3a7b1cc97491c758550224f13994dc
+    <title>Pondok Pesantren Negeri Akhirat</title>
+
+    <title>Pesantren Singosari</title>
 </head>
 
 <body>
@@ -42,17 +41,17 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav text-uppercase mx-auto">
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="#">Profil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Akademik</a>
+                    </li> --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pengumuman">Pengumuman</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pengumuman</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Donasi</a>
+                        <a class="nav-link" href="#donasi">Donasi</a>
                     </li>
                 </ul>
                 <a href="{{route('userlogin')}}" type="button" class="btn btn-sm btn-outline-info text-white"
@@ -117,107 +116,67 @@
         <!-- Akhir Carousel -->
 
         {{-- Pengumuman --}}
-        <div class="container-fluid">
+        <div id="pengumuman" class="container-fluid text-center pt-4" style="background-color: #4281A7;">
             {{-- #428bca --}}
-            <div class="row justify-content-center" style="background-color: #4281A7;">
-                @foreach(\App\pengumuman::get()->take(4) as $p)
-                <div class="col-3 mt-4 ">
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">{{$p->judul}}</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col ">
-                                    <img src="{{$p->foto}}" alt="image" class="img-fluid">
+            <div>
+                <h2> PENGUMUMAN </h2>
+                <div class="row justify-content-center" style="background-color: #4281A7;">
+
+                    @foreach(\App\pengumuman::get()->take(4) as $p)
+                    <div class="col-3 mt-4 ">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">{{$p->judul}}</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col ">
+                                        <img src="{{$p->foto}}" alt="image" class="img-fluid">
+
+                                    </div>
 
                                 </div>
-                                
+                                <p class="text-lg mb-0">{{str_limit($p->isi,160)}}</p>
                             </div>
-                            <p class="text-lg mb-0">{{$p->isi}}</p>
                         </div>
                     </div>
+                    @endforeach
                 </div>
-                @endforeach
-                {{-- <div class="col-3 mt-4 ">
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Custom Font Size Utilities</h6>
-                        </div>
-                        <div class="card-body">
-                            <p class="text-xs">.text-xs</p>
-                            <p class="text-lg mb-0">.text-lg</p>
-                        </div>
-                    </div>
-                </div> --}}
-                {{-- <div class="col-3 mt-4">
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Custom Font Size Utilities</h6>
-                        </div>
-                        <div class="card-body">
-                            <p class="text-xs">.text-xs</p>
-                            <p class="text-lg mb-0">.text-lg</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3 mt-4">
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Custom Font Size Utilities</h6>
-                        </div>
-                        <div class="card-body">
-                            <p class="text-xs">.text-xs</p>
-                            <p class="text-lg mb-0">.text-lg</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3 mt-4">
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Custom Font Size Utilities</h6>
-                        </div>
-                        <div class="card-body">
-                            <p class="text-xs">.text-xs</p>
-                            <p class="text-lg mb-0">.text-lg</p>
-                        </div>
-                    </div>
-                </div> --}}
-
             </div>
         </div>
         <!-- Donasi -->
-        <section class="features p-5" style="background-color: #4192C2">
-            <div class="container-fluid">
-                <div class="row" style="">
-                    <div class="col-xl-12">
-                        <div class="card shadow mb-4 align-content-center">
-                            <div class="card-header py-3 text-center">
-                                <h6 class="m-0 font-weight-bold text-primary">Informasi Donasi</h6>
-                            </div>
-                            <div class="card-body">
-                                <?php
+        <section id="donasi" class="features p-1 pt-4" style="background-color: #4192C2">
+                <div class="container-fluid">
+                    <div class="row" style="">
+                        <div class="col-xl-12">
+                            <div class="card shadow mb-4 align-content-center">
+                                <div class="card-header py-3 text-center">
+                                    <h6 class="m-0 font-weight-bold text-primary">Informasi Donasi</h6>
+                                </div>
+                                <div class="card-body">
+                                    <?php
                                     $i = \App\donasi::first();
                                 ?>
-                                <div class="row">
-                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                        <div class="row ml-2 justify-content-center">
-                                            {{$i->judul}}
+                                    <div class="row">
+                                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                            <div class="row ml-2 justify-content-center">
+                                                {{$i->judul}}
 
-                                        </div>
-                                        <div class="row ml-2 mr-2">
-                                            {{$i->deskripsi}}
-                                        </div>
-                                        <div class="row mt-4 justify-content-center text-center align-content-center">
-                                            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                                                <img src="{{$i->foto}}" class="img-fluid" alt="Gambar apa gitu">
+                                            </div>
+                                            <div class="row ml-2 mr-2">
+                                                {{$i->deskripsi}}
+                                            </div>
+                                            <div
+                                                class="row mt-4 justify-content-center text-center align-content-center">
+                                                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                                    <img src="{{$i->foto}}" class="img-fluid" alt="Gambar apa gitu">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-sm-12 border-left-secondary">
-                                        <div class="row ml-2 ">Donasi Yang Diperlukan <p><br></p>
-                                        </div>
-                                        <?php
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-sm-12 border-left-secondary">
+                                            <div class="row ml-2 ">Donasi Yang Diperlukan <p><br></p>
+                                            </div>
+                                            <?php
                                                 $i = \App\donasi::first()->Target;
                                                 $i_arr = str_split(strrev($i),3);
                                                 $tlt = "";
@@ -231,12 +190,12 @@
                                                 // implode($tlt);
                                                 $tlt = strrev($tlt);
                                             ?>
-                                        <div class="row ml-2">
-                                            <h3><strong>Rp. {{$tlt}}</strong></h3>
-                                            <p><br><br></p>
-                                        </div>
-                                        <div class="progress" style="height: 70px;">
-                                            <?php
+                                            <div class="row ml-2">
+                                                <h3><strong>Rp. {{$tlt}}</strong></h3>
+                                                <p><br><br></p>
+                                            </div>
+                                            <div class="progress" style="height: 70px;">
+                                                <?php
                                                 $j = \App\donasi_masuk::get()->pluck('nominal');
                                                 $total = 0;
                                                 for($a = 0; $a < count($j); $a++){
@@ -244,42 +203,43 @@
                                             }
                                               $persen = $total / $i *100;
                                             ?>
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated "
-                                                role="progressbar" style="width: {{$persen}}%;"
-                                                aria-valuenow="{{$persen}}" aria-valuemin="0" aria-valuemax="100">
-                                                <h4> {{$persen}} %</h4>
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated "
+                                                    role="progressbar" style="width: {{$persen}}%;"
+                                                    aria-valuenow="{{$persen}}" aria-valuemin="0" aria-valuemax="100">
+                                                    <h4> {{$persen}} %</h4>
+                                                </div>
                                             </div>
+                                            <div
+                                                class="row mt-2 text-center align-content-center justify-content-center">
+                                                <p><br></p>
+                                                Donasi yang terkumpul
+                                            </div>
+                                            <div
+                                                class="row mt-2 text-center align-content-center justify-content-center">
+
+
+                                                @foreach (\App\donasi_masuk::orderBy('dibuat','desc')->take(3)->get() as
+                                                $item)
+                                                {{ucfirst($item->nama)}} - Rp. {{$item->nominal}}<br>
+                                                @endforeach
+
+                                            </div>
+
                                         </div>
-                                        <div class="row mt-2 text-center align-content-center justify-content-center">
-                                            <p><br></p>
-                                            Donasi yang terkumpul
-                                        </div>
-                                        <div class="row mt-2 text-center align-content-center justify-content-center">
-
-
-                                            @foreach (\App\donasi_masuk::orderBy('dibuat','desc')->take(3)->get() as
-                                            $item)
-                                            {{ucfirst($item->nama)}} - Rp. {{$item->nominal}}<br>
-                                            @endforeach
-
-                                        </div>
-
                                     </div>
-                                </div>
-                                <hr>
-                                <div class="">
-                                    <h5></h5>
+                                    <hr>
+                                    <div class="">
+                                        <h5></h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <!-- Akhir Donasi -->
+            <!-- Akhir Donasi -->
 
-        {{-- Alamat--}}
-        {{-- <section class="features bg-secondary p-5">
+            {{-- Alamat--}}
+            {{-- <section class="features bg-secondary p-5">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-12">
@@ -302,13 +262,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </section> --}}
+            </div>--}}
+        </section>
 
         {{-- Akhir Alamat --}}
 
         <!-- Footer -->
-        <div class="mt-5 pt-5 pb-5 footer bg-secondary">
+        <div class="pt-5 pb-5 footer" style="background-color: #4281A7" >
             <div class="container">
                 <div class="row">
                     <div class="col-lg-5 col-xs-12 about-company">
@@ -320,10 +280,10 @@
                     <div class="col-lg-3 col-xs-12 links">
                         <h4 class="mt-lg-0 mt-sm-3">Links</h4>
                         <ul class="m-0 p-0">
-                            <li><a href="#">Profil</a></li>
-                            <li><a href="#">Akademik</a></li>
-                            <li><a href="#">Pengumuman</a></li>
-                            <li><a href="#">Donasi</a></li>
+                            {{-- <li><a href="#">Profil</a></li>
+                            <li><a href="#">Akademik</a></li> --}}
+                            <li><a href="#pengumuman">Pengumuman</a></li>
+                            <li><a href="#donasi">Donasi</a></li>
 
                         </ul>
                     </div>
@@ -334,11 +294,11 @@
                         <p><i class="fa fa-envelope-o mr-3"></i>info@hsdf.com</p>
                     </div>
                 </div>
-                <div class="row mt-5">
-                    <div class="col copyright">
-                        <p class=""><small class="text-white-50">© 2019. All Rights Reserved.</small></p>
-                    </div>
-                </div>
+                {{-- <div class="row mt-5">
+                        <div class="col copyright">
+                            <p class=""><small class="text-white-50">© 2019. All Rights Reserved.</small></p>
+                        </div>
+                    </div> --}}
             </div>
         </div>
 
@@ -358,6 +318,34 @@
         <script src="/js/popper.min.js"></script>
         <script src="/js/bootstrap.js"></script>
         <script src="/js/all.js"></script>
+        <script>
+            $(document).ready(function(){
+                // Add scrollspy to <body>
+                $('body').scrollspy({target: ".navbar"});
+
+                // Add smooth scrolling on all links inside the navbar
+                $("#navbarNav a").on('click', function(event) {
+                    // Make sure this.hash has a value before overriding default behavior
+                    if (this.hash !== "") {
+                    // Prevent default anchor click behavior
+                    event.preventDefault();
+
+                    // Store hash
+                    var hash = this.hash;
+
+                    // Using jQuery's animate() method to add smooth page scroll
+                    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800, function(){
+
+                        // Add hash (#) to URL when done scrolling (default click behavior)
+                        window.location.hash = hash;
+                    });
+                    }  // End if
+                });
+                });
+        </script>
 </body>
 
 </html>
