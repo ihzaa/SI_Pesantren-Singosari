@@ -26,15 +26,19 @@
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-10">
+                <div class="col">
                     <label>Isi</label>
                     <textarea class="form-control" placeholder="isi" id="isi" name="isi" required=""
-                        rows="10"></textarea>
+                        rows="15"></textarea>
                 </div>
-                <div class="col-2 mt-4">
+            </div>
+            <div class="form-group row">
+                <div class="col">
                     <ul>
                         <li>Untuk baris baru gunakan &lt;br&gt;</li>
                         <li>Untuk garis pembatas gunakan &lt;hr&gt;</li>
+                        <li>Untuk menebalkan huruf ikuti contoh berikut : &lt;strong&gt; KATA ATAU KALIMAT YANG INGIN DI
+                            TEBALKAN &lt;/strong&gt;</li>
                     </ul>
                 </div>
             </div>
@@ -67,59 +71,63 @@
         </form>
     </div>
     @else
-        <h5 class="" id="exampleModalLabel">Edit Tahun Ajaran</h5>
-    </div>
-    <div class="card-body">
-        <form class="user" action="{{route('admineditpengumumanya')}}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <input type="hidden" name="id" value="{{$p->id}}">
-            <div class="form-group row">
-                <div class="col">
-                    <label>Judul</label>
-                <input type="text" class="form-control" placeholder="judul" id="judul" name="judul" value="{{$p->judul}}" required="">
-                </div>
+    <h5 class="" id="exampleModalLabel">Edit Tahun Ajaran</h5>
+</div>
+<div class="card-body">
+    <form class="user" action="{{route('admineditpengumumanya')}}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="hidden" name="id" value="{{$p->id}}">
+        <div class="form-group row">
+            <div class="col">
+                <label>Judul</label>
+                <input type="text" class="form-control" placeholder="judul" id="judul" name="judul"
+                    value="{{$p->judul}}" required="">
             </div>
-            <div class="form-group row">
-                <div class="col-10">
-                    <label>Isi</label>
-                <textarea class="form-control" placeholder="isi" id="isi" name="isi" required="" rows="10">{{$p->isi}}</textarea>
-                </div>
-                <div class="col-2 mt-4">
-                    <ul>
-                        <li>Untuk baris baru gunakan &lt;br&gt;</li>
-                        <li>Untuk garis pembatas gunakan &lt;hr&gt;</li>
-                    </ul>
-                </div>
+        </div>
+        <div class="form-group row">
+            <div class="col">
+                <label>Isi</label>
+                <textarea class="form-control" placeholder="isi" id="isi" name="isi" required="" rows="15">{{$p->isi}}</textarea>
             </div>
-            <div class="form-group row">
-                <div class="col">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="file" name="file">
+        </div>
+        <div class="form-group row">
+            <div class="col">
+                <ul>
+                    <li>Untuk baris baru gunakan &lt;br&gt;</li>
+                    <li>Untuk garis pembatas gunakan &lt;hr&gt;</li>
+                    <li>Untuk menebalkan huruf ikuti contoh berikut : &lt;strong&gt; KATA ATAU KALIMAT YANG INGIN DI
+                        TEBALKAN &lt;/strong&gt;</li>
+                </ul>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="file" name="file">
                     <label class="custom-file-label" for="customFile">{{$p->foto}}</label>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-8">
+                        <img class="img-fluid" id="view" src="/{{$p->foto}}" alt="image" width="500" height="500">
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-8">
-                            <img class="img-fluid" id="view" src="/{{$p->foto}}" alt="image" width="500"
-                                height="500">
-                        </div>
-                        <div class="col-4">
-                            <p>Syarat foto: </p>
-                            <ul>
-                                <li>Ekstensi jpg, jpeg, png</li>
-                                <li>Ukuran max : 5MB</li>
-                            </ul>
-                        </div>
+                    <div class="col-4">
+                        <p>Syarat foto: </p>
+                        <ul>
+                            <li>Ekstensi jpg, jpeg, png</li>
+                            <li>Ukuran max : 5MB</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <a href="{{route('adminkelolapengumuman')}}" class="btn btn-secondary" type="button"
-                    data-dismiss="modal">Kembali</a>
-                <button type="submit" class="btn btn-primary" href="#">Simapn</button>
-            </div>
-        </form>
-    </div>
-    @endif
+        </div>
+        <div class="modal-footer">
+            <a href="{{route('adminkelolapengumuman')}}" class="btn btn-secondary" type="button"
+                data-dismiss="modal">Kembali</a>
+            <button type="submit" class="btn btn-primary" href="#">Simapn</button>
+        </div>
+    </form>
+</div>
+@endif
 
 </div>
 

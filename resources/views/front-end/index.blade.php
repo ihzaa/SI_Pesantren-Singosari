@@ -142,7 +142,9 @@
                                     </div>
 
                                 </div>
-                                <p class="text-lg mb-0">{{str_limit($p->isi,160)}}</p>
+                                <?php
+                                    echo '<p class="text-lg mb-0">'.str_limit($p->isi,60)."</p>";
+                                ?>
                             </div>
                         </div>
                     </div>
