@@ -17,7 +17,7 @@ class CreateTableCarousel extends Migration
             $table->bigIncrements('id');
             $table->string('nama');
             $table->string('foto')->nullable();
-            $table->string('deskripsi')->nullable();
+            $table->string('deskripsi',160)->nullable();
             $table->string('status')->default('nonaktif');
             $table->dateTime('dibuat')->useCurrent();
         });
