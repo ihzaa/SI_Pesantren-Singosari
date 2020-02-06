@@ -34,6 +34,7 @@
                 <div class="col-2 mt-4">
                     <ul>
                         <li>Untuk baris baru gunakan &lt;br&gt;</li>
+                        <li>Untuk garis pembatas gunakan &lt;hr&gt;</li>
                     </ul>
                 </div>
             </div>
@@ -86,6 +87,7 @@
                 <div class="col-2 mt-4">
                     <ul>
                         <li>Untuk baris baru gunakan &lt;br&gt;</li>
+                        <li>Untuk garis pembatas gunakan &lt;hr&gt;</li>
                     </ul>
                 </div>
             </div>
@@ -97,7 +99,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-8">
-                            <img class="img-fluid" id="view" src="/user/santri/default.jpg" alt="image" width="500"
+                            <img class="img-fluid" id="view" src="/{{$p->foto}}" alt="image" width="500"
                                 height="500">
                         </div>
                         <div class="col-4">

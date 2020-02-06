@@ -53,7 +53,10 @@
                 <hr>
 
                 <!-- Post Content -->
-                <p>{{$pengumuman->isi}}</p>
+                <?php
+                    echo "<p>$pengumuman->isi</p>";
+                ?>
+
                 <hr>
 
             </div>
