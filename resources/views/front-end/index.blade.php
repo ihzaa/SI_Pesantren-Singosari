@@ -136,8 +136,9 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col ">
-                                        <img src="{{$p->foto}}" alt="image" class="img-fluid">
-
+                                        <a href="/pengumuman/{{$p->id}}/{{$p->judul}}">
+                                            <img src="{{$p->foto}}" alt="image" class="img-fluid">
+                                        </a>
                                     </div>
 
                                 </div>
@@ -320,9 +321,12 @@
         </div>
 
         <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2020 Copyright:
-            <a href="#"> </a>
-        </div>
+        <footer class="py-3" style="background-color: #4281A7">
+            <div class="container">
+                <p class="m-0 text-center text-white">Pondok Pesantren Dunia Akhirat</p>
+            </div>
+            <!-- /.container -->
+        </footer>
         <!-- Copyright -->
 
         </footer>
