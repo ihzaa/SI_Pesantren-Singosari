@@ -5,23 +5,34 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    {{-- <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet"> --}}
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.css">
+    {{-- <link rel="stylesheet" href="/css/bootstrap.css"> --}}
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="/css/all.css">
+    {{-- <link rel="stylesheet" href="/css/all.css"> --}}
 
     <!-- Google Font -->
 
-    <link
+    {{-- <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+        rel="stylesheet"> --}}
 
     <!-- My CSS -->
-    <link rel="stylesheet" href="/css/style.css">
+    {{-- <link rel="stylesheet" href="/css/style.css"> --}}
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style>
+        /* Make the image fully responsive */
+        .carousel-inner img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
     <title>Pondok Pesantren Negeri Akhirat</title>
 
     <title>Pesantren Singosari</title>
@@ -63,65 +74,53 @@
 
 
     <!-- Carousel -->
-    <div id="carousel" style="background-color: rgb(68, 160, 215);" class="carousel slide mt-5" data-ride="carousel">
-        <ol class="carousel-indicators">
+
+    <div id="demo" class="carousel slide" data-ride="carousel">
+
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
             <?php
             $cnt = count(\App\carousel::where('status','aktif')->get());
             $j = 0;
             ?>
-            @while($j < $cnt) @if($j==0) <li data-target="#carousel" data-slide-to="{{$j++}}" class="active">
+            @while($j < $cnt) @if($j==0) <li data-target="#demo" data-slide-to="{{$j++}}" class="active">
                 </li>
                 @else
-                <li data-target="#carousel" data-slide-to="{{$j++}}"></li>
+                <li data-target="#demo" data-slide-to="{{$j++}}"></li>
                 @endif
                 @endwhile
-        </ol>
-        <div class="carousel-inner">
-            <div class="container">
-                <?php
-                    $i=0;
-        ?>
-                @foreach (\App\carousel::where('status','aktif')->get() as $item)
-                @if($i == 0)
-                <div class="carousel-item active">
-                    <?php
-                        $i=1;
-                    ?>
-                    @else
-                    <div class="carousel-item">
-                        @endif
-                        @if($item->deskripsi==null)
-                        <div class="row pt-5 justify-content-center">
-                            {{-- d-none d-sm-block --}}
-                            <div class="col-sm-10 col-md-10 col-lg-12 col-xs-10  offset-1" style="height: 400px">
-                                <img src="/{{$item->foto}}" class="img-fluid" height="400">
-                            </div>
-                        </div>
-                        @else
-                        <div class="row pt-5 justify-content-center">
-                            <div class="col-6 col-sm-4 col-md-6 col-lg-5 col-xs-6">
-                                <h1 class="mb-4">{{$item->nama}}</h1>
-                                <p class="mb-4">{{$item->deskripsi}}</p>
-                                {{-- <a href="" class="btn btn-warning text-white">Get It Now</a> --}}
-                            </div>
-                            {{-- d-none d-sm-block --}}
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xs-6  offset-1">
-                                <img src="/{{$item->foto}}" class="img-fluid">
-                            </div>
-                        </div>
-                        @endif
-                    </div>
-                    @endforeach
-                </div>
-                <a href="#carousel" class="carousel-control-prev" data-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                </a>
+        </ul>
 
-                <a href="#carousel" class="carousel-control-next" data-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                </a>
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+            <?php
+                $i=0;
+            ?>
+
+            @foreach (\App\carousel::where('status','aktif')->get() as $item)
+            @if($i == 0)
+            <div class="carousel-item active">
+            @else
+            <div class="carousel-item">
+            @endif
+                <img src="/{{$item->foto}}" alt="Foto{{$i++}}" class="d-block w-100">
+                <div class="carousel-caption">
+                    <h3>{{$item->nama}}</h3>
+                    <p>{{$item->deskripsi}}</p>
+                </div>
             </div>
+             @endforeach
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
         </div>
+
         <!-- Akhir Carousel -->
 
         {{-- Pengumuman --}}
