@@ -569,9 +569,9 @@ class adminController extends Controller
 
     public function admin_tambah_mp_ta(Request $request)
     {
-        $cek = \App\mata_pelajaran_tahun_ajaran::where('id_tahun_ajaran')->where('id_mata_pelajaran')->get();
+        $cek = \App\mata_pelajaran_tahun_ajaran::where('id_tahun_ajaran', $request->id_ta)->where('id_mata_pelajaran', $request->mata_pelajaran)->get();
 
-        if ($cek) {
+        if (count($cek) != 0) {
             Session::flash('color', 'alert-danger');
             Session::flash('pesan', 'Mata pelajaran sudah termasuk di semester ini');
             return back();
@@ -793,7 +793,7 @@ class adminController extends Controller
                 'prioritas' => 'y'
             ]);
             return 1;
-        }else{
+        } else {
             return 2;
         }
     }
