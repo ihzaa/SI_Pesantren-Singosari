@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\pengajar;
+use App\Pengajar;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Santri;
 
 class UserController extends Controller
 {
@@ -16,7 +17,7 @@ class UserController extends Controller
      */
     public function cek(Request $request)
     {
-        $usr = \App\User::where('username', $request->username)->first();
+        $usr = \App\user::where('username', $request->username)->first();
         if ($usr) {
             if (Hash::check($request->password, $usr->password)) {
                 if ($usr->role == 2) {

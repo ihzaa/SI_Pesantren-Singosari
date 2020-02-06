@@ -14,7 +14,9 @@
     <link rel="stylesheet" href="/css/all.css">
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Montserrat:200,400,600&display=swap"
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- My CSS -->
@@ -23,13 +25,12 @@
     <title>Pondok Pesantren Negeri Akhirat</title>
 
     <title>Pesantren Singosari</title>
-
 </head>
 
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar fixed-top" style="background-color: rgb(13,0,77)">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #4281A7">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <i class="fas fa-mosque"></i>
@@ -40,21 +41,21 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav text-uppercase mx-auto">
-                    <li class="nav-item" style="color: seagreen ">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="#">Profil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Akademik</a>
+                    </li> --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pengumuman">Pengumuman</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pengumuman</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Donasi</a>
+                        <a class="nav-link" href="#donasi">Donasi</a>
                     </li>
                 </ul>
-                <a href="{{route('userlogin')}}" type="button"
-                    class="btn btn-sm btn-outline-info text-white">Masuk<i></i></a>
+                <a href="{{route('userlogin')}}" type="button" class="btn btn-sm btn-outline-info text-white"
+                    style="border-style: none;">LOGIN<i class=""></i></a>
             </div>
         </div>
     </nav>
@@ -62,7 +63,7 @@
 
 
     <!-- Carousel -->
-    <div id="carousel" style="background-color: rgb(209, 219, 255);" class="carousel slide mt-4" data-ride="carousel">
+    <div id="carousel" style="background-color: rgb(68, 160, 215);" class="carousel slide mt-5" data-ride="carousel">
         <ol class="carousel-indicators">
             <?php
             $cnt = count(\App\carousel::where('status','aktif')->get());
@@ -79,7 +80,7 @@
             <div class="container">
                 <?php
                     $i=0;
-                        ?>
+        ?>
                 @foreach (\App\carousel::where('status','aktif')->get() as $item)
                 @if($i == 0)
                 <div class="carousel-item active">
@@ -89,15 +90,26 @@
                     @else
                     <div class="carousel-item">
                         @endif
+                        @if($item->deskripsi==null)
+                        <div class="row pt-5 justify-content-center">
+                            {{-- d-none d-sm-block --}}
+                            <div class="col-sm-10 col-md-10 col-lg-12 col-xs-10  offset-1" style="height: 400px">
+                                <img src="/{{$item->foto}}" class="img-fluid" height="400">
+                            </div>
+                        </div>
+                        @else
                         <div class="row pt-5 justify-content-center">
                             <div class="col-6 col-sm-4 col-md-6 col-lg-5 col-xs-6">
                                 <h1 class="mb-4">{{$item->nama}}</h1>
                                 <p class="mb-4">{{$item->deskripsi}}</p>
+                                {{-- <a href="" class="btn btn-warning text-white">Get It Now</a> --}}
                             </div>
+                            {{-- d-none d-sm-block --}}
                             <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xs-6  offset-1">
                                 <img src="/{{$item->foto}}" class="img-fluid">
                             </div>
                         </div>
+                        @endif
                     </div>
                     @endforeach
                 </div>
@@ -112,10 +124,39 @@
         </div>
         <!-- Akhir Carousel -->
 
+        {{-- Pengumuman --}}
+        <div id="pengumuman" class="container-fluid text-center pt-4" style="background-color: #4281A7;">
+            {{-- #428bca --}}
+            <div>
+                <h2> PENGUMUMAN </h2>
+                <div class="row justify-content-center" style="background-color: #4281A7;">
+
+                    @foreach(\App\pengumuman::get()->take(4) as $p)
+                    <div class="col-xl-3 col-md-3 col-sm-12 col-xs-12  mt-4 ">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">{{$p->judul}}</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col ">
+                                        <img src="{{$p->foto}}" alt="image" class="img-fluid">
+
+                                    </div>
+
+                                </div>
+                                <p class="text-lg mb-0">{{str_limit($p->isi,160)}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
         <!-- Donasi -->
-        <section class="features bg-light p-5">
+        <section id="donasi" class="features p-1 pt-4" style="background-color: #4192C2">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row" style="">
                     <div class="col-xl-12">
                         <div class="card shadow mb-4 align-content-center">
                             <div class="card-header py-3 text-center">
@@ -173,7 +214,7 @@
                                             <div class="progress-bar progress-bar-striped progress-bar-animated "
                                                 role="progressbar" style="width: {{$persen}}%;"
                                                 aria-valuenow="{{$persen}}" aria-valuemin="0" aria-valuemax="100">
-                                                <h4> {{$persen}} %</h4>
+                                                <h4> {{round($persen)}} %</h4>
                                             </div>
                                         </div>
                                         <div class="row mt-2 text-center align-content-center justify-content-center">
@@ -185,7 +226,22 @@
 
                                             @foreach (\App\donasi_masuk::orderBy('dibuat','desc')->take(3)->get() as
                                             $item)
-                                            {{ucfirst($item->nama)}} - Rp. {{$item->nominal}}<br>
+                                            <?php
+                                                    $i = $item->nominal;
+                                                    $i_arr = str_split(strrev($i),3);
+                                                    $tlt = "";
+                                                    for($a = 0; $a < count($i_arr);$a++){
+                                                        if($a == (count($i_arr)-1)){
+                                                            $tlt = $tlt .''. $i_arr[$a];
+                                                            continue;
+                                                        }
+                                                        $tlt = $tlt .''. $i_arr[$a].'.';
+                                                    }
+                                                    // implode($tlt);
+                                                    $tlt = strrev($tlt);
+                                                    ?>
+
+                                            {{ucfirst($item->nama)}} - Rp. {{$tlt}}<br>
                                             @endforeach
 
                                         </div>
@@ -201,28 +257,54 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- Akhir Donasi -->
+            <!-- Akhir Donasi -->
 
+            {{-- Alamat--}}
+            {{-- <section class="features bg-secondary p-5">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card shadow mb-4 align-content-center">
+                            <div class="card-header py-3 text-center">
+                                <h6 class="m-0 font-weight-bold text-primary">Alamat</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-4 align-content-center justify-content-center">
+                                        <div class="progress" style="height: 100px;">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                role="progressbar" style="width: 25%;" aria-valuenow="25"
+                                                aria-valuemin="0" aria-valuemax="100">25%<br></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>--}}
+        </section>
+
+        {{-- Akhir Alamat --}}
 
         <!-- Footer -->
-        <div class="mt-5 pt-5 pb-5 footer bg-secondary">
+        <div class="pt-5 pb-5 footer" style="background-color: #4281A7">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-5 col-xs-12 about-company">
                         <h2 class="font-weight-bold">Negeri Akhirat</h2>
                         <p class="pr-5 text-white-50">Disini isi deskripsi singkat tentang Pondok </p>
-                        <p><a href="#">
-                                <i class="fa fa-facebook-square mr-1"></i></a><a href="#">
-                                <i class="fa fa-linkedin-square"></i></a></p>
+                        <p><a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a href="#"><i
+                                    class="fa fa-linkedin-square"></i></a></p>
                     </div>
                     <div class="col-lg-3 col-xs-12 links">
                         <h4 class="mt-lg-0 mt-sm-3">Links</h4>
                         <ul class="m-0 p-0">
-                            <li><a href="#">Profil</a></li>
-                            <li><a href="#">Akademik</a></li>
-                            <li><a href="#">Pengumuman</a></li>
-                            <li><a href="#">Donasi</a></li>
+                            {{-- <li><a href="#">Profil</a></li>
+                            <li><a href="#">Akademik</a></li> --}}
+                            <li><a href="#pengumuman">Pengumuman</a></li>
+                            <li><a href="#donasi">Donasi</a></li>
 
                         </ul>
                     </div>
@@ -233,11 +315,11 @@
                         <p><i class="fa fa-envelope-o mr-3"></i>info@hsdf.com</p>
                     </div>
                 </div>
-                <div class="row mt-5">
-                    <div class="col copyright">
-                        <p class=""><small class="text-white-50">© 2020. All Rights Reserved.</small></p>
-                    </div>
-                </div>
+                {{-- <div class="row mt-5">
+                        <div class="col copyright">
+                            <p class=""><small class="text-white-50">© 2019. All Rights Reserved.</small></p>
+                        </div>
+                    </div> --}}
             </div>
         </div>
 
@@ -257,6 +339,34 @@
         <script src="/js/popper.min.js"></script>
         <script src="/js/bootstrap.js"></script>
         <script src="/js/all.js"></script>
+        <script>
+            $(document).ready(function(){
+                // Add scrollspy to <body>
+                $('body').scrollspy({target: ".navbar"});
+
+                // Add smooth scrolling on all links inside the navbar
+                $("#navbarNav a").on('click', function(event) {
+                    // Make sure this.hash has a value before overriding default behavior
+                    if (this.hash !== "") {
+                    // Prevent default anchor click behavior
+                    event.preventDefault();
+
+                    // Store hash
+                    var hash = this.hash;
+
+                    // Using jQuery's animate() method to add smooth page scroll
+                    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800, function(){
+
+                        // Add hash (#) to URL when done scrolling (default click behavior)
+                        window.location.hash = hash;
+                    });
+                    }  // End if
+                });
+                });
+        </script>
 </body>
 
 </html>

@@ -569,9 +569,9 @@ class adminController extends Controller
 
     public function admin_tambah_mp_ta(Request $request)
     {
-        $cek = \App\mata_pelajaran_tahun_ajaran::where('id_tahun_ajaran')->where('id_mata_pelajaran')->get();
+        $cek = \App\mata_pelajaran_tahun_ajaran::where('id_tahun_ajaran', $request->id_ta)->where('id_mata_pelajaran', $request->mata_pelajaran)->get();
 
-        if ($cek) {
+        if (count($cek) != 0) {
             Session::flash('color', 'alert-danger');
             Session::flash('pesan', 'Mata pelajaran sudah termasuk di semester ini');
             return back();
@@ -787,8 +787,21 @@ class adminController extends Controller
 
     public function adminmemprioritaskan(Request $request)
     {
+        $count = \App\pengumuman::where('prioritas', 'y')->count();
+        if ($count < 4) {
+            \App\pengumuman::where('id', $request->id)->update([
+                'prioritas' => 'y'
+            ]);
+            return 1;
+        } else {
+            return 2;
+        }
+    }
+
+    public function adminnonprioritaskan(Request $request)
+    {
         \App\pengumuman::where('id', $request->id)->update([
-            'prioritas' => 'y'
+            'prioritas' => 'n'
         ]);
         return 1;
     }
@@ -811,23 +824,33 @@ class adminController extends Controller
 
     public function admineditpengumumanya(Request $request)
     {
-        $request->validate([
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:8048'
-        ]);
+        if ($request->file != null) {
+            $request->validate([
+                'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:8048'
+            ]);
 
-        $file = $request->file('file');
-        $nama_file =  $request->id . '.' . $file->getClientOriginalExtension();
-        $tujuan_upload = 'pengumuman/';
-        $lengkap = $tujuan_upload . $nama_file;
-        $file->move($tujuan_upload, $nama_file);
+            $file = $request->file('file');
+            $nama_file =  $request->id . '.' . $file->getClientOriginalExtension();
+            $tujuan_upload = 'pengumuman/';
+            $lengkap = $tujuan_upload . $nama_file;
+            $file->move($tujuan_upload, $nama_file);
 
-        \App\pengumuman::where('id', $request->id)->update([
-            'judul' => $request->judul,
-            'isi' => $request->isi,
-            'foto' => $lengkap
-        ]);
-        Session::flash('color', 'alert-success');
-        Session::flash('pesan', 'Berhasil Edit Pengumuman');
-        return redirect('/4dm1n/kelola-pengumuman');
+            \App\pengumuman::where('id', $request->id)->update([
+                'judul' => $request->judul,
+                'isi' => $request->isi,
+                'foto' => $lengkap
+            ]);
+            Session::flash('color', 'alert-success');
+            Session::flash('pesan', 'Berhasil Edit Pengumuman');
+            return redirect('/4dm1n/kelola-pengumuman');
+        } else {
+            \App\pengumuman::where('id', $request->id)->update([
+                'judul' => $request->judul,
+                'isi' => $request->isi
+            ]);
+            Session::flash('color', 'alert-danger');
+            Session::flash('pesan', 'Berhasil Edit Pengumuman');
+            return redirect('/4dm1n/kelola-pengumuman');
+        }
     }
 }

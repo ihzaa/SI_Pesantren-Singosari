@@ -25,7 +25,7 @@
                                 <div class="row align-items-center  justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Mata Pelajaran</h6>
                                     <a title="Tambah " href="#" class="btn btn-sm btn-outline-dark" data-toggle="modal"
-                                        data-target="#tambahModal" data-idta="{{$ta->id}}">
+                                        data-target="#tambahModalMatPel" data-idta="{{$ta->id}}">
                                         <i class="fa fa-plus"></i>
                                     </a>
                                 </div>
@@ -59,7 +59,7 @@
                                                 <td>
                                                     <div class="row justify-content-center">
                                                         <a href="#" class="btn btn-danger btn-circle btn-sm"
-                                                            title="Hapus" data-toggle="modal" data-target="#hapusModal"
+                                                            title="Hapus" data-toggle="modal" data-target="#hapusModalMatpel"
                                                             data-id="{{$t->id}}"
                                                             data-nama="{{$t->mata_pelajaran->nama}}">
                                                             <i class=" fas fa-trash text-light"></i>
@@ -124,8 +124,8 @@
     </div>
 </div>
 
-<!-- MODAL HAPUS -->
-<div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<!-- MODAL HAPUS MATA PELAJARAN -->
+<div class="modal fade" id="hapusModalMatpel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -156,8 +156,8 @@
     </div>
 </div>
 
-<!-- MODAL TAMBAH -->
-<div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<!-- MODAL TAMBAH MATA PELAJARAN -->
+<div class="modal fade" id="tambahModalMatPel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -195,7 +195,7 @@
 
 @section('js')
 <script>
-    $('#hapusModal').on('show.bs.modal', function (event) {
+    $('#hapusModalMatpel').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that trigg  ered the modal
         var modal = $(this)
 
@@ -203,7 +203,7 @@
         modal.find('.modal-body #nama').val(button.data('nama'))
         })
 
-    $('#tambahModal').on('show.bs.modal', function (event) {
+    $('#tambahModalMatPel').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that trigg  ered the modal
         var modal = $(this)
 

@@ -66,6 +66,7 @@ Route::prefix('4dm1n')->middleware('CekStatusAdmin')->group(function () {
     })->name('admintambahpengumuman');
     Route::post('/kelola-pengumuman/tambah/ya', 'adminController@admintambahpengumuman')->name('admintambahpengumumanya');
     Route::post('/kelola-pengumuman/memprioritas', 'adminController@adminmemprioritaskan')->name('adminmemprioritaskan');
+    Route::post('/kelola-pengumuman/nonprioritas', 'adminController@adminnonprioritaskan')->name('adminnonprioritaskan');
     Route::post('/kelola-pengumuman/hapus', 'adminController@adminhapuspengumuman')->name('adminhapuspengumuman');
     Route::get('/kelola-pengumuman/edit/{id}/{judul}', 'adminController@admineditpengumuman')->name('admineditpengumuman');
     Route::POST('/kelola-pengumuman/edit/ya', 'adminController@admineditpengumumanya')->name('admineditpengumumanya');
