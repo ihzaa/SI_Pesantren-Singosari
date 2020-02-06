@@ -68,11 +68,21 @@
                 <div class="card my-4">
                     <h5 class="card-header">Berita Lainnya</h5>
                     <div class="card-body">
-                        <ul class="list-group list-group-flush">
+                        <ul class="list-group">
                             @foreach (\App\pengumuman::get()->take(10) as $item)
                             <a href="/pengumuman/{{$item->id}}/{{$item->judul}}">
-                                <li class="list-group-item">{{str_limit($item->judul,30)}}</li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <img class="img-fluid" src="/{{$item->foto}}" alt="">
+                                        </div>
+                                        <div class="col-8 text-center  d-flex align-items-center">
+                                            {{str_limit($item->judul,30)}}
+                                        </div>
+                                    </div>
+                                </li>
                             </a>
+                            <br>
                             @endforeach
                         </ul>
                     </div>
@@ -100,6 +110,7 @@
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.js"></script>
     <script src="/js/all.js"></script>
+
 
 </body>
 
