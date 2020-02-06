@@ -20,16 +20,16 @@
     <!-- My CSS -->
     <link rel="stylesheet" href="/css/style.css">
 
-    <<<<<<< HEAD <title>Pondok Pesantren Negeri Akhirat</title>
-        =======
-        <title>Pesantren Singosari</title>
-        >>>>>>> db904bd9ed3a7b1cc97491c758550224f13994dc
+    <title>Pondok Pesantren Negeri Akhirat</title>
+
+    <title>Pesantren Singosari</title>
+
 </head>
 
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar fixed-top" style="background-color: rgb(13,0,77)">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <i class="fas fa-mosque"></i>
@@ -40,7 +40,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav text-uppercase mx-auto">
-                    <li class="nav-item">
+                    <li class="nav-item" style="color: seagreen ">
                         <a class="nav-link" href="#">Profil</a>
                     </li>
                     <li class="nav-item">
@@ -53,8 +53,8 @@
                         <a class="nav-link" href="#">Donasi</a>
                     </li>
                 </ul>
-                <a href="{{route('userlogin')}}" type="button" class="btn btn-sm btn-outline-info text-white">Masuk<i
-                        class="fas fa-sign-in-alt"></i></a>
+                <a href="{{route('userlogin')}}" type="button"
+                    class="btn btn-sm btn-outline-info text-white">Masuk<i></i></a>
             </div>
         </div>
     </nav>
@@ -79,7 +79,7 @@
             <div class="container">
                 <?php
                     $i=0;
-        ?>
+                        ?>
                 @foreach (\App\carousel::where('status','aktif')->get() as $item)
                 @if($i == 0)
                 <div class="carousel-item active">
@@ -93,9 +93,7 @@
                             <div class="col-6 col-sm-4 col-md-6 col-lg-5 col-xs-6">
                                 <h1 class="mb-4">{{$item->nama}}</h1>
                                 <p class="mb-4">{{$item->deskripsi}}</p>
-                                {{-- <a href="" class="btn btn-warning text-white">Get It Now</a> --}}
                             </div>
-                            {{-- d-none d-sm-block --}}
                             <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xs-6  offset-1">
                                 <img src="/{{$item->foto}}" class="img-fluid">
                             </div>
@@ -206,34 +204,6 @@
         </section>
         <!-- Akhir Donasi -->
 
-        {{-- Alamat--}}
-        {{-- <section class="features bg-secondary p-5">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="card shadow mb-4 align-content-center">
-                            <div class="card-header py-3 text-center">
-                                <h6 class="m-0 font-weight-bold text-primary">Alamat</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-4 align-content-center justify-content-center">
-                                        <div class="progress" style="height: 100px;">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                                role="progressbar" style="width: 25%;" aria-valuenow="25"
-                                                aria-valuemin="0" aria-valuemax="100">25%<br></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> --}}
-
-        {{-- Akhir Alamat --}}
 
         <!-- Footer -->
         <div class="mt-5 pt-5 pb-5 footer bg-secondary">
@@ -242,8 +212,9 @@
                     <div class="col-lg-5 col-xs-12 about-company">
                         <h2 class="font-weight-bold">Negeri Akhirat</h2>
                         <p class="pr-5 text-white-50">Disini isi deskripsi singkat tentang Pondok </p>
-                        <p><a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a href="#"><i
-                                    class="fa fa-linkedin-square"></i></a></p>
+                        <p><a href="#">
+                                <i class="fa fa-facebook-square mr-1"></i></a><a href="#">
+                                <i class="fa fa-linkedin-square"></i></a></p>
                     </div>
                     <div class="col-lg-3 col-xs-12 links">
                         <h4 class="mt-lg-0 mt-sm-3">Links</h4>
@@ -252,7 +223,7 @@
                             <li><a href="#">Akademik</a></li>
                             <li><a href="#">Pengumuman</a></li>
                             <li><a href="#">Donasi</a></li>
-                            
+
                         </ul>
                     </div>
                     <div class="col-lg-4 col-xs-12 location">
@@ -264,7 +235,7 @@
                 </div>
                 <div class="row mt-5">
                     <div class="col copyright">
-                        <p class=""><small class="text-white-50">© 2019. All Rights Reserved.</small></p>
+                        <p class=""><small class="text-white-50">© 2020. All Rights Reserved.</small></p>
                     </div>
                 </div>
             </div>
