@@ -43,9 +43,10 @@ class front_end extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function pengumuman($id, $nama)
     {
-        //
+        $pengumuman = \App\pengumuman::where('id',$id)->first();
+        return view('front-end.Information.pengumuman',compact('pengumuman'));
     }
 
     /**
