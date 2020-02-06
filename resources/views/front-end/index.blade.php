@@ -129,7 +129,9 @@
                     <div class="col-xl-3 col-md-3 col-sm-12 col-xs-12  mt-4 ">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">{{$p->judul}}</h6>
+                                <a href="/pengumuman/{{$p->id}}/{{$p->judul}}">
+                                    <h6 class="m-0 font-weight-bold text-primary">{{$p->judul}}</h6>
+                                </a>
                             </div>
                             <div class="card-body">
                                 <div class="row">
