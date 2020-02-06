@@ -58,9 +58,9 @@
                         <td>{{$s->nama}}</td>
                         <td style="width: 150px;">
 
-                                {{-- <div class="col-6 "> --}}
-                                    <img src="/{{$s->foto}}" alt="fotonya" class="img-fluid">
-                                {{-- </div> --}}
+                            {{-- <div class="col-6 "> --}}
+                            <img src="/{{$s->foto}}" alt="fotonya" class="img-fluid">
+                            {{-- </div> --}}
 
                         </td>
                         <td>{{str_limit($s->deskripsi,10)}}</td>
@@ -142,9 +142,20 @@
                     </div>
                     <div class="form-group row">
                         <div class="col">
-                            <label>Deskripsi <strong>Jika dikosongkan maka hanya akan di tampilkan
-                                    gambar</strong></label>
+                            <label>Deskripsi <strong>Boleh di kosongkan</strong></label>
                             <textarea class="form-control" name="deskripsi" placeholder="Deskripsi" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <ul>
+                                <li>Ukuran foto masing - masing carousel <strong>tidak harus</strong> sama</li>
+                                <li>Perbandingan ukuran foto masing - masing carousel <strong>harus</strong> sama, Misal :
+                                    <br>
+                                    1000px x 400px atau 5 : 2, maka foto foto yang lain harus kurang lebih sama ukuran / perbandingannya
+                                </li>
+                                <li>Contoh yang benar, Foto carousel 1 berukuran 1000 x 400. Foto carousel 2 berukuran 1500 x 600. Benar karena sama sama 5 : 2</li>
+                            </ul>
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -23,9 +23,6 @@
     {{-- <link rel="stylesheet" href="/css/style.css"> --}}
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <style>
         /* Make the image fully responsive */
         .carousel-inner img {
@@ -34,8 +31,6 @@
         }
     </style>
     <title>Pondok Pesantren Negeri Akhirat</title>
-
-    <title>Pesantren Singosari</title>
 </head>
 
 <body>
@@ -100,16 +95,16 @@
             @foreach (\App\carousel::where('status','aktif')->get() as $item)
             @if($i == 0)
             <div class="carousel-item active">
-            @else
-            <div class="carousel-item">
-            @endif
-                <img src="/{{$item->foto}}" alt="Foto{{$i++}}" class="d-block w-100">
-                <div class="carousel-caption">
-                    <h3>{{$item->nama}}</h3>
-                    <p>{{$item->deskripsi}}</p>
+                @else
+                <div class="carousel-item">
+                    @endif
+                    <img src="/{{$item->foto}}" alt="Foto{{$i++}}" class="d-block w-100">
+                    <div class="carousel-caption">
+                        <h3>{{$item->nama}}</h3>
+                        <p>{{$item->deskripsi}}</p>
+                    </div>
                 </div>
-            </div>
-             @endforeach
+                @endforeach
             </div>
 
             <!-- Left and right controls -->
@@ -324,7 +319,7 @@
 
         <!-- Copyright -->
         <div class="footer-copyright text-center py-3">© 2020 Copyright:
-            <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+            <a href="#"> </a>
         </div>
         <!-- Copyright -->
 
