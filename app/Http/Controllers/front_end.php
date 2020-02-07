@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\Empty_;
 
 class front_end extends Controller
 {
@@ -22,15 +24,19 @@ class front_end extends Controller
         if ($request->ajax()) {
             if ($request->id > 0) {
                 $data = DB::table('pengumuman')
-                    ->where('id', '<', $request->id)
-                    ->where('prioritas','n')
+                    ->where('id', '<=', $request->id)
+                    ->where('prioritas', 'n')
                     ->orderBy('id', 'DESC')
                     ->limit(4)
                     ->get();
+            }else if( $request->id == 0){
+                $data = DB::table('pengumuman')
+                ->where('id',50)
+                ->get();
             } else {
                 $data = DB::table('pengumuman')
                     ->orderBy('id', 'DESC')
-                    ->where('prioritas','n')
+                    ->where('prioritas', 'n')
                     ->limit(4)
                     ->get();
             }
@@ -44,48 +50,48 @@ class front_end extends Controller
                     <div class="col-xl-3 col-md-3 col-sm-12 col-xs-12  mt-4 ">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <a href="/pengumuman/'.$row->id.'/.'.$row->judul.'">
-                                    <h6 class="m-0 font-weight-bold text-primary">'.$row->judul.'</h6>
+                                <a href="/pengumuman/' . $row->id . '/.' . $row->judul . '">
+                                    <h6 class="m-0 font-weight-bold text-primary">' . $row->judul . '</h6>
                                 </a>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col ">
-                                        <a href="/pengumuman/'.$row->id.'/.'.$row->judul.'">
-                                            <img src="'.$row->foto.'" alt="image" class="img-fluid">
+                                        <a href="/pengumuman/' . $row->id . '/.' . $row->judul . '">
+                                            <img src="' . $row->foto . '" alt="image" class="img-fluid">
                                         </a>
                                     </div>
 
                                 </div>
-                                <?php
-                                    echo "<p class="text-lg mb-0">"'.str_limit($row->isi,60).'</p>";
-                                ?>
+                                <p class="text-lg mb-0">' . str_limit($row->isi, 60) . '</p>
                             </div>
                         </div>
                     </div>
                     ';
-                    $last_id = $row->id;
+                    $last_id = $row->id - 1;
                 }
                 $output .= '</div>';
                 $output .= '
                     <div id="load_more">
-                        <button type="button" name="load_more_button" class="btn btn-success form-control" data-id="' . $last_id . '" id="load_more_button">Load More</button>
+                        <button type="button" name="load_more_button" class="btn btn-outline-danger text-white" data-id="' . $last_id . '" id="load_more_button">Lihat Lainnya</button>
                     </div>
                     ';
-                } else {
+            } else {
                 $output .= '
                     <div id="load_more">
-                        <button type="button" name="load_more_button" class="btn btn-info form-control">No Data Found</button>
+                        <button type="button" name="load_more_button" class="btn btn-warning">Semua Pengumuman Sudah di Tampilkan</button>
                     </div>
                     ';
-                }
+            }
             echo $output;
         }
     }
 
     /**
      * Show the form for creating a new resource.
-     *
+     *<?php
+     *                              echo "<p class="text-lg mb-0">'.str_limit($row->isi,60).'</p>";
+     *                         ?>
      * @return \Illuminate\Http\Response
      */
     public function create()

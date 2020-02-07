@@ -31,8 +31,16 @@
             height: 100%;
         }
 
-        body {
-            padding-top: 56px;
+        @media screen and (min-width: 992px) {
+            body {
+                padding-top: 8px;
+            }
+        }
+
+        @media screen and (max-width: 991px) {
+            body {
+                padding-top: 56px;
+            }
         }
     </style>
     <title>Pondok Pesantren Negeri Akhirat</title>
@@ -126,12 +134,14 @@
         <!-- Akhir Carousel -->
 
         {{-- Pengumuman --}}
-        <div id="pengumuman" class="container-fluid text-center pt-4" style="background-color: #4281A7;">
+        <div id="pengumuman" class="container-fluid text-center pt-4 pb-4" style="background-color: #4281A7;">
             {{-- #428bca --}}
             <div id="kotakpengumuman">
                 <h2> PENGUMUMAN </h2>
                 <div class="row justify-content-center" style="background-color: #4281A7;">
-
+                    <?php
+                        $last_id = 0;
+                    ?>
                     @foreach(\App\pengumuman::where('prioritas','y')->get() as $p)
                     <div class="col-xl-3 col-md-3 col-sm-12 col-xs-12  mt-4 ">
                         <div class="card shadow mb-4">
@@ -158,6 +168,11 @@
                     @endforeach
                 </div>
                 {{ csrf_field() }}
+                <div id="load_more">
+                    <button type="button" name="load_more_button" class="btn btn-outline-danger text-white"
+                        data-id="{{\App\pengumuman::where('prioritas','n')->orderBy('id','DESC')->pluck('id')->first()}}"
+                        id="load_more_button">Lihat Lainnya</button>
+                </div>
             </div>
         </div>
         <!-- Donasi -->
@@ -383,7 +398,7 @@
 
                     var _token = $('input[name="_token"]').val();
 
-                    load_data('', _token);
+                    //load_data('', _token);
 
                     function load_data(id="", _token)
                     {
