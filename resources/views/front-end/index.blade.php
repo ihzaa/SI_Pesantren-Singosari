@@ -29,6 +29,10 @@
             width: 100%;
             height: 100%;
         }
+
+        body {
+            padding-top: 56px;
+        }
     </style>
     <title>Pondok Pesantren Negeri Akhirat</title>
 </head>
@@ -70,7 +74,7 @@
 
     <!-- Carousel -->
 
-    <div id="demo" class="carousel slide" data-ride="carousel">
+    <div id="demo" class="carousel slide mt-lg-5" data-ride="carousel">
 
         <!-- Indicators -->
         <ul class="carousel-indicators">
@@ -99,10 +103,12 @@
                 <div class="carousel-item">
                     @endif
                     <img src="/{{$item->foto}}" alt="Foto{{$i++}}" class="d-block w-100">
+                    @if($item->deskripsi != NULL)
                     <div class="carousel-caption">
                         <h3>{{$item->nama}}</h3>
                         <p>{{$item->deskripsi}}</p>
                     </div>
+                    @endif
                 </div>
                 @endforeach
             </div>
