@@ -72,7 +72,7 @@ class front_end extends Controller
                 $output .= '</div>';
                 $output .= '
                     <div id="load_more">
-                        <button type="button" name="load_more_button" class="btn btn-outline-danger text-white" data-id="' . $last_id . '" id="load_more_button">Lihat Lainnya</button>
+                        <button type="button" name="load_more_button" class="btn btn-outline-light" data-id="' . $last_id . '" id="load_more_button">Lihat Lainnya</button>
                     </div>
                     ';
             } else {

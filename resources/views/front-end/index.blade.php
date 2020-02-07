@@ -37,6 +37,11 @@
             }
         }
 
+        @media screen and (max-width: 767px) {
+            #kolomkanandonasi {
+                margin-top : 20px;
+            }
+        }
         @media screen and (max-width: 991px) {
             body {
                 padding-top: 56px;
@@ -191,7 +196,7 @@
                                 ?>
 
                                 {{-- DONASI OPERASIONAL --}}
-                                <div class="tab-pane active" role="tabpanel" id="donasi1"> 
+                                <div class="tab-pane active" role="tabpanel" id="donasi1">
                                     <div class="row">
                                         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                             <div class="row ml-2 justify-content-center">
@@ -208,55 +213,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-4 col-sm-12 col-sm-12 border-left-secondary">
-                                            <div class="row ml-2 ">Donasi Yang Diperlukan <p><br></p>
+                                        <div id="kolomkanandonasi" class="col-lg-4 col-md-4 col-sm-12 col-sm-12 border-left-secondary shadow">
+                                            <div class="row text-center align-content-center justify-content-center">Donasi Yang Diperlukan <p><br></p>
                                             </div>
                                             <?php
-                                                $i = \App\donasi::first()->Target;
-                                                $i_arr = str_split(strrev($i),3);
-                                                $tlt = "";
-                                                for($a = 0; $a < count($i_arr);$a++){
-                                                    if($a == (count($i_arr)-1)){
-                                                        $tlt = $tlt .''. $i_arr[$a];
-                                                        continue;
-                                                    }
-                                                    $tlt = $tlt .''. $i_arr[$a].'.';
-                                                }
-                                                // implode($tlt);
-                                                $tlt = strrev($tlt);
-                                            ?>
-                                            <div class="row ml-2">
-                                                <h3><strong>Rp. {{$tlt}}</strong></h3>
-                                                <p><br><br></p>
-                                            </div>
-                                            <div class="progress" style="height: 70px;">
-                                                <?php
-                                                $j = \App\donasi_masuk::get()->pluck('nominal');
-                                                $total = 0;
-                                                for($a = 0; $a < count($j); $a++){
-                                                $total += $j[$a];
-                                            }
-                                              $persen = $total / $i *100;
-                                            ?>
-                                                <div class="progress-bar progress-bar-striped progress-bar-animated "
-                                                    role="progressbar" style="width: {{$persen}}%;"
-                                                    aria-valuenow="{{$persen}}" aria-valuemin="0" aria-valuemax="100">
-                                                    <h4> {{round($persen)}} %</h4>
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="row mt-2 text-center align-content-center justify-content-center">
-                                                <p><br></p>
-                                                Donasi yang terkumpul
-                                            </div>
-                                            <div
-                                                class="row mt-2 text-center align-content-center justify-content-center">
-
-
-                                                @foreach (\App\donasi_masuk::orderBy('dibuat','desc')->take(3)->get() as
-                                                $item)
-                                                <?php
-                                                    $i = $item->nominal;
+                                                    $i = \App\donasi::first()->Target;
                                                     $i_arr = str_split(strrev($i),3);
                                                     $tlt = "";
                                                     for($a = 0; $a < count($i_arr);$a++){
@@ -268,15 +229,59 @@
                                                     }
                                                     // implode($tlt);
                                                     $tlt = strrev($tlt);
-                                                    ?>
-
-                                                {{ucfirst($item->nama)}} - Rp. {{$tlt}}<br>
-                                                @endforeach
+                                                ?>
+                                            <div class="row text-center align-content-center justify-content-center">
+                                                <h3><strong>Rp. {{$tlt}}</strong></h3>
+                                                <p><br><br></p>
                                             </div>
+                                            <div class="progress d-flex justify-content-center" style="height: 70px;">
+                                                <?php
+                                                    $j = \App\donasi_masuk::get()->pluck('nominal');
+                                                    $total = 0;
+                                                    for($a = 0; $a < count($j); $a++){
+                                                    $total += $j[$a];
+                                                }
+                                                  $persen = $total / $i *100;
+                                                ?>
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated mr-auto"
+                                                    role="progressbar" style="width: {{$persen}}%;"
+                                                    aria-valuenow="{{$persen}}" aria-valuemin="0" aria-valuemax="100">
+                                                </div>
+                                                <h4 class="mt-3" style="color: black;position: absolute;"> {{round($persen)}} %</h4>
+                                            </div>
+                                            <div class="row mt-2 text-center align-content-center justify-content-center">
+                                                <p><br></p>
+                                                Donasi yang terkumpul
+                                            </div>
+                                            <div class="row mt-2 text-center align-content-center justify-content-center">
+
+
+                                                @foreach (\App\donasi_masuk::orderBy('dibuat','desc')->take(3)->get() as
+                                                $item)
+                                                <?php
+                                                        $i = $item->nominal;
+                                                        $i_arr = str_split(strrev($i),3);
+                                                        $tlt = "";
+                                                        for($a = 0; $a < count($i_arr);$a++){
+                                                            if($a == (count($i_arr)-1)){
+                                                                $tlt = $tlt .''. $i_arr[$a];
+                                                                continue;
+                                                            }
+                                                            $tlt = $tlt .''. $i_arr[$a].'.';
+                                                        }
+                                                        // implode($tlt);
+                                                        $tlt = strrev($tlt);
+                                                        ?>
+
+                                                {{ucfirst($item->nama)}} - Rp. {{$tlt}} - {{Carbon\Carbon::parse($item->dibuat)->diffForHumans()}}<br>
+                                                @endforeach
+
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
-                                    
+
 
                                 {{-- DONASI PEMBANGUNAN --}}
                                     <div class="tab-pane" role="tabpanel" id="donasi2">
