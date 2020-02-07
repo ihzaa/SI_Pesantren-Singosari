@@ -61,7 +61,6 @@ class front_end extends Controller
                                             <img src="' . $row->foto . '" alt="image" class="img-fluid">
                                         </a>
                                     </div>
-
                                 </div>
                                 <p class="text-lg mb-0">' . str_limit($row->isi, 60) . '</p>
                             </div>
