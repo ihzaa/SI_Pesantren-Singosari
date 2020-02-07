@@ -2,6 +2,7 @@
 Route::post('/logincek', 'adminController@cek');
 
 Route::get('4dm1n/login', 'adminController@index')->name('loginadmin');
+Route::post('/get/pengumuman/baru','front_end@load_data')->name('loadpengumuman');
 
 Route::prefix('4dm1n')->middleware('CekStatusAdmin')->group(function () {
 

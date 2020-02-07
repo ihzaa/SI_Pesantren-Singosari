@@ -23,6 +23,7 @@
     {{-- <link rel="stylesheet" href="/css/style.css"> --}}
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <style>
         /* Make the image fully responsive */
         .carousel-inner img {
@@ -127,11 +128,11 @@
         {{-- Pengumuman --}}
         <div id="pengumuman" class="container-fluid text-center pt-4" style="background-color: #4281A7;">
             {{-- #428bca --}}
-            <div>
+            <div id="kotakpengumuman">
                 <h2> PENGUMUMAN </h2>
                 <div class="row justify-content-center" style="background-color: #4281A7;">
 
-                    @foreach(\App\pengumuman::get()->take(4) as $p)
+                    @foreach(\App\pengumuman::where('prioritas','y')->get() as $p)
                     <div class="col-xl-3 col-md-3 col-sm-12 col-xs-12  mt-4 ">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
@@ -156,6 +157,7 @@
                     </div>
                     @endforeach
                 </div>
+                {{ csrf_field() }}
             </div>
         </div>
         <!-- Donasi -->
@@ -374,6 +376,37 @@
                     }  // End if
                 });
                 });
+
+
+                //AJAX LOAD MORE PENGUMUMAN DISINI YA
+                $(document).ready(function(){
+
+                    var _token = $('input[name="_token"]').val();
+
+                    load_data('', _token);
+
+                    function load_data(id="", _token)
+                    {
+                    $.ajax({
+                    url:"{{ route('loadpengumuman') }}",
+                    method:"POST",
+                    data:{id:id, _token:_token},
+                    success:function(data)
+                    {
+                        $('#load_more_button').remove();
+                        $('#kotakpengumuman').append(data);
+                    }
+                    })
+                    }
+
+                    $(document).on('click', '#load_more_button', function(){
+                    var id = $(this).data('id');
+                    $('#load_more_button').html('<b>Tunggu...</b>');
+                    load_data(id, _token);
+                    });
+
+                    });
+
         </script>
 </body>
 
