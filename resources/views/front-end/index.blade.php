@@ -272,9 +272,7 @@
 
                                                 {{ucfirst($item->nama)}} - Rp. {{$tlt}}<br>
                                                 @endforeach
-
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
