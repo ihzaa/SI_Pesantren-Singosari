@@ -78,7 +78,7 @@ class front_end extends Controller
             } else {
                 $output .= '
                     <div id="load_more">
-                        <button type="button" name="load_more_button" class="btn btn-warning">Semua Pengumuman Sudah di Tampilkan</button>
+                        <button type="button" name="load_more_button" class="btn btn-warning">Semua Informasi Sudah di Tampilkan</button>
                     </div>
                     ';
             }
@@ -118,7 +118,8 @@ class front_end extends Controller
     public function pengumuman($id, $nama)
     {
         $pengumuman = \App\pengumuman::where('id', $id)->first();
-        return view('front-end.Information.pengumuman', compact('pengumuman'));
+        $other = \App\pengumuman::where('id','!=',$id)->orderBy('id','DESC')->get()->take(10);
+        return view('front-end.Information.pengumuman', compact('pengumuman','other'));
     }
 
     /**

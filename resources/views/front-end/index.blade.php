@@ -72,7 +72,7 @@
                         <a class="nav-link" href="#">Akademik</a>
                     </li> --}}
                     <li class="nav-item">
-                        <a class="nav-link" href="#pengumuman">Pengumuman</a>
+                        <a class="nav-link" href="#pengumuman">Informasi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#donasi">Donasi</a>
@@ -142,7 +142,7 @@
         <div id="pengumuman" class="container-fluid text-center pt-4 pb-4" style="background-color: #4281A7;">
             {{-- #428bca --}}
             <div id="kotakpengumuman">
-                <h2> PENGUMUMAN </h2>
+                <h2> INFORMASI </h2>
                 <div class="row justify-content-center" style="background-color: #4281A7;">
                     <?php
                         $last_id = 0;
@@ -367,18 +367,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-xs-12 about-company">
-                    <h2 class="font-weight-bold">Negeri Akhirat</h2>
-                    <p class="pr-5 text-white-50">Disini isi deskripsi singkat tentang Pondok </p>
+                    <h2 class="font-weight-bold">Ponpes Negeri Akhirat</h2>
+                    {{-- <p class="pr-5 text-white-50">Disini isi deskripsi singkat tentang Pondok </p> --}}
                     <p><a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a href="#"><i
                                 class="fa fa-linkedin-square"></i></a></p>
                 </div>
                 <div class="col-lg-3 col-xs-12 links">
-                    <h4 class="mt-lg-0 mt-sm-3">Links</h4>
+                    {{-- <h4 class="mt-lg-0 mt-sm-3">Links</h4> --}}
                     <ul class="m-0 p-0">
                         {{-- <li><a href="#">Profil</a></li>
                             <li><a href="#">Akademik</a></li> --}}
-                        <li><a href="#pengumuman">Pengumuman</a></li>
-                        <li><a href="#donasi">Donasi</a></li>
+                        {{-- <li><a href="#pengumuman">Pengumuman</a></li>
+                        <li><a href="#donasi">Donasi</a></li> --}}
 
                     </ul>
                 </div>

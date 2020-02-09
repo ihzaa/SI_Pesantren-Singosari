@@ -118,7 +118,7 @@
             <li class="nav-item {{request()->is('4dm1n/kelola-pengumuman*') ? 'active open' : ''}}">
                 <a class="nav-link" href="{{route('adminkelolapengumuman')}}">
                     <i class="fas fa-bullhorn"></i>
-                    <span>Kelola Pengumuman</span></a>
+                    <span>Kelola Informasi</span></a>
             </li>
 
             <!-- Sidebar Toggler (Sidebar) -->
