@@ -240,7 +240,7 @@
                                                     $total = 0;
                                                     for($a = 0; $a < count($j); $a++){
                                                     $total += $j[$a];
-                                                }
+                                                    }
                                                   $persen = $total / $i *100;
                                                 ?>
                                                 <div class="progress-bar progress-bar-striped progress-bar-animated mr-auto"
