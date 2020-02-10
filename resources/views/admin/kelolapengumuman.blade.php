@@ -60,7 +60,7 @@
                         <td style="width: 150px;">
                             <img src="/{{$s->foto}}" alt="fotonya" class="img-fluid">
                         </td>
-                        <td>{{$s->dibuat}}</td>
+                        <td>{{Carbon\Carbon::parse($s->dibuat)->isoFormat('Do MMMM YYYY, H:mm')}}</td>
                         <td>
                             <div class="row justify-content-center">
                                 @if($s->prioritas == 'n')

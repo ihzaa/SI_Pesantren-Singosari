@@ -31,6 +31,10 @@
             height: 100%;
         }
 
+        .hideme {
+            opacity: 0;
+        }
+
         @media screen and (min-width: 992px) {
             body {
                 padding-top: 8px;
@@ -39,9 +43,10 @@
 
         @media screen and (max-width: 767px) {
             #kolomkanandonasi {
-                margin-top : 20px;
+                margin-top: 20px;
             }
         }
+
         @media screen and (max-width: 991px) {
             body {
                 padding-top: 56px;
@@ -148,7 +153,7 @@
                         $last_id = 0;
                     ?>
                     @foreach(\App\pengumuman::where('prioritas','y')->get() as $p)
-                    <div class="col-xl-3 col-md-3 col-sm-12 col-xs-12  mt-4 ">
+                    <div class="col-xl-3 col-md-3 col-sm-12 col-xs-12  mt-4 hideme">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
                                 <a href="/pengumuman/{{$p->id}}/{{$p->judul}}">
@@ -195,28 +200,30 @@
                                     $i = \App\donasi::first();
                                 ?>
 
-                                {{-- DONASI OPERASIONAL --}}
-                                <div class="tab-pane active" role="tabpanel" id="donasi1">
-                                    <div class="row">
-                                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                            <div class="row ml-2 justify-content-center">
-                                                {{$i->judul}}
-
-                                            </div>
-                                            <div class="row ml-2 mr-2">
-                                                {{$i->deskripsi}}
-                                            </div>
-                                            <div
-                                                class="row mt-4 justify-content-center text-center align-content-center">
-                                                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                                                    <img src="{{$i->foto}}" class="img-fluid" alt="Gambar apa gitu">
+                                    {{-- DONASI OPERASIONAL --}}
+                                    <div class="tab-pane active" role="tabpanel" id="donasi1">
+                                        <div class="row">
+                                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                                <div class="row ml-2 justify-content-center">
+                                                    {{$i->judul}}
+                                                </div>
+                                                <div class="row ml-2 mr-2">
+                                                    {{$i->deskripsi}}
+                                                </div>
+                                                <div
+                                                    class="row mt-4 justify-content-center text-center align-content-center">
+                                                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                                        <img src="{{$i->foto}}" class="img-fluid" alt="Gambar apa gitu">
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div id="kolomkanandonasi" class="col-lg-4 col-md-4 col-sm-12 col-sm-12 border-left-secondary shadow">
-                                            <div class="row text-center align-content-center justify-content-center">Donasi Yang Diperlukan <p><br></p>
-                                            </div>
-                                            <?php
+                                            <div id="kolomkanandonasi"
+                                                class="col-lg-4 col-md-4 col-sm-12 col-sm-12 border-left-secondary shadow">
+                                                <div
+                                                    class="row text-center align-content-center justify-content-center">
+                                                    Donasi Yang Diperlukan <p><br></p>
+                                                </div>
+                                                <?php
                                                     $i = \App\donasi::first()->Target;
                                                     $i_arr = str_split(strrev($i),3);
                                                     $tlt = "";
@@ -230,12 +237,14 @@
                                                     // implode($tlt);
                                                     $tlt = strrev($tlt);
                                                 ?>
-                                            <div class="row text-center align-content-center justify-content-center">
-                                                <h3><strong>Rp. {{$tlt}}</strong></h3>
-                                                <p><br><br></p>
-                                            </div>
-                                            <div class="progress d-flex justify-content-center" style="height: 70px;">
-                                                <?php
+                                                <div
+                                                    class="row text-center align-content-center justify-content-center">
+                                                    <h3><strong>Rp. {{$tlt}}</strong></h3>
+                                                    <p><br><br></p>
+                                                </div>
+                                                <div class="progress d-flex justify-content-center"
+                                                    style="height: 70px;">
+                                                    <?php
                                                     $j = \App\donasi_masuk::get()->pluck('nominal');
                                                     $total = 0;
                                                     for($a = 0; $a < count($j); $a++){
@@ -243,22 +252,27 @@
                                                     }
                                                   $persen = $total / $i *100;
                                                 ?>
-                                                <div class="progress-bar progress-bar-striped progress-bar-animated mr-auto"
-                                                    role="progressbar" style="width: {{$persen}}%;"
-                                                    aria-valuenow="{{$persen}}" aria-valuemin="0" aria-valuemax="100">
+                                                    <div class="progress-bar progress-bar-striped progress-bar-animated mr-auto"
+                                                        role="progressbar" style="width: {{$persen}}%;"
+                                                        aria-valuenow="{{$persen}}" aria-valuemin="0"
+                                                        aria-valuemax="100">
+                                                    </div>
+                                                    <h4 class="mt-3" style="color: black;position: absolute;">
+                                                        {{round($persen)}} %</h4>
                                                 </div>
-                                                <h4 class="mt-3" style="color: black;position: absolute;"> {{round($persen)}} %</h4>
-                                            </div>
-                                            <div class="row mt-2 text-center align-content-center justify-content-center">
-                                                <p><br></p>
-                                                Donasi yang terkumpul
-                                            </div>
-                                            <div class="row mt-2 text-center align-content-center justify-content-center">
+                                                <div
+                                                    class="row mt-2 text-center align-content-center justify-content-center">
+                                                    <p><br></p>
+                                                    Donasi yang terkumpul
+                                                </div>
+                                                <div
+                                                    class="row mt-2 text-center align-content-center justify-content-center">
 
 
-                                                @foreach (\App\donasi_masuk::orderBy('dibuat','desc')->take(3)->get() as
-                                                $item)
-                                                <?php
+                                                    @foreach
+                                                    (\App\donasi_masuk::orderBy('dibuat','desc')->take(3)->get() as
+                                                    $item)
+                                                    <?php
                                                         $i = $item->nominal;
                                                         $i_arr = str_split(strrev($i),3);
                                                         $tlt = "";
@@ -273,17 +287,18 @@
                                                         $tlt = strrev($tlt);
                                                         ?>
 
-                                                {{ucfirst($item->nama)}} - Rp. {{$tlt}} - {{Carbon\Carbon::parse($item->dibuat)->diffForHumans()}}<br>
-                                                @endforeach
+                                                    {{ucfirst($item->nama)}} - Rp. {{$tlt}} -
+                                                    {{Carbon\Carbon::parse($item->dibuat)->diffForHumans()}}<br>
+                                                    @endforeach
+
+                                                </div>
 
                                             </div>
-
                                         </div>
                                     </div>
-                                </div>
 
 
-                                {{-- DONASI PEMBANGUNAN --}}
+                                    {{-- DONASI PEMBANGUNAN --}}
                                     <div class="tab-pane" role="tabpanel" id="donasi2">
                                         <div class=" row">
                                             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -368,14 +383,16 @@
             <div class="row">
                 <div class="col-lg-5 col-xs-12 about-company">
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3952.2350187834395!2d112.64624!3d-7.8704586!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x3e06a0e0a9fd256e!2sPonpes%20Negeri%20Akhirat%20(PPNA)!5e0!3m2!1sen!2sid!4v1581309746156!5m2!1sen!2sid" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-                                    </div>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3952.2350187834395!2d112.64624!3d-7.8704586!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x3e06a0e0a9fd256e!2sPonpes%20Negeri%20Akhirat%20(PPNA)!5e0!3m2!1sen!2sid!4v1581309746156!5m2!1sen!2sid"
+                            width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                    </div>
                 </div>
                 <div class="col-lg-3 col-xs-12 links">
                     {{-- <h4 class="mt-lg-0 mt-sm-3">Links</h4> --}}
                     <ul class="m-0 p-0">
-                        
-                   
+
+
                 </div>
                 <div class="col-lg-4 col-xs-12 location">
                     <br> 
@@ -385,7 +402,7 @@
                     <p class="mb-0"><i class="fa fa-phone mr-3"></i>081359069006</p>
                     
                 </div>
-            </ul>
+                </ul>
             </div>
             {{-- <div class="row mt-5">
                         <div class="col copyright">
@@ -471,7 +488,29 @@
                     });
 
                     });
+                    $(document).ready(function() {
 
+            /* Every time the window is scrolled ... */
+            $(window).scroll( function(){
+
+                /* Check the location of each desired element */
+                $('.hideme').each( function(i){
+
+                    var bottom_of_object = $(this).position().top + $(this).outerHeight();
+                    var bottom_of_window = $(window).scrollTop() + $(window).height();
+
+                    /* If the object is completely visible in the window, fade it it */
+                    if( bottom_of_window > bottom_of_object ){
+
+                        $(this).animate({'opacity':'1'},1500);
+
+                    }
+
+                });
+
+            });
+
+        });
     </script>
 </body>
 
