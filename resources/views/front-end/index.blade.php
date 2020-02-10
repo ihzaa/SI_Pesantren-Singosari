@@ -366,27 +366,24 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-xs-12 about-company">
-                    <h2 class="font-weight-bold">Ponpes Negeri Akhirat</h2>
-                    {{-- <p class="pr-5 text-white-50">Disini isi deskripsi singkat tentang Pondok </p> --}}
-                    <p><a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a href="#"><i
-                                class="fa fa-linkedin-square"></i></a></p>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3952.2350187834395!2d112.64624!3d-7.8704586!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x3e06a0e0a9fd256e!2sPonpes%20Negeri%20Akhirat%20(PPNA)!5e0!3m2!1sen!2sid!4v1581309746156!5m2!1sen!2sid" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                                    </div>
                 </div>
                 <div class="col-lg-3 col-xs-12 links">
                     {{-- <h4 class="mt-lg-0 mt-sm-3">Links</h4> --}}
                     <ul class="m-0 p-0">
-                        {{-- <li><a href="#">Profil</a></li>
-                            <li><a href="#">Akademik</a></li> --}}
-                        {{-- <li><a href="#pengumuman">Pengumuman</a></li>
-                        <li><a href="#donasi">Donasi</a></li> --}}
-
-                    </ul>
+                        
+                   
                 </div>
                 <div class="col-lg-4 col-xs-12 location">
-                    <h4 class="mt-lg-0 mt-sm-4">Location</h4>
+                    <h4 class="mt-lg-0 mt-sm-4">Lokasi</h4>
                     <p>Jl. Sempit, Biru, Gunungrejo, Kec. Singosari, Malang, Jawa Timur 65153</p>
-                    <p class="mb-0"><i class="fa fa-phone mr-3"></i>(541) 754-3010</p>
+                    <h4 class="mt-lg-0 mt-sm-4">Telepon</h4>
+                    <p class="mb-0"><i class="fa fa-phone mr-3"></i>081359069006</p>
                     <p><i class="fa fa-envelope-o mr-3"></i>info@hsdf.com</p>
                 </div>
+            </ul>
             </div>
             {{-- <div class="row mt-5">
                         <div class="col copyright">
@@ -399,7 +396,7 @@
     <!-- Copyright -->
     <footer class="py-3" style="background-color: #4281A7">
         <div class="container">
-            <p class="m-0 text-center text-white">Pondok Pesantren Dunia Akhirat</p>
+            <p class="m-0 text-center text-white">Pondok Pesantren Negeri Akhirat</p>
         </div>
         <!-- /.container -->
     </footer>
