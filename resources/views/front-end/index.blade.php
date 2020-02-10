@@ -5,6 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel='icon' href='/img/logo.png' type='image/x-icon' style="height: 25px;">
     {{-- <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="/css/sb-admin-2.min.css" rel="stylesheet"> --}}
     <!-- Bootstrap CSS -->
@@ -92,7 +93,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #4281A7">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <i class="fas fa-mosque"></i>
+                <img class="img-fluid" src="/img/logo.png" alt="" style="height: 45px;">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
