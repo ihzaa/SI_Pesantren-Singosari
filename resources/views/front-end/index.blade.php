@@ -23,7 +23,6 @@
     {{-- <link rel="stylesheet" href="/css/style.css"> --}}
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <style>
         /* Make the image fully responsive */
         .carousel-inner img {
@@ -153,7 +152,7 @@
                         $last_id = 0;
                     ?>
                     @foreach(\App\pengumuman::where('prioritas','y')->get() as $p)
-                    <div class="col-xl-3 col-md-3 col-sm-12 col-xs-12  mt-4 hideme">
+                    <div class="col-xl-3 col-md-3 col-sm-12 col-xs-12 mt-4 hideme">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
                                 <a href="/pengumuman/{{$p->id}}/{{$p->judul}}">
@@ -269,8 +268,8 @@
                                                     class="row mt-2 text-center align-content-center justify-content-center">
 
 
-                                                    @foreach
-                                                    (\App\donasi_masuk::orderBy('dibuat','desc')->take(3)->get() as
+                                                    @foreach(\App\donasi_masuk::orderBy('dibuat','desc')->take(3)->get()
+                                                    as
                                                     $item)
                                                     <?php
                                                         $i = $item->nominal;
@@ -395,12 +394,12 @@
 
                 </div>
                 <div class="col-lg-4 col-xs-12 location">
-                    <br> 
+                    <br>
                     <h4 class="mt-lg-0 mt-sm-4">Lokasi</h4>
                     <p>Jl. Sempit, Biru, Gunungrejo, Kec. Singosari, Malang, Jawa Timur 65153</p>
                     <h4 class="mt-lg-0 mt-sm-4">Telepon</h4>
                     <p class="mb-0"><i class="fa fa-phone mr-3"></i>081359069006</p>
-                    
+
                 </div>
                 </ul>
             </div>
@@ -421,7 +420,6 @@
     </footer>
     <!-- Copyright -->
 
-    </footer>
     <!-- Footer -->
     <!-- Akhir Footer -->
 
@@ -457,7 +455,7 @@
                     });
                     }  // End if
                 });
-                });
+            });
 
 
                 //AJAX LOAD MORE PENGUMUMAN DISINI YA
@@ -469,48 +467,49 @@
 
                     function load_data(id="", _token)
                     {
-                    $.ajax({
-                    url:"{{ route('loadpengumuman') }}",
-                    method:"POST",
-                    data:{id:id, _token:_token},
-                    success:function(data)
-                    {
-                        $('#load_more_button').remove();
-                        $('#kotakpengumuman').append(data);
-                    }
-                    })
+                        $.ajax({
+                            url:"{{ route('loadpengumuman') }}",
+                            method:"POST",
+                            data:{id:id, _token:_token},
+                            success:function(data)
+                            {
+                                $('#load_more_button').remove();
+                                $('#kotakpengumuman').append(data);
+                            }
+                        })
                     }
 
                     $(document).on('click', '#load_more_button', function(){
-                    var id = $(this).data('id');
-                    $('#load_more_button').html('<b>Tunggu...</b>');
-                    load_data(id, _token);
+                        var id = $(this).data('id');
+                        $('#load_more_button').html('<b>Tunggu...</b>');
+                        load_data(id, _token);
                     });
-
-                    });
-                    $(document).ready(function() {
-
-            /* Every time the window is scrolled ... */
-            $(window).scroll( function(){
-
-                /* Check the location of each desired element */
-                $('.hideme').each( function(i){
-
-                    var bottom_of_object = $(this).position().top + $(this).outerHeight();
-                    var bottom_of_window = $(window).scrollTop() + $(window).height();
-
-                    /* If the object is completely visible in the window, fade it it */
-                    if( bottom_of_window > bottom_of_object ){
-
-                        $(this).animate({'opacity':'1'},1500);
-
-                    }
-
                 });
+
+        $(document).ready(function() {
+
+        /* Every time the window is scrolled ... */
+        $(window).scroll( function(){
+
+            /* Check the location of each desired element */
+            $('.hideme').each( function(i){
+
+                var bottom_of_object = $(this).position().top + $(this).outerHeight();
+                var bottom_of_window = $(window).scrollTop() + $(window).height();
+
+                /* If the object is completely visible in the window, fade it it */
+                if( bottom_of_window > bottom_of_object ){
+
+                    $(this).animate({'opacity':'1'},1500);
+
+                }
 
             });
 
         });
+
+        });
+
     </script>
 </body>
 
