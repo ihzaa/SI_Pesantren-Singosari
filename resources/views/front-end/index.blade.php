@@ -37,6 +37,11 @@
             }
         }
 
+        @media screen and (max-width: 767px) {
+            #kolomkanandonasi {
+                margin-top : 20px;
+            }
+        }
         @media screen and (max-width: 991px) {
             body {
                 padding-top: 56px;
@@ -67,7 +72,7 @@
                         <a class="nav-link" href="#">Akademik</a>
                     </li> --}}
                     <li class="nav-item">
-                        <a class="nav-link" href="#pengumuman">Pengumuman</a>
+                        <a class="nav-link" href="#pengumuman">Informasi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#donasi">Donasi</a>
@@ -137,7 +142,7 @@
         <div id="pengumuman" class="container-fluid text-center pt-4 pb-4" style="background-color: #4281A7;">
             {{-- #428bca --}}
             <div id="kotakpengumuman">
-                <h2> PENGUMUMAN </h2>
+                <h2> INFORMASI </h2>
                 <div class="row justify-content-center" style="background-color: #4281A7;">
                     <?php
                         $last_id = 0;
@@ -169,7 +174,7 @@
                 </div>
                 {{ csrf_field() }}
                 <div id="load_more">
-                    <button type="button" name="load_more_button" class="btn btn-outline-danger text-white"
+                    <button type="button" name="load_more_button" class="btn btn-outline-light"
                         data-id="{{\App\pengumuman::where('prioritas','n')->orderBy('id','DESC')->pluck('id')->first()}}"
                         id="load_more_button">Lihat Lainnya</button>
                 </div>
@@ -185,71 +190,34 @@
                                 <h6 class="m-0 font-weight-bold text-primary">Informasi Donasi</h6>
                             </div>
                             <div class="card-body">
-                                <?php
+                                <div class="tab-content">
+                                    <?php
                                     $i = \App\donasi::first();
                                 ?>
-                                <div class="row">
-                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                        <div class="row ml-2 justify-content-center">
-                                            {{$i->judul}}
 
-                                        </div>
-                                        <div class="row ml-2 mr-2">
-                                            {{$i->deskripsi}}
-                                        </div>
-                                        <div class="row mt-4 justify-content-center text-center align-content-center">
-                                            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                                                <img src="{{$i->foto}}" class="img-fluid" alt="Gambar apa gitu">
+                                {{-- DONASI OPERASIONAL --}}
+                                <div class="tab-pane active" role="tabpanel" id="donasi1">
+                                    <div class="row">
+                                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                            <div class="row ml-2 justify-content-center">
+                                                {{$i->judul}}
+
+                                            </div>
+                                            <div class="row ml-2 mr-2">
+                                                {{$i->deskripsi}}
+                                            </div>
+                                            <div
+                                                class="row mt-4 justify-content-center text-center align-content-center">
+                                                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                                    <img src="{{$i->foto}}" class="img-fluid" alt="Gambar apa gitu">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-12 col-sm-12 border-left-secondary">
-                                        <div class="row ml-2 ">Donasi Yang Diperlukan <p><br></p>
-                                        </div>
-                                        <?php
-                                                $i = \App\donasi::first()->Target;
-                                                $i_arr = str_split(strrev($i),3);
-                                                $tlt = "";
-                                                for($a = 0; $a < count($i_arr);$a++){
-                                                    if($a == (count($i_arr)-1)){
-                                                        $tlt = $tlt .''. $i_arr[$a];
-                                                        continue;
-                                                    }
-                                                    $tlt = $tlt .''. $i_arr[$a].'.';
-                                                }
-                                                // implode($tlt);
-                                                $tlt = strrev($tlt);
-                                            ?>
-                                        <div class="row ml-2">
-                                            <h3><strong>Rp. {{$tlt}}</strong></h3>
-                                            <p><br><br></p>
-                                        </div>
-                                        <div class="progress" style="height: 70px;">
-                                            <?php
-                                                $j = \App\donasi_masuk::get()->pluck('nominal');
-                                                $total = 0;
-                                                for($a = 0; $a < count($j); $a++){
-                                                $total += $j[$a];
-                                            }
-                                              $persen = $total / $i *100;
-                                            ?>
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated "
-                                                role="progressbar" style="width: {{$persen}}%;"
-                                                aria-valuenow="{{$persen}}" aria-valuemin="0" aria-valuemax="100">
-                                                <h4> {{round($persen)}} %</h4>
+                                        <div id="kolomkanandonasi" class="col-lg-4 col-md-4 col-sm-12 col-sm-12 border-left-secondary shadow">
+                                            <div class="row text-center align-content-center justify-content-center">Donasi Yang Diperlukan <p><br></p>
                                             </div>
-                                        </div>
-                                        <div class="row mt-2 text-center align-content-center justify-content-center">
-                                            <p><br></p>
-                                            Donasi yang terkumpul
-                                        </div>
-                                        <div class="row mt-2 text-center align-content-center justify-content-center">
-
-
-                                            @foreach (\App\donasi_masuk::orderBy('dibuat','desc')->take(3)->get() as
-                                            $item)
                                             <?php
-                                                    $i = $item->nominal;
+                                                    $i = \App\donasi::first()->Target;
                                                     $i_arr = str_split(strrev($i),3);
                                                     $tlt = "";
                                                     for($a = 0; $a < count($i_arr);$a++){
@@ -261,28 +229,112 @@
                                                     }
                                                     // implode($tlt);
                                                     $tlt = strrev($tlt);
-                                                    ?>
+                                                ?>
+                                            <div class="row text-center align-content-center justify-content-center">
+                                                <h3><strong>Rp. {{$tlt}}</strong></h3>
+                                                <p><br><br></p>
+                                            </div>
+                                            <div class="progress d-flex justify-content-center" style="height: 70px;">
+                                                <?php
+                                                    $j = \App\donasi_masuk::get()->pluck('nominal');
+                                                    $total = 0;
+                                                    for($a = 0; $a < count($j); $a++){
+                                                    $total += $j[$a];
+                                                    }
+                                                  $persen = $total / $i *100;
+                                                ?>
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated mr-auto"
+                                                    role="progressbar" style="width: {{$persen}}%;"
+                                                    aria-valuenow="{{$persen}}" aria-valuemin="0" aria-valuemax="100">
+                                                </div>
+                                                <h4 class="mt-3" style="color: black;position: absolute;"> {{round($persen)}} %</h4>
+                                            </div>
+                                            <div class="row mt-2 text-center align-content-center justify-content-center">
+                                                <p><br></p>
+                                                Donasi yang terkumpul
+                                            </div>
+                                            <div class="row mt-2 text-center align-content-center justify-content-center">
 
-                                            {{ucfirst($item->nama)}} - Rp. {{$tlt}}<br>
-                                            @endforeach
+
+                                                @foreach (\App\donasi_masuk::orderBy('dibuat','desc')->take(3)->get() as
+                                                $item)
+                                                <?php
+                                                        $i = $item->nominal;
+                                                        $i_arr = str_split(strrev($i),3);
+                                                        $tlt = "";
+                                                        for($a = 0; $a < count($i_arr);$a++){
+                                                            if($a == (count($i_arr)-1)){
+                                                                $tlt = $tlt .''. $i_arr[$a];
+                                                                continue;
+                                                            }
+                                                            $tlt = $tlt .''. $i_arr[$a].'.';
+                                                        }
+                                                        // implode($tlt);
+                                                        $tlt = strrev($tlt);
+                                                        ?>
+
+                                                {{ucfirst($item->nama)}} - Rp. {{$tlt}} - {{Carbon\Carbon::parse($item->dibuat)->diffForHumans()}}<br>
+                                                @endforeach
+
+                                            </div>
 
                                         </div>
-
                                     </div>
                                 </div>
-                                <hr>
-                                <div class="">
-                                    <h5></h5>
+
+
+                                {{-- DONASI PEMBANGUNAN --}}
+                                    <div class="tab-pane" role="tabpanel" id="donasi2">
+                                        <div class=" row">
+                                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                                <div class="row ml-2 justify-content-center">
+                                                    INI JUDUL ANJING
+
+                                                </div>
+                                                <div class="row ml-2 mr-2">
+                                                    IYA BANGSAT
+                                                </div>
+                                                <div
+                                                    class="row mt-4 justify-content-center text-center align-content-center">
+                                                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                                        <img src="" class="img-fluid" alt="Gambar apa gitu">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-12 col-sm-12 border-left-secondary">
+                                                <div class="row ml-2 ">Donasi Yang Diperlukan <p><br></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>
+                            <hr>
+                            <div class="">
+                                <h5>
+                                    {{-- TAB DONASI --}}
+                                    <ul class="nav nav-pills justify-content-center" id="myTab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#donasi1"
+                                                role="tab" aria-selected="true">Operasional</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#donasi2"
+                                                role="tab" aria-selected="false">Pembangunan</a>
+                                        </li>
+                                    </ul>
+
+                                </h5>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Akhir Donasi -->
+    </div>
+    <!-- Akhir Donasi -->
 
-            {{-- Alamat--}}
-            {{-- <section class="features bg-secondary p-5">
+    {{-- Alamat--}}
+    {{-- <section class="features bg-secondary p-5">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-12">
@@ -306,66 +358,63 @@
                     </div>
                 </div>
             </div>--}}
-        </section>
+    </section>
 
-        {{-- Akhir Alamat --}}
+    {{-- Akhir Alamat --}}
 
-        <!-- Footer -->
-        <div class="pt-5 pb-5 footer" style="background-color: #4281A7">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-5 col-xs-12 about-company">
-                        <h2 class="font-weight-bold">Negeri Akhirat</h2>
-                        <p class="pr-5 text-white-50">Disini isi deskripsi singkat tentang Pondok </p>
-                        <p><a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a href="#"><i
-                                    class="fa fa-linkedin-square"></i></a></p>
-                    </div>
-                    <div class="col-lg-3 col-xs-12 links">
-                        <h4 class="mt-lg-0 mt-sm-3">Links</h4>
-                        <ul class="m-0 p-0">
-                            {{-- <li><a href="#">Profil</a></li>
-                            <li><a href="#">Akademik</a></li> --}}
-                            <li><a href="#pengumuman">Pengumuman</a></li>
-                            <li><a href="#donasi">Donasi</a></li>
-
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-xs-12 location">
-                        <h4 class="mt-lg-0 mt-sm-4">Location</h4>
-                        <p>Jl. Sempit, Biru, Gunungrejo, Kec. Singosari, Malang, Jawa Timur 65153</p>
-                        <p class="mb-0"><i class="fa fa-phone mr-3"></i>(541) 754-3010</p>
-                        <p><i class="fa fa-envelope-o mr-3"></i>info@hsdf.com</p>
-                    </div>
+    <!-- Footer -->
+    <div class="pt-5 pb-5 footer" style="background-color: #4281A7">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-xs-12 about-company">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3952.2350187834395!2d112.64624!3d-7.8704586!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x3e06a0e0a9fd256e!2sPonpes%20Negeri%20Akhirat%20(PPNA)!5e0!3m2!1sen!2sid!4v1581309746156!5m2!1sen!2sid" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                                    </div>
                 </div>
-                {{-- <div class="row mt-5">
+                <div class="col-lg-3 col-xs-12 links">
+                    {{-- <h4 class="mt-lg-0 mt-sm-3">Links</h4> --}}
+                    <ul class="m-0 p-0">
+                        
+                   
+                </div>
+                <div class="col-lg-4 col-xs-12 location">
+                    <h4 class="mt-lg-0 mt-sm-4">Lokasi</h4>
+                    <p>Jl. Sempit, Biru, Gunungrejo, Kec. Singosari, Malang, Jawa Timur 65153</p>
+                    <h4 class="mt-lg-0 mt-sm-4">Telepon</h4>
+                    <p class="mb-0"><i class="fa fa-phone mr-3"></i>081359069006</p>
+                    <p><i class="fa fa-envelope-o mr-3"></i>info@hsdf.com</p>
+                </div>
+            </ul>
+            </div>
+            {{-- <div class="row mt-5">
                         <div class="col copyright">
                             <p class=""><small class="text-white-50">© 2019. All Rights Reserved.</small></p>
                         </div>
                     </div> --}}
-            </div>
         </div>
+    </div>
 
-        <!-- Copyright -->
-        <footer class="py-3" style="background-color: #4281A7">
-            <div class="container">
-                <p class="m-0 text-center text-white">Pondok Pesantren Dunia Akhirat</p>
-            </div>
-            <!-- /.container -->
-        </footer>
-        <!-- Copyright -->
+    <!-- Copyright -->
+    <footer class="py-3" style="background-color: #4281A7">
+        <div class="container">
+            <p class="m-0 text-center text-white">Pondok Pesantren Negeri Akhirat</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+    <!-- Copyright -->
 
-        </footer>
-        <!-- Footer -->
-        <!-- Akhir Footer -->
+    </footer>
+    <!-- Footer -->
+    <!-- Akhir Footer -->
 
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="/js/jquery-3.4.1.min.js"></script>
-        <script src="/js/popper.min.js"></script>
-        <script src="/js/bootstrap.js"></script>
-        <script src="/js/all.js"></script>
-        <script>
-            $(document).ready(function(){
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/all.js"></script>
+    <script>
+        $(document).ready(function(){
                 // Add scrollspy to <body>
                 $('body').scrollspy({target: ".navbar"});
 
@@ -422,7 +471,7 @@
 
                     });
 
-        </script>
+    </script>
 </body>
 
 </html>

@@ -66,12 +66,14 @@
 
                 <!-- Side Widget -->
                 <div class="card my-4">
-                    <h5 class="card-header">Berita Lainnya</h5>
+                    <h5 class="card-header">Informasi Lainnya</h5>
                     <div class="card-body">
-                        <ul class="list-unstyled">
-                            @foreach (\App\pengumuman::get()->take(10) as $item)
-                            <a href="/pengumuman/{{$item->id}}/{{$item->judul}}">
-                                <li class="list-unstyled-item">
+
+                        <ul class="list-group">
+                            @foreach ($other as $item)
+                            <a href="/informasi/{{$item->id}}/{{$item->judul}}">
+                                <li class="list-group-item">
+
                                     <div class="row">
                                         <div class="col-4">
                                             <img class="img-fluid" src="/{{$item->foto}}" alt="">

@@ -167,7 +167,7 @@ class adminController extends Controller
         $valid_extension = array("csv");
 
         // 2MB in Bytes
-        $maxFileSize = 10097152;
+        $maxFileSize = 2097152;
 
         // Check file extension
         if (in_array(strtolower($extension), $valid_extension)) {
@@ -372,7 +372,7 @@ class adminController extends Controller
             $valid_extension = array("csv");
 
             // 10MB in Bytes
-            $maxFileSize = 10097152;
+            $maxFileSize = 2097152;
 
             // Check file extension
             if (in_array(strtolower($extension), $valid_extension)) {
@@ -595,7 +595,7 @@ class adminController extends Controller
     public function admintambahcarousel(Request $request)
     {
         $this->validate($request, [
-            'file'  => 'required|image|mimes:jpg,png,jpeg|max:10048'
+            'file'  => 'required|image|mimes:jpg,png,jpeg|max:5120'
         ]);
 
 
@@ -734,7 +734,7 @@ class adminController extends Controller
             return 1;
         } else if ($request->file != null) {
             $validation = Validator::make($request->all(), [
-                'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:8048'
+                'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120'
             ]);
             if (!$validation->passes()) {
                 return 2;
@@ -744,7 +744,7 @@ class adminController extends Controller
             $tujuan_upload = 'donasi/';
             $lengkap = $tujuan_upload . $nama_file;
             $file->move($tujuan_upload, $nama_file);
-
+            File::delete(substr(\App\donasi::where('id', 1)->first()->foto, 1));
             \App\donasi::where('id', 1)->update([
                 'judul' => $request->judul,
                 'deskripsi' => $request->desc,
@@ -763,7 +763,7 @@ class adminController extends Controller
     public function admintambahpengumuman(Request $request)
     {
         $request->validate([
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:8048'
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120'
         ]);
 
         $id = DB::table('pengumuman')->insertGetId([
@@ -826,7 +826,7 @@ class adminController extends Controller
     {
         if ($request->file != null) {
             $request->validate([
-                'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:8048'
+                'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120'
             ]);
 
             $file = $request->file('file');

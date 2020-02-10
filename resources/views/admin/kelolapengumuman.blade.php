@@ -105,6 +105,14 @@
                 </tbody>
             </table>
         </div>
+        <hr>
+        <h3>Catatan :</h3>
+        <ul>
+            <li>Pengumuman yang dapat di prioritaskan maksimal 4</li>
+            <li>Jika di jadikan prioritas maka pengumuman tersebut di tampilan pada baris paling atas</li>
+            <li>Semua <strong>Dimensi</strong> gambar pengumuman usahakan sama agar tampilan rapi, misal tinggi 4 x
+                lebar 3</li>
+        </ul>
     </div>
 </div>
 

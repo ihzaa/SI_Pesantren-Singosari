@@ -118,7 +118,7 @@
             <li class="nav-item {{request()->is('4dm1n/kelola-pengumuman*') ? 'active open' : ''}}">
                 <a class="nav-link" href="{{route('adminkelolapengumuman')}}">
                     <i class="fas fa-bullhorn"></i>
-                    <span>Kelola Pengumuman</span></a>
+                    <span>Kelola Informasi</span></a>
             </li>
 
             <!-- Sidebar Toggler (Sidebar) -->
@@ -205,7 +205,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2019</span>
+                        <span>Pondok Pesantren Dunia Akhirat</span>
                     </div>
                 </div>
             </footer>
@@ -250,16 +250,17 @@
 
     <!-- Core plugin JavaScript-->
     <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="/vendor/chart.js/Chart.min.js"></script>
     @yield('js')
     <!-- Custom scripts for all pages-->
     <script src="/js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="/vendor/chart.js/Chart.min.js"></script>
+
 
     <!-- Page level custom scripts -->
-    <script src="/js/demo/chart-area-demo.js"></script>
-    <script src="/js/demo/chart-pie-demo.js"></script>
+    {{-- <script src="/js/demo/chart-area-demo.js"></script> --}}
+    {{-- <script src="/js/demo/chart-pie-demo.js"></script> --}}
 
 </body>
 
