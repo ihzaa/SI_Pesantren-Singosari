@@ -201,7 +201,6 @@
                                         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                             <div class="row ml-2 justify-content-center">
                                                 {{$i->judul}}
-
                                             </div>
                                             <div class="row ml-2 mr-2">
                                                 {{$i->deskripsi}}

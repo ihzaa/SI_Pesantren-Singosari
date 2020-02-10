@@ -73,9 +73,9 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-default">Target Donasi</span>
                 </div>
-                <input type="number" min="1" id="intarget" class="form-control" name="target"
-                    value="{{\App\donasi::first()->Target}}" placeholder="Target Donasi"
-                    aria-describedby="basic-addon2">
+                <input type="text" min="1" id="intarget" class="form-control" name="target"
+                    value="{{\App\donasi::first()->Target}}" placeholder="Target Donasi" aria-describedby="basic-addon2"
+                    required="">
                 <div class="input-group-append">
                     <button type="submit" class="btn btn-sm btn-primary btn-dnsi">
                         <span id="cek" class="icon text-white-50 fa fa-check"></span>
@@ -123,8 +123,8 @@
                     <tr>
                         <td>{{$i++}}</td>
                         <td>{{$s->nama}}</td>
-                        <td>{{$s->nominal}}</td>
-                        <td>{{$s->dibuat}}</td>
+                        <td>Rp. {{number_format($s->nominal)}}</td>
+                        <td>{{Carbon\Carbon::parse($s->dibuat)->isoFormat('dddd, Do MMMM YYYY, H:mm')}}</td>
                         <td>
                             <div class="row justify-content-center">
                                 <a href="#" class="btn btn-info btn-circle btn-sm" title="Edit" data-toggle="modal"
@@ -372,6 +372,24 @@
 <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
 
 <script>
+
+    $(document).ready(function(){
+        var $input = $('input[name=target]');
+
+        var $this = $input;
+
+        // Get the value.
+        var input = $this.val();
+
+        var input = input.replace(/[\D\s\._\-]+/g, "");
+        input = input ? parseInt( input, 10 ) : 0;
+
+        $this.val( function() {
+            return ( input === 0 ) ? "" : input.toLocaleString( "en-US" );
+        } );
+
+    });
+
     $('#editModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that trigg  ered the modal
         var modal = $(this)
@@ -392,6 +410,7 @@
 
         $(".btn-dnsi").click(function(){
             wadaw();
+            var trt = $('input[name=target]').val();
             $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -401,7 +420,7 @@
                 type: 'post',
                 url: '/4dm1n/kelola-donasi/total/edit',
                 data: {
-                    'target':  $('input[name=target]').val()
+                    'target': trt.replace(",","")
                 },
                 success: function(data) {
                     wadaw1();
@@ -485,6 +504,47 @@
                 document.getElementById('btn-simpan').style.display = "block";
                 document.getElementById('btn-ldg-atas').style.display = "none";
             }
+
+            // JS untuk input mata uang
+            (function($, undefined) {
+
+                "use strict";
+
+                // When ready.
+                $(function() {
+
+                    // var $form = $( "#form" );
+                    var $input = $('input[name=target]');
+
+                    $input.on( "keyup", function( event ) {
+
+
+                        // When user select text in the document, also abort.
+                        var selection = window.getSelection().toString();
+                        if ( selection !== '' ) {
+                            return;
+                        }
+
+                        // When the arrow keys are pressed, abort.
+                        if ( $.inArray( event.keyCode, [38,40,37,39] ) !== -1 ) {
+                            return;
+                        }
+
+
+                        var $this = $( this );
+
+                        // Get the value.
+                        var input = $this.val();
+
+                        var input = input.replace(/[\D\s\._\-]+/g, "");
+                                input = input ? parseInt( input, 10 ) : 0;
+
+                                $this.val( function() {
+                                    return ( input === 0 ) ? "" : input.toLocaleString( "en-US" );
+                                } );
+                    } );
+                });
+                })(jQuery);
 </script>
 
 @endsection

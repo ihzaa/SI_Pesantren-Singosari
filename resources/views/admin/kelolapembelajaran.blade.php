@@ -72,7 +72,7 @@
                         <td>{{count($s->pengajar_tahun_ajaran)}}</td>
                         <td>{{count($s->kelas_tahun_ajaran)}}</td>
                         <td>{{count($s->mata_pelajaran_tahun_ajaran)}}</td>
-                        <td>{{$s->dibuat}}</td>
+                        <td>{{Carbon\Carbon::parse($s->dibuat)->isoFormat('Do MMMM YYYY, H:mm')}}</td>
                         <td>
                             <div class="row justify-content-center">
                                 @if($s->status == 'nonaktif')
