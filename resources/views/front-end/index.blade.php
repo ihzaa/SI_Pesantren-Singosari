@@ -378,11 +378,12 @@
                    
                 </div>
                 <div class="col-lg-4 col-xs-12 location">
+                    <br> 
                     <h4 class="mt-lg-0 mt-sm-4">Lokasi</h4>
                     <p>Jl. Sempit, Biru, Gunungrejo, Kec. Singosari, Malang, Jawa Timur 65153</p>
                     <h4 class="mt-lg-0 mt-sm-4">Telepon</h4>
                     <p class="mb-0"><i class="fa fa-phone mr-3"></i>081359069006</p>
-                    <p><i class="fa fa-envelope-o mr-3"></i>info@hsdf.com</p>
+                    
                 </div>
             </ul>
             </div>
