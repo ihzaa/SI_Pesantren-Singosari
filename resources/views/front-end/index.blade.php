@@ -23,13 +23,48 @@
     {{-- <link rel="stylesheet" href="/css/style.css"> --}}
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <style>
         /* Make the image fully responsive */
         .carousel-inner img {
             width: 100%;
             height: 100%;
         }
+
+
+        .hideme {
+            opacity: 0;
+        }
+
+        @media screen and (min-width: 576px) {
+            .box-wrap {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .box {
+                background: white;
+                border: 1px solid #d6d6d6;
+                box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.25);
+                /* border-radius: 3px; */
+                transition: .2s all;
+            }
+
+            .box-wrap:hover .box {
+                filter: blur(3px);
+                opacity: .5;
+                transform: scale(.98);
+                box-shadow: none;
+            }
+
+            .box-wrap:hover .box:hover {
+                transform: scale(1);
+                filter: blur(0px);
+                opacity: 1;
+                box-shadow: 0 8px 20px 0px rgba(0, 0, 0, 0.125);
+            }
+        }
+
 
         @media screen and (min-width: 992px) {
             body {
@@ -143,12 +178,15 @@
             {{-- #428bca --}}
             <div id="kotakpengumuman">
                 <h2> INFORMASI </h2>
-                <div class="row justify-content-center" style="background-color: #4281A7;">
+                <div class="row justify-content-center box-wrap" style="background-color: #4281A7;">
                     <?php
                         $last_id = 0;
                     ?>
                     @foreach(\App\pengumuman::where('prioritas','y')->get() as $p)
-                    <div class="col-xl-3 col-md-3 col-sm-12 col-xs-12  mt-4 ">
+
+
+                    <div class="col-xl-3 col-md-3 col-sm-12 col-xs-12 mt-4 hideme box">
+
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
                                 <a href="/pengumuman/{{$p->id}}/{{$p->judul}}">
@@ -256,9 +294,11 @@
                                             <div class="row mt-2 text-center align-content-center justify-content-center">
 
 
-                                                @foreach (\App\donasi_masuk::orderBy('dibuat','desc')->take(3)->get() as
-                                                $item)
-                                                <?php
+
+                                                    @foreach(\App\donasi_masuk::orderBy('dibuat','desc')->take(3)->get()
+                                                    as
+                                                    $item)
+                                                    <?php
                                                         $i = $item->nominal;
                                                         $i_arr = str_split(strrev($i),3);
                                                         $tlt = "";
@@ -377,13 +417,12 @@
                         
                    
                 </div>
-                <div class="col-lg-4 col-xs-12 location">
-                    <br> 
+                <div class="col-lg-4 col-xs-12">
+                    <br>
                     <h4 class="mt-lg-0 mt-sm-4">Lokasi</h4>
-                    <p>Jl. Sempit, Biru, Gunungrejo, Kec. Singosari, Malang, Jawa Timur 65153</p>
+                    <p><i class="fas fa-map-marker-alt mr-3"></i> Jl. Sempit, Biru, Gunungrejo, Kec. Singosari, Malang, Jawa Timur 65153</p>
                     <h4 class="mt-lg-0 mt-sm-4">Telepon</h4>
                     <p class="mb-0"><i class="fa fa-phone mr-3"></i>081359069006</p>
-                    
                 </div>
             </ul>
             </div>
@@ -398,7 +437,7 @@
     </footer>
     <!-- Copyright -->
 
-    
+
     <!-- Footer -->
     <!-- Akhir Footer -->
 
@@ -434,7 +473,7 @@
                     });
                     }  // End if
                 });
-                });
+            });
 
 
                 //AJAX LOAD MORE PENGUMUMAN DISINI YA
@@ -446,25 +485,53 @@
 
                     function load_data(id="", _token)
                     {
-                    $.ajax({
-                    url:"{{ route('loadpengumuman') }}",
-                    method:"POST",
-                    data:{id:id, _token:_token},
-                    success:function(data)
-                    {
-                        $('#load_more_button').remove();
-                        $('#kotakpengumuman').append(data);
-                    }
-                    })
+                        $.ajax({
+                            url:"{{ route('loadpengumuman') }}",
+                            method:"POST",
+                            data:{id:id, _token:_token},
+                            success:function(data)
+                            {
+                                $('#load_more_button').remove();
+                                $('#kotakpengumuman').append(data);
+                            }
+                        })
                     }
 
                     $(document).on('click', '#load_more_button', function(){
-                    var id = $(this).data('id');
-                    $('#load_more_button').html('<b>Tunggu...</b>');
-                    load_data(id, _token);
+                        var id = $(this).data('id');
+                        $('#load_more_button').html('<b>Tunggu...</b>');
+                        load_data(id, _token);
                     });
+                });
 
-                    });
+
+                  
+
+
+        $(document).ready(function() {
+
+        /* Every time the window is scrolled ... */
+        $(window).scroll( function(){
+
+            /* Check the location of each desired element */
+            $('.hideme').each( function(i){
+
+                var bottom_of_object = $(this).position().top + $(this).outerHeight();
+                var bottom_of_window = $(window).scrollTop() + $(window).height();
+
+                /* If the object is completely visible in the window, fade it it */
+                if( bottom_of_window > bottom_of_object ){
+
+                    $(this).animate({'opacity':'1'},1500);
+
+                }
+
+            });
+
+        });
+
+        });
+
 
     </script>
 </body>
