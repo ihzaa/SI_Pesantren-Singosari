@@ -8,7 +8,34 @@
 	<link rel="stylesheet" type="text/css" href="/css/login.css">
 </head>
 <body>
-	<div class="wrapper fadeInDown">
+	{{-- <div class="container"> --}}
+		{{-- Outer Row --}}
+		{{-- <div class="row justify-content-center">
+			<div class="col-xl-10 col-lg-12 col-md-9">
+				<div class="card o-hidden border-0 shadow-lg my-5">
+					<div class="card-body p-0"> --}}
+						{{-- Nested Row Within Card Body --}}
+						{{-- <div class="row">
+							<div class="col-lg-6 d-none d-lg-block bg-login-image">
+								<div class="col-lg-6">
+									<div class="p-5">
+										<div class="text-center">
+											
+										</div>
+									</div>
+									
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div> --}}
+
+	<div class="wrapper fadeInDown ">
 	  <div id="formContent">
 	    <!-- Tabs Titles -->
 		<div class="fadeIn first">
