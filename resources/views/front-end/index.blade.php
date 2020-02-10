@@ -34,6 +34,36 @@
             opacity: 0;
         }
 
+        @media screen and (min-width: 576px) {
+            .box-wrap {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .box {
+                background: white;
+                border: 1px solid #d6d6d6;
+                box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.25);
+                /* border-radius: 3px; */
+                transition: .2s all;
+            }
+
+            .box-wrap:hover .box {
+                filter: blur(3px);
+                opacity: .5;
+                transform: scale(.98);
+                box-shadow: none;
+            }
+
+            .box-wrap:hover .box:hover {
+                transform: scale(1);
+                filter: blur(0px);
+                opacity: 1;
+                box-shadow: 0 8px 20px 0px rgba(0, 0, 0, 0.125);
+            }
+        }
+
         @media screen and (min-width: 992px) {
             body {
                 padding-top: 8px;
@@ -147,12 +177,12 @@
             {{-- #428bca --}}
             <div id="kotakpengumuman">
                 <h2> INFORMASI </h2>
-                <div class="row justify-content-center" style="background-color: #4281A7;">
+                <div class="row justify-content-center box-wrap" style="background-color: #4281A7;">
                     <?php
                         $last_id = 0;
                     ?>
                     @foreach(\App\pengumuman::where('prioritas','y')->get() as $p)
-                    <div class="col-xl-3 col-md-3 col-sm-12 col-xs-12 mt-4 hideme">
+                    <div class="col-xl-3 col-md-3 col-sm-12 col-xs-12 mt-4 hideme box">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
                                 <a href="/pengumuman/{{$p->id}}/{{$p->judul}}">
@@ -393,13 +423,12 @@
 
 
                 </div>
-                <div class="col-lg-4 col-xs-12 location">
+                <div class="col-lg-4 col-xs-12">
                     <br>
                     <h4 class="mt-lg-0 mt-sm-4">Lokasi</h4>
-                    <p>Jl. Sempit, Biru, Gunungrejo, Kec. Singosari, Malang, Jawa Timur 65153</p>
+                    <p><i class="fas fa-map-marker-alt mr-3"></i> Jl. Sempit, Biru, Gunungrejo, Kec. Singosari, Malang, Jawa Timur 65153</p>
                     <h4 class="mt-lg-0 mt-sm-4">Telepon</h4>
                     <p class="mb-0"><i class="fa fa-phone mr-3"></i>081359069006</p>
-
                 </div>
                 </ul>
             </div>
