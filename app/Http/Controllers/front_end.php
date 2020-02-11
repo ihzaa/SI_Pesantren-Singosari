@@ -50,14 +50,14 @@ class front_end extends Controller
                     <div class="col-xl-3 col-md-3 col-sm-12 col-xs-12  mt-4 ">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <a href="/pengumuman/' . $row->id . '/.' . $row->judul . '">
+                                <a href="/informasi/' . $row->id . '/.' . $row->judul . '">
                                     <h6 class="m-0 font-weight-bold text-primary">' . $row->judul . '</h6>
                                 </a>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col ">
-                                        <a href="/pengumuman/' . $row->id . '/.' . $row->judul . '">
+                                        <a href="/informasi/' . $row->id . '/.' . $row->judul . '">
                                             <img src="' . $row->foto . '" alt="image" class="img-fluid">
                                         </a>
                                     </div>

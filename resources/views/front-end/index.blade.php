@@ -190,14 +190,14 @@
 
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <a href="/pengumuman/{{$p->id}}/{{$p->judul}}">
+                                <a href="/informasi/{{$p->id}}/{{$p->judul}}">
                                     <h6 class="m-0 font-weight-bold text-primary">{{$p->judul}}</h6>
                                 </a>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col ">
-                                        <a href="/pengumuman/{{$p->id}}/{{$p->judul}}">
+                                        <a href="/informasi/{{$p->id}}/{{$p->judul}}">
                                             <img src="{{$p->foto}}" alt="image" class="img-fluid">
                                         </a>
                                     </div>

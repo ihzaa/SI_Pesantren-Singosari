@@ -24,7 +24,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #4281A7">
         <div class="container">
             <a class="navbar-brand" href="/">
-                <i class="fas fa-mosque"></i>
+                <img class="img-fluid" src="/img/logo.png" alt="" style="height: 45px;">
             </a>
         </div>
     </nav>
@@ -43,7 +43,7 @@
                 <hr>
 
                 <!-- Date/Time -->
-                <p>{{$pengumuman->dibuat}}</p>
+                <p>{{Carbon\Carbon::parse($pengumuman->dibuat)->isoFormat('H:mm, Do MMMM YYYY')}}</p>
 
                 <hr>
 
