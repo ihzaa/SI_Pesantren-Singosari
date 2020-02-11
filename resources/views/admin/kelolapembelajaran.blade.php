@@ -72,7 +72,7 @@
                             }
                             ?>
                         </td>
-                        <td>{{\App\pengajar_mata_pelajaran::where('id_tahun_ajaran',$s->id)->groupBy('id_pengajar')->count()}}</td>
+                        <td>{{\App\pengajar_mata_pelajaran::where('id_tahun_ajaran',$s->id)->groupBy('id_pengajar')->pluck('id_pengajar')->count()}}</td>
                         <?php
                             $ttl = 0;
                             foreach($s->kelas_tahun_ajaran as $te){

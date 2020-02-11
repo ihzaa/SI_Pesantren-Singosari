@@ -1,7 +1,13 @@
 @extends('admin.template.all')
 
 @section('title','Admin')
-@section('Judul','Kelola Kelas')
+@section('Judul','Kelola Kelas '.ucfirst(\App\kelas::where('id',$id_kls)->pluck('nama')[0]))
+@section('css')
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<!-- Custom styles for this page -->
+<link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+@endsection
+
 @section('content')
 <?php
     $kls = \App\tahun_ajaran::where('id',$id_ta)->first();
@@ -19,7 +25,7 @@
 </ul>
 <div class="card shadow mb-4">
     <div class="card-header py-3 align-items-center justify-content-between d-sm-flex">
-        <h6 class="mb-0 font-weight-bold text-primary">Kelas {{\App\kelas::where('id',$id_kls)->pluck('nama')[0]}}</h6>
+        <h6 class="mb-0 font-weight-bold text-primary"></h6>
         <div>
             <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#tambahModalMatPel">
                 <span class="icon text-white-50">
@@ -165,6 +171,12 @@
 @endsection
 
 @section('js')
+<!-- Page level plugins -->
+<script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
+<!-- Page level custom scripts -->
+<script src="{{asset('js/demo/datatables-demo.js')}}"></script>
 <script>
     $('#hapusModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that trigg  ered the modal

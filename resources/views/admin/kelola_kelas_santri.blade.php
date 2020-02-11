@@ -1,7 +1,7 @@
 @extends('admin.template.all')
 
 @section('title','Admin')
-@section('Judul','Kelola Kelas')
+@section('Judul','Kelola Kelas '.ucfirst(\App\kelas::where('id',$id_kls)->pluck('nama')[0]))
 
 @section('css')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -27,11 +27,9 @@
     </li>
 </ul>
 <div class="card shadow mb-4">
-    <div class="card-header py-3 align-items-center justify-content-between d-sm-flex">
-        <h6 class="mb-0 font-weight-bold text-primary">Kelas {{\App\kelas::where('id',$id_kls)->pluck('nama')[0]}}</h6>
+    <div class="card-header py-3 align-items-center justify-content-center d-sm-flex">
+        <h6 class="mb-0 font-weight-bold text-primary">1 Santri Hanya Dapat Masuk Di 1 Kelas Di Tahun Ajaran Yang Sama</h6>
         <input type="hidden" name="id_kls" value="{{$id_kls}}">
-        <div>
-        </div>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -137,7 +135,7 @@
             type: 'POST',
             url: '{{route('tambah_santri_ke_kelas')}}',
             data: {
-                'id_santri' : $('input[name=id_santri'+$(this).data('target')+']').val(),
+                'id_santri' : $(this).prev().val(),
                 'id_kls' : $('input[name=id_kls]').val()
             },
             success: function(data){
@@ -147,7 +145,6 @@
                 alert('fail');
             }
         });
-
     });
 
 
@@ -167,7 +164,7 @@
             type: 'post',
             url: '{{route('keluar_santri_santri_kelas')}}',
             data: {
-                'id_santri' : $('input[name=id_santri'+$(this).data('target')+']').val(),
+                'id_santri' : $(this).prev().prev().val(),
                 'id_kls' : $('input[name=id_kls]').val()
             },
             success: function(data){
