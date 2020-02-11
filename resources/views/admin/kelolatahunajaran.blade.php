@@ -59,8 +59,8 @@
                                                 <td>
                                                     <div class="row justify-content-center">
                                                         <a href="#" class="btn btn-danger btn-circle btn-sm"
-                                                            title="Hapus" data-toggle="modal" data-target="#hapusModalMatpel"
-                                                            data-id="{{$t->id}}"
+                                                            title="Hapus" data-toggle="modal"
+                                                            data-target="#hapusModalMatpel" data-id="{{$t->id}}"
                                                             data-nama="{{$t->mata_pelajaran->nama}}">
                                                             <i class=" fas fa-trash text-light"></i>
                                                         </a>
@@ -82,11 +82,56 @@
                         <div class="card shadow">
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">Kelas</h6>
+                                <a title="Tambah " href="#" class="btn btn-sm btn-outline-dark" data-toggle="modal"
+                                    data-target="#tambahModalKelas" data-idta="{{$ta->id}}">
+                                    <i class="fa fa-plus"></i>
+                                </a>
                             </div>
                             <div class="card-body">
-                                The styling for this basic card example is created by using default Bootstrap utility
-                                classes. By using utility classes, the style of the card component can be easily
-                                modified with no need for any custom CSS!
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            <?php
+                                                $i=1;
+                                                ?>
+                                            @foreach($ta->kelas_tahun_ajaran as $t)
+                                            <tr>
+                                                <td>{{$i++}}</td>
+                                                <td>{{$t->kelas->nama}}</td>
+                                                <td>
+                                                    <div class="row justify-content-center">
+                                                        <a href="/4dm1n/kelola-pembelajaran/{{$ta->id}}/kelola-kelas/{{$t->id_kelas}}/mata-pelajaran"
+                                                            class="btn btn-success btn-circle btn-sm" title="Kelola"
+                                                            data-id="{{$t->id}}" data-nama="{{$t->kelas->nama}}">
+                                                            <i class="fas fa-cog text-light"></i>
+                                                        </a>
+                                                        <a href="#" class="btn btn-danger btn-circle btn-sm"
+                                                            title="Hapus" data-toggle="modal"
+                                                            data-target="#hapusModalMatpel" data-id="{{$t->id}}"
+                                                            data-nama="{{$t->kelas->nama}}">
+                                                            <i class=" fas fa-trash text-light"></i>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

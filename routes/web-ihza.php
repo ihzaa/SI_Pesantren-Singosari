@@ -2,7 +2,7 @@
 Route::post('/logincek', 'adminController@cek');
 
 Route::get('4dm1n/login', 'adminController@index')->name('loginadmin');
-Route::post('/get/pengumuman/baru','front_end@load_data')->name('loadpengumuman');
+Route::post('/get/pengumuman/baru', 'front_end@load_data')->name('loadpengumuman');
 
 Route::prefix('4dm1n')->middleware('CekStatusAdmin')->group(function () {
 
@@ -71,4 +71,11 @@ Route::prefix('4dm1n')->middleware('CekStatusAdmin')->group(function () {
     Route::post('/kelola-pengumuman/hapus', 'adminController@adminhapuspengumuman')->name('adminhapuspengumuman');
     Route::get('/kelola-pengumuman/edit/{id}/{judul}', 'adminController@admineditpengumuman')->name('admineditpengumuman');
     Route::POST('/kelola-pengumuman/edit/ya', 'adminController@admineditpengumumanya')->name('admineditpengumumanya');
+
+
+    Route::get('/kelola-pembelajaran/{id_ta}/kelola-kelas/{id_kls}/mata-pelajaran', 'adminController@kelas_matpel')->name('kelola_kelas_ta');
+    Route::post('/kelola-pembelajaran/tambah-matpel-pengajar', 'adminController@kelas_matpel_tambah')->name('kelas_matpel_tambah');
+    Route::post('/kelola-pembelajaran/hapus-matpel-pengajar', 'adminController@kelas_matpel_hapus')->name('kelas_matpel_hapus');
+
+    Route::get('/kelola-pembelajaran/{id_ta}/kelola-kelas/{id_kls}/santri', 'adminController@kelas_santri')->name('kelas_santri');
 });

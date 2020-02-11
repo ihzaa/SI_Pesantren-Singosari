@@ -853,4 +853,46 @@ class adminController extends Controller
             return redirect('/4dm1n/kelola-pengumuman');
         }
     }
+
+    public function kelas_matpel($id_ta, $id_kls)
+    {
+        return view('admin.kelolakelasmatpel', compact('id_ta', 'id_kls'));
+    }
+
+    public function kelas_matpel_tambah(Request $request)
+    {
+        $id = DB::table('pengajar_mata_pelajaran')->insertGetId([
+            'id_pengajar' => $request->id_pengajar,
+            'id_mata_pelajaran' => $request->id_matpel,
+            'id_tahun_ajaran' => $request->id_ta
+        ]);
+
+        \App\pembelajaran::insert([
+            'id_kelas' => $request->id_kls,
+            'id_pengajar_mata_pelajaran' => $id
+        ]);
+
+        Session::flash('color', 'alert-success');
+        Session::flash('pesan', 'Berhasil Tambah Mata Pelajaran Ke Kelas');
+        return back();
+    }
+
+    public function kelas_matpel_hapus(Request $request)
+    {
+        \App\pengajar_mata_pelajaran::where('id', $request->id)->delete();
+
+        Session::flash('color', 'alert-danger');
+        Session::flash('pesan', 'Berhasil Hapus Mata Pelajaran Dari Kelas');
+        return back();
+    }
+
+    public function kelas_santri($id_ta, $id_kls)
+    {
+        $ta = \App\tahun_ajaran::where('id', $id_ta)->first()->kelas_tahun_ajaran;
+        $arr = array();
+        foreach ($ta as $a) {
+            $arr = array_merge($arr, (array) $a->id_kelas);
+        }
+        return view('admin.kelola_kelas_santri', compact('arr', 'id_ta', 'id_kls'));
+    }
 }

@@ -30,9 +30,10 @@
                         <th>No</th>
                         <th>Nama</th>
                         <th>Semester</th>
-                        <th>Jumlah Pengajar</th>
-                        <th>Jumlah Santri</th>
-                        <th>Jumlah Mata Pelajaran</th>
+                        <th>Jml Pengajar</th>
+                        <th>Jml Santri</th>
+                        <th>Jml Mata Pelajaran</th>
+                        <th>Jml Kelas</th>
                         <th>Dibuat Pada</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -46,6 +47,7 @@
                         <th>Jumlah Pengajar</th>
                         <th>Jumlah Santri</th>
                         <th>Jumlah Mata Pelajaran</th>
+                        <th>Jml Kelas</th>
                         <th>Dibuat Pada</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -54,6 +56,7 @@
                 <tbody>
                     <?php
                             $i = 1;
+                            $ttl = 0;
                         ?>
                     @foreach($ta as $s)
 
@@ -69,9 +72,16 @@
                             }
                             ?>
                         </td>
-                        <td>{{count($s->pengajar_tahun_ajaran)}}</td>
-                        <td>{{count($s->kelas_tahun_ajaran)}}</td>
-                        <td>{{count($s->mata_pelajaran_tahun_ajaran)}}</td>
+                        <td>{{\App\pengajar_mata_pelajaran::where('id_tahun_ajaran',$s->id)->groupBy('id_pengajar')->count()}}</td>
+                        <?php
+                            $ttl = 0;
+                            foreach($s->kelas_tahun_ajaran as $te){
+                                $ttl += $te->kelas->data_per_kelas->count();
+                            }
+                        ?>
+                        <td>{{$ttl}}</td>
+                        <td>{{\App\pengajar_mata_pelajaran::where('id_tahun_ajaran',$s->id)->groupBy('id_mata_pelajaran')->count()}}</td>
+                        <td>{{\App\kelas_tahun_ajaran::where('id_tahun_ajaran',$s->id)->count()}}</td>
                         <td>{{Carbon\Carbon::parse($s->dibuat)->isoFormat('Do MMMM YYYY, H:mm')}}</td>
                         <td>
                             <div class="row justify-content-center">
