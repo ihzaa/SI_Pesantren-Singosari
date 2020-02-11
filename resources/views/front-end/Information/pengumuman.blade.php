@@ -10,6 +10,7 @@
 
     <title>Pondok Pesantren Negeri Akhirat</title>
 
+    <link rel='icon' href='/img/logo.png' type='image/x-icon' style="height: 25px;">
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -38,17 +39,24 @@
             <div class="col-lg-8">
 
                 <!-- Title -->
-                <h1 class="mt-4">{{$pengumuman->judul}}</h1>
+                <h1 class="mt-4 text-center">{{$pengumuman->judul}}</h1>
 
                 <hr>
 
                 <!-- Date/Time -->
-                <p>{{Carbon\Carbon::parse($pengumuman->dibuat)->isoFormat('H:mm, Do MMMM YYYY')}}</p>
+                <div class="d-flex flex-row-reverse" style="margin-bottom: -12px;">
+                    <p style="color: #4281A7;">
+                        {{Carbon\Carbon::parse($pengumuman->dibuat)->isoFormat('H:mm, Do MMMM YYYY')}}</p>
+                </div>
 
                 <hr>
 
                 <!-- Preview Image -->
-                <img class="img-fluid rounded" src="/{{$pengumuman->foto}}" alt="">
+                <div class="d-flex justify-content-center mb-2">
+                    <img class="img-fluid rounded" src="/{{$pengumuman->foto}}" alt="">
+                </div>
+
+
 
                 <hr>
 
@@ -65,7 +73,7 @@
             <div class="col-md-4">
 
                 <!-- Side Widget -->
-                <div class="card my-4">
+                <div class="card my-4 shadow">
                     <h5 class="card-header">Informasi Lainnya</h5>
                     <div class="card-body">
 
@@ -78,7 +86,8 @@
                                         <div class="col-4">
                                             <img class="img-fluid" src="/{{$item->foto}}" alt="">
                                         </div>
-                                        <div class="col-8 text-center  d-flex align-items-center">
+                                        <div class="col-8 text-center  d-flex align-items-center"
+                                            style="color: #4281A7;">
                                             {{str_limit($item->judul,30)}}
                                         </div>
                                     </div>
