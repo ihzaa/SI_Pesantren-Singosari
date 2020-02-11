@@ -10,6 +10,12 @@
 @endsection
 
 @section('content')
+<?php
+    $kls = \App\tahun_ajaran::where('id',$id_ta)->first();
+?>
+<a href='/4dm1n/kelola-pembelajaran/{{$kls->id}}-{{$kls->nama}}' class="btn btn-sm btn-outline-info mb-2">
+    <span class="text">Kembali</span>
+</a>
 <ul class="nav nav-tabs">
     <li class="nav-item">
         <a class="nav-link "

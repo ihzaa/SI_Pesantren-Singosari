@@ -1,7 +1,7 @@
 @extends('admin.template.all')
 
 @section('title','Admin')
-@section('Judul','Kelola Pengumuman')
+@section('Judul','Kelola Informasi')
 
 @section('css')
 <meta name="csrf-token" content="{{ csrf_token() }}">

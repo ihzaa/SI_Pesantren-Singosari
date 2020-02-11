@@ -11,7 +11,7 @@
     <meta name="author" content="">
 
     <title>@yield('title')</title>
-
+    <link rel='icon' href='/img/logo.png' type='image/x-icon' style="height: 25px;">
     <!-- Custom fonts for this template-->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link

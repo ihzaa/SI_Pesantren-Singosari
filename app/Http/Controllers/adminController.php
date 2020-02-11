@@ -931,7 +931,32 @@ class adminController extends Controller
     public function keluar_santri_santri_kelas(Request $request)
     {
         \App\data_per_kelas::where('id_santri', $request->id_santri)->where('id_kelas', $request->id_kls)->delete();
-        
+
         return 1;
+    }
+
+    public function tambah_kelas_ta(Request $request)
+    {
+        $id = \App\kelas::insertGetId([
+            'nama' => $request->nama
+        ]);
+
+        \App\kelas_tahun_ajaran::insert([
+            'id_kelas' => $id,
+            'id_tahun_ajaran' => $request->ta
+        ]);
+
+        Session::flash('color', 'alert-success');
+        Session::flash('pesan', 'Berhasil Menambahkan Kelas');
+        return back();
+    }
+
+    public function hapus_kelas_ta(Request $request)
+    {
+        \App\kelas::where('id', $request->id)->delete();
+
+        Session::flash('color', 'alert-danger');
+        Session::flash('pesan', 'Berhasil Hapus Kelas');
+        return back();
     }
 }

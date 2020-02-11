@@ -1,6 +1,7 @@
 @extends('admin.template.all')
 @section('title','Admin')
-@section('Judul','Kelola Pembelajaran')
+
+@section('Judul','Kelola Tahun Ajaran '. ucfirst($ta->nama))
 
 @section('css')
 <link rel="stylesheet" href="/css/timelinecustom.css">
@@ -9,165 +10,84 @@
 @endsection
 
 @section('content')
-<div class="container">
-    <div class="row text-center">
-        <h1 class="heading-title">Tahun Ajaran {{$ta->nama}} Semester {{ucfirst($ta->semester)}} </h1>
-    </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="main-timeline">
-                <div class="timeline">
-                    <div class="timeline-icon"></div>
-                    <div class="timeline-content">
-                        <div class="card shadow">
-                            <div class="card-header py-3">
-                                <div class="row align-items-center  justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Mata Pelajaran</h6>
-                                    <a title="Tambah " href="#" class="btn btn-sm btn-outline-dark" data-toggle="modal"
-                                        data-target="#tambahModalMatPel" data-idta="{{$ta->id}}">
-                                        <i class="fa fa-plus"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <p>Tabel mata kuliah yang ikut serta dalam semester ini</p>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                            <?php
+
+<div class="card shadow">
+    <div class="card-header py-3 d-flex align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Kelas</h6>
+        <a title="Tambah " href="#" class="btn btn-sm btn-outline-primary btn-icon-split" data-toggle="modal"
+            data-target="#tambahModalKelas" data-idta="{{$ta->id}}">
+            <span class="icon"> <i class="fa fa-plus"></i></span>
+            <span class="text">Tambah Kelas</span>
+        </a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Jml Santri</th>
+                        <th>Jml Pengajar</th>
+                        <th>Jml Mata Pelajaran</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Jml Santri</th>
+                        <th>Jml Pengajar</th>
+                        <th>Jml Mata Pelajaran</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <?php
                                                 $i=1;
                                                 ?>
-                                            @foreach($ta->mata_pelajaran_tahun_ajaran as $t)
-                                            <tr>
-                                                <td>{{$i++}}</td>
-                                                <td>{{$t->mata_pelajaran->nama}}</td>
-                                                <td>
-                                                    <div class="row justify-content-center">
-                                                        <a href="#" class="btn btn-danger btn-circle btn-sm"
-                                                            title="Hapus" data-toggle="modal"
-                                                            data-target="#hapusModalMatpel" data-id="{{$t->id}}"
-                                                            data-nama="{{$t->mata_pelajaran->nama}}">
-                                                            <i class=" fas fa-trash text-light"></i>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline">
-                    <div class="timeline-icon"></div>
-                    <div class="timeline-content right">
-                        <div class="card shadow">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Kelas</h6>
-                                <a title="Tambah " href="#" class="btn btn-sm btn-outline-dark" data-toggle="modal"
-                                    data-target="#tambahModalKelas" data-idta="{{$ta->id}}">
-                                    <i class="fa fa-plus"></i>
+                    @foreach($ta->kelas_tahun_ajaran as $t)
+                    <tr>
+                        <td>{{$i++}}</td>
+                        <td>{{$t->kelas->nama}}</td>
+                        <td>{{\App\data_per_kelas::where('id_kelas',$t->kelas->id)->count()}}</td>
+                        <?php
+                            $arr = array();
+                            $temp = \App\pembelajaran::where('id_kelas',$t->kelas->id)->pluck('id_pengajar_mata_pelajaran');
+                            foreach($temp as $a)
+                            {
+                                $arr = array_merge($arr,array($a));
+                            }
+                            $cnt = \App\pengajar_mata_pelajaran::whereIn('id',$arr)->groupBy('id_pengajar')->pluck('id_pengajar')->count();
+                        ?>
+                        <td>{{$cnt}}</td>
+                        <td>{{\App\pembelajaran::where('id_kelas',$t->kelas->id)->count()}}</td>
+                        <td>
+                            <div class="row justify-content-center">
+                                <a href="/4dm1n/kelola-pembelajaran/{{$ta->id}}/kelola-kelas/{{$t->id_kelas}}/mata-pelajaran"
+                                    class="btn btn-success btn-circle btn-sm" title="Kelola" data-id="{{$t->id}}"
+                                    data-nama="{{$t->kelas->nama}}">
+                                    <i class="fas fa-cog text-light"></i>
+                                </a>
+                                <a href="#" class="btn btn-danger btn-circle btn-sm" title="Hapus" data-toggle="modal"
+                                    data-target="#hapusModalMatpel" data-id="{{$t->id_kelas}}"
+                                    data-nama="{{$t->kelas->nama}}">
+                                    <i class=" fas fa-trash text-light"></i>
                                 </a>
                             </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                            <?php
-                                                $i=1;
-                                                ?>
-                                            @foreach($ta->kelas_tahun_ajaran as $t)
-                                            <tr>
-                                                <td>{{$i++}}</td>
-                                                <td>{{$t->kelas->nama}}</td>
-                                                <td>
-                                                    <div class="row justify-content-center">
-                                                        <a href="/4dm1n/kelola-pembelajaran/{{$ta->id}}/kelola-kelas/{{$t->id_kelas}}/mata-pelajaran"
-                                                            class="btn btn-success btn-circle btn-sm" title="Kelola"
-                                                            data-id="{{$t->id}}" data-nama="{{$t->kelas->nama}}">
-                                                            <i class="fas fa-cog text-light"></i>
-                                                        </a>
-                                                        <a href="#" class="btn btn-danger btn-circle btn-sm"
-                                                            title="Hapus" data-toggle="modal"
-                                                            data-target="#hapusModalMatpel" data-id="{{$t->id}}"
-                                                            data-nama="{{$t->kelas->nama}}">
-                                                            <i class=" fas fa-trash text-light"></i>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline">
-                    <div class="timeline-icon"></div>
-                    <div class="timeline-content">
-                        <span class="date">March 14, 2016</span>
-                        <h4 class="title">Brand Building</h4>
-                        <p class="description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae eleifend ex. Praesent
-                            magna justo, bibendum id ante ut, vulputate tincidunt ipsum. Curabitur at rhoncus sem, eu
-                            feugiat sapien. Duis in libero cursus, dapibus sem ac, ornare mauris. Cras nunc lectus,
-                            porta quis metus vestibulum, pellentesque gravida erat.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="timeline">
-                    <div class="timeline-icon"></div>
-                    <div class="timeline-content right">
-                        <span class="date">March 16, 2016</span>
-                        <h4 class="title">Responsive Design</h4>
-                        <p class="description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae eleifend ex. Praesent
-                            magna justo, bibendum id ante ut, vulputate tincidunt ipsum. Curabitur at rhoncus sem, eu
-                            feugiat sapien. Duis in libero cursus, dapibus sem ac, ornare mauris. Cras nunc lectus,
-                            porta quis metus vestibulum, pellentesque gravida erat.
-                        </p>
-                    </div>
-                </div>
-            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
+
+
+
 
 <!-- MODAL HAPUS MATA PELAJARAN -->
 <div class="modal fade" id="hapusModalMatpel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -175,20 +95,19 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Hapus Mata Pelajaran Berikut pada Semester Ini?</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Hapus Kelas Berikut pada Semester Ini?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form class="user" action="{{route('adminhapusmatpeldita')}}" method="POST">
+                <form class="user" action="{{route('hapus_kelas_ta')}}" method="POST">
                     @csrf
                     <input type="hidden" class="form-control" id="id" name="id">
                     <div class="form-group row">
                         <div class="col">
                             <label>Nama</label>
-                            <input type="text" class="form-control" placeholder="Nama" id="nama" name="nama"
-                                disabled="">
+                            <input type="text" class="form-control" placeholder="Nama" id="nama" disabled="">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -202,28 +121,25 @@
 </div>
 
 <!-- MODAL TAMBAH MATA PELAJARAN -->
-<div class="modal fade" id="tambahModalMatPel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="tambahModalKelas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Mata Pelajaran</h5>
+            <div class="modal-header ">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Kelas</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form class="user" action="{{route('admin_tambah_mp_ta')}}" method="POST">
+                <form class="user" action="{{route('tambah_kelas_ta')}}" method="POST">
                     @csrf
-                    <input type="hidden" id="id_ta" name="id_ta">
+                    <input type="hidden" name="ta" value="{{$ta->id}}">
                     <div class="form-group row">
                         <div class="col">
-                            <label>Mata Pelajaran</label>
-                            <select name="mata_pelajaran" class="form-control">
-                                @foreach(\App\mata_pelajaran::get() as $m)
-                                <option value="{{$m->id}}">{{$m->nama}}</option>
-                                @endforeach
-                            </select>
+                            <input type="hidden" name="id_ta">
+                            <label>Nama Kelas</label>
+                            <input type="text" name="nama" class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -239,6 +155,13 @@
 @endsection
 
 @section('js')
+<!-- Page level plugins -->
+<script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
+<!-- Page level custom scripts -->
+<script src="{{asset('js/demo/datatables-demo.js')}}"></script>
+
 <script>
     $('#hapusModalMatpel').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that trigg  ered the modal

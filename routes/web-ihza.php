@@ -80,4 +80,7 @@ Route::prefix('4dm1n')->middleware('CekStatusAdmin')->group(function () {
     Route::get('/kelola-pembelajaran/{id_ta}/kelola-kelas/{id_kls}/santri', 'adminController@kelas_santri')->name('kelas_santri');
     Route::post('/kelola-pembelajaran/tambah-santri-kelas', 'adminController@tambah_santri_ke_kelas')->name('tambah_santri_ke_kelas');
     Route::post('/kelola-pembelajaran/hapus-santri-kelas', 'adminController@keluar_santri_santri_kelas')->name('keluar_santri_santri_kelas');
+
+    Route::post('/kelola-pembelajaran/kelas/tambah','adminController@tambah_kelas_ta')->name('tambah_kelas_ta');
+    Route::post('/kelola-pembelajaran/kelas/hapus','adminController@hapus_kelas_ta')->name('hapus_kelas_ta');
 });
