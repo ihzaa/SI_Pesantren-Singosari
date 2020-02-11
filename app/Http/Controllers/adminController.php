@@ -891,8 +891,47 @@ class adminController extends Controller
         $ta = \App\tahun_ajaran::where('id', $id_ta)->first()->kelas_tahun_ajaran;
         $arr = array();
         foreach ($ta as $a) {
-            $arr = array_merge($arr, (array) $a->id_kelas);
+            if ($a->id_kelas != $id_kls) {
+                $arr = array_merge($arr, (array) $a->id_kelas);
+            }
         }
-        return view('admin.kelola_kelas_santri', compact('arr', 'id_ta', 'id_kls'));
+        $hsl = array();
+        $snt = \App\santri::get();
+        // return $arr;
+        for ($i = 0; $i < count($snt); $i++) {
+            $data = array();
+            foreach (\App\data_per_kelas::where('id_santri', $snt[$i]->id)->pluck('id_kelas') as $a) {
+                $data = array_merge($data, array($a));
+            }
+
+            // foreach ($arr as $v) {
+            //     if (in_array($v, (array) \App\data_per_kelas::where('id_santri', $snt[$i]->id)->pluck('id_kelas'))) {
+            //         unset($snt[$i]);
+            //     }
+            // }
+
+            $x = array_intersect($arr, $data);
+            if (empty($x)) {
+            } else {
+                unset($snt[$i]);
+            }
+        }
+        return view('admin.kelola_kelas_santri', compact('snt', 'id_ta', 'id_kls'));
+    }
+
+    public function tambah_santri_ke_kelas(Request $request)
+    {
+        \App\data_per_kelas::insert([
+            'id_santri' => $request->id_santri,
+            'id_kelas' => $request->id_kls
+        ]);
+        return 1;
+    }
+
+    public function keluar_santri_santri_kelas(Request $request)
+    {
+        \App\data_per_kelas::where('id_santri', $request->id_santri)->where('id_kelas', $request->id_kls)->delete();
+        
+        return 1;
     }
 }
