@@ -1,7 +1,7 @@
 @extends('admin.template.all')
 
 @section('title','Admin')
-@section('Judul','Kelola Pengumuman')
+@section('Judul','Kelola Informasi')
 
 @section('css')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -13,13 +13,13 @@
 @section('content')
 <div class="card shadow mb-4">
     <div class="card-header py-3 align-items-center justify-content-between d-sm-flex">
-        <h6 class="mb-0 font-weight-bold text-primary">Pengumuman</h6>
+        <h6 class="mb-0 font-weight-bold text-primary">Informasi</h6>
         <div>
             <a href="{{route('admintambahpengumuman')}}" class="btn btn-primary btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fa fa-plus"></i>
                 </span>
-                <span class="text">Tambah Pengumuman</span>
+                <span class="text">Tambah Informasi</span>
             </a>
         </div>
     </div>
@@ -108,9 +108,9 @@
         <hr>
         <h3>Catatan :</h3>
         <ul>
-            <li>Pengumuman yang dapat di prioritaskan maksimal 4</li>
-            <li>Jika di jadikan prioritas maka pengumuman tersebut di tampilan pada baris paling atas</li>
-            <li>Semua <strong>Dimensi</strong> gambar pengumuman usahakan sama agar tampilan rapi, misal tinggi 4 x
+            <li>Informasi yang dapat di prioritaskan maksimal 4</li>
+            <li>Jika di jadikan prioritas maka Informasi tersebut di tampilan pada baris paling atas</li>
+            <li>Semua <strong>Dimensi</strong> gambar Informasi usahakan sama agar tampilan rapi, misal tinggi 4 x
                 lebar 3</li>
         </ul>
     </div>
@@ -122,7 +122,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Hapus Pengumuman?</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Hapus Informasi?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -154,7 +154,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Maaf!!! Maksimal 4 Pengumuman yang dapat di Prioritaskan!
+                <h5 class="modal-title" id="exampleModalLabel">Maaf!!! Maksimal 4 Informasi yang dapat di Prioritaskan!
                 </h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>

@@ -1,7 +1,7 @@
 @extends('admin.template.all')
 
 @section('title','Admin')
-@section('Judul','Kelola Pengumuman')
+@section('Judul','Kelola Informasi')
 
 @section('css')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -14,7 +14,7 @@
 <div class="card shadow mb-4">
     <div class="card-header">
         @if(request()->is('4dm1n/kelola-pengumuman/tambah') ? 'True' : '')
-        <h5 class="" id="exampleModalLabel">Tambah Tahun Ajaran</h5>
+        <h5 class="" id="exampleModalLabel">Tambah Informasi</h5>
     </div>
     <div class="card-body">
         <form class="user" action="{{route('admintambahpengumumanya')}}" method="POST" enctype="multipart/form-data">

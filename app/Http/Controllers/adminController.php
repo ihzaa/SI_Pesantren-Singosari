@@ -47,6 +47,59 @@ class adminController extends Controller
         return view('admin.index');
     }
 
+    public function kelola_profil()
+    {
+        $pass_lama = \App\user::where('id', Session::get('adminlogin')[0]->id_user)->pluck('password');
+        return view('admin.kelola_profil', compact('pass_lama'));
+    }
+
+    public function ubah_username(Request $request)
+    {
+        if (\App\user::where('username', $request->username)->count() != 0) {
+            Session::flash('color', 'alert-danger');
+            Session::flash('pesan', 'Username Sudah Digunakan');
+            return back();
+        }
+
+        $user = \App\user::where('id', Session::get('adminlogin')[0]->id_user)->first();
+        if (Hash::check($request->password, $user->password)) {
+
+            \App\admin::where('id', Session::get('adminlogin')[0]->id)->update([
+                'nama' => $request->username
+            ]);
+
+            \App\user::where('id', Session::get('adminlogin')[0]->id_user)->update([
+                'username' => $request->username
+            ]);
+
+            Session::flush();
+            Session::flash('pesan', 'Username Berhasil Diubah Silahkan Login Kembali dengan Username Baru');
+            return redirect('/4dm1n/login');
+        } else {
+            Session::flash('color', 'alert-danger');
+            Session::flash('pesan', 'Konfirmasi Password Salah');
+            return back();
+        }
+    }
+
+    public function ubah_password(Request $request)
+    {
+        $user = \App\user::where('id', Session::get('adminlogin')[0]->id_user)->first();
+        if (Hash::check($request->pass_lama, $user->password)) {
+            \App\user::where('id', Session::get('adminlogin')[0]->id_user)->update([
+                'password' => bcrypt($request->pass1)
+            ]);
+
+            Session::flush();
+            Session::flash('pesan', 'Password Berhasil Diubah Silahkan Login Kembali dengan Password Baru');
+            return redirect('/4dm1n/login');
+        }else{
+            Session::flash('color', 'alert-danger');
+            Session::flash('pesan', 'Password Lama Salah !!');
+            return back();
+        }
+    }
+
     public function adminkelolasantri()
     {
         $santri = \App\santri::get();
@@ -931,7 +984,32 @@ class adminController extends Controller
     public function keluar_santri_santri_kelas(Request $request)
     {
         \App\data_per_kelas::where('id_santri', $request->id_santri)->where('id_kelas', $request->id_kls)->delete();
-        
+
         return 1;
+    }
+
+    public function tambah_kelas_ta(Request $request)
+    {
+        $id = \App\kelas::insertGetId([
+            'nama' => $request->nama
+        ]);
+
+        \App\kelas_tahun_ajaran::insert([
+            'id_kelas' => $id,
+            'id_tahun_ajaran' => $request->ta
+        ]);
+
+        Session::flash('color', 'alert-success');
+        Session::flash('pesan', 'Berhasil Menambahkan Kelas');
+        return back();
+    }
+
+    public function hapus_kelas_ta(Request $request)
+    {
+        \App\kelas::where('id', $request->id)->delete();
+
+        Session::flash('color', 'alert-danger');
+        Session::flash('pesan', 'Berhasil Hapus Kelas');
+        return back();
     }
 }

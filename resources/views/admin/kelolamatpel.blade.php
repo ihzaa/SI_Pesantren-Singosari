@@ -1,6 +1,6 @@
 @extends('admin.template.all')
 @section('title','Admin')
-@section('Judul','Kelola Pembelajaran')
+@section('Judul','Kelola Mata Pelajaran')
 
 @section('css')
 <!-- Custom styles for this page -->
@@ -10,7 +10,7 @@
 @section('content')
 <div class="card shadow mb-4">
     <div class="card-header py-3 align-items-center justify-content-between d-sm-flex">
-        <h6 class="mb-0 font-weight-bold text-primary">Pembelajaran</h6>
+        <h6 class="mb-0 font-weight-bold text-primary">Mata Pelajaran</h6>
         <div>
             <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#tambahModal">
                 <span class="icon text-white-50">
