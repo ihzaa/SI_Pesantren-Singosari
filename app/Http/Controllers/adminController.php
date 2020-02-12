@@ -47,6 +47,59 @@ class adminController extends Controller
         return view('admin.index');
     }
 
+    public function kelola_profil()
+    {
+        $pass_lama = \App\user::where('id', Session::get('adminlogin')[0]->id_user)->pluck('password');
+        return view('admin.kelola_profil', compact('pass_lama'));
+    }
+
+    public function ubah_username(Request $request)
+    {
+        if (\App\user::where('username', $request->username)->count() != 0) {
+            Session::flash('color', 'alert-danger');
+            Session::flash('pesan', 'Username Sudah Digunakan');
+            return back();
+        }
+
+        $user = \App\user::where('id', Session::get('adminlogin')[0]->id_user)->first();
+        if (Hash::check($request->password, $user->password)) {
+
+            \App\admin::where('id', Session::get('adminlogin')[0]->id)->update([
+                'nama' => $request->username
+            ]);
+
+            \App\user::where('id', Session::get('adminlogin')[0]->id_user)->update([
+                'username' => $request->username
+            ]);
+
+            Session::flush();
+            Session::flash('pesan', 'Username Berhasil Diubah Silahkan Login Kembali dengan Username Baru');
+            return redirect('/4dm1n/login');
+        } else {
+            Session::flash('color', 'alert-danger');
+            Session::flash('pesan', 'Konfirmasi Password Salah');
+            return back();
+        }
+    }
+
+    public function ubah_password(Request $request)
+    {
+        $user = \App\user::where('id', Session::get('adminlogin')[0]->id_user)->first();
+        if (Hash::check($request->pass_lama, $user->password)) {
+            \App\user::where('id', Session::get('adminlogin')[0]->id_user)->update([
+                'password' => bcrypt($request->pass1)
+            ]);
+
+            Session::flush();
+            Session::flash('pesan', 'Password Berhasil Diubah Silahkan Login Kembali dengan Password Baru');
+            return redirect('/4dm1n/login');
+        }else{
+            Session::flash('color', 'alert-danger');
+            Session::flash('pesan', 'Password Lama Salah !!');
+            return back();
+        }
+    }
+
     public function adminkelolasantri()
     {
         $santri = \App\santri::get();

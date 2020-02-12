@@ -12,60 +12,67 @@
 
 @section('content')
 <div id="menu1" class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Kolom kiri Donasi</h6>
-    </div>
-    <div class="card-body">
-        <form method="POST" id="form_kiri" enctype="multipart/form-data" class="user">
-            @csrf
-            <?php
+    <a href="#collapseCard" class="d-block card-header py-3 d-flex" data-toggle="collapse" role="button"
+        aria-expanded="true" aria-controls="collapseCardExample">
+        <h6 class="m-0 font-weight-bold text-primary mr-auto">Kolom kiri Donasi </h6>
+        <h6 class="m-0 font-weight-bold text-warning">Klik untuk tampilkan / sembunyikan</h6>
+    </a>
+    <div class="collapse" id="collapseCard">
+        <div class="card-body">
+            <form method="POST" id="form_kiri" enctype="multipart/form-data" class="user">
+                @csrf
+                <?php
                 $data = \App\donasi::first();
             ?>
-            <div class="form-group row">
-                <div class="col">
-                    <label>Judul</label>
-                    <input type="text" class="form-control" value="{{$data->judul}}" placeholder="Judul" id="judul"
-                        name="judul">
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col">
-                    <label>Deskripsi</label>
-                    <textarea class="form-control" placeholder="Deskripsi" name="desc" id="desc"
-                        rows="4">{{$data->deskripsi}}</textarea>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="file" name="file">
-                        <label class="custom-file-label" for="customFile">{{$data->foto}}</label>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-8">
-                            <img class="img-fluid" id="view" src="{{$data->foto}}" alt="image" width="500" height="500">
-                        </div>
-                        <div class="col-4">
-                            <p>Syarat foto: </p>
-                            <ul>
-                                <li>Ekstensi jpg, jpeg, png</li>
-                                <li>Ukuran max : 5MB</li>
-                                <li>Resolusi 500 x 500</li>
-                            </ul>
-                        </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <label>Judul</label>
+                        <input type="text" class="form-control" value="{{$data->judul}}" placeholder="Judul" id="judul"
+                            name="judul">
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" id="btn-simpan" class="btn btn-primary" href="#">Simpan</button>
-                <button class="btn btn-outline-primary btn-loading" id="btn-ldg-atas" style="display: none;"
-                    type="submit">
-                    <span class="spinner-border"></span>
-                </button>
-            </div>
-        </form>
+                <div class="form-group row">
+                    <div class="col">
+                        <label>Deskripsi</label>
+                        <textarea class="form-control" placeholder="Deskripsi" name="desc" id="desc"
+                            rows="4">{{$data->deskripsi}}</textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="file" name="file">
+                            <label class="custom-file-label" for="customFile">{{$data->foto}}</label>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-8">
+                                <img class="img-fluid" id="view" src="{{$data->foto}}" alt="image" width="500"
+                                    height="500">
+                            </div>
+                            <div class="col-4">
+                                <p>Syarat foto: </p>
+                                <ul>
+                                    <li>Ekstensi jpg, jpeg, png</li>
+                                    <li>Ukuran max : 5MB</li>
+                                    <li>Resolusi 500 x 500</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="btn-simpan" class="btn btn-primary" href="#">Simpan</button>
+                    <button class="btn btn-outline-primary btn-loading" id="btn-ldg-atas" style="display: none;"
+                        type="submit">
+                        <span class="spinner-border"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
+
+
 <div id="menu2" class="card shadow mb-4">
     <div class="card-header py-3 align-items-center justify-content-between d-sm-flex">
         <div class="col-4">
@@ -372,7 +379,6 @@
 <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
 
 <script>
-
     $(document).ready(function(){
         var $input = $('input[name=target]');
 

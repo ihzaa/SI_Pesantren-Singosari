@@ -33,10 +33,10 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('adminidx')}}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-dragon"></i>
+                <div class=" sidebar-brand-icon">
+                    <i class="fas fa-users-cog"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Halaman Admin</div>
+                <div class="sidebar-brand-text  ">Halaman Administrator</div>
             </a>
 
             <!-- Divider -->
@@ -89,14 +89,14 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item {{request()->is('4dm1n/kelola-pembelajaran') ? 'active open' : ''}}
-                {{request()->is('4dm1n/kelola-pembelajaran/*') ? 'active open' : ''}}">
+                {{request()->is('4dm1n/kelola-pembelajaran/*') ? 'active open' : ''}}" style="margin-top: -15px;">
                 <a class="nav-link" href="{{route('adminkelolapembelajaran')}}">
                     <i class="fas fa-fw fa-cogs"></i>
                     <span>Kelola Pembelajaran</span></a>
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">
@@ -155,7 +155,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{route('kelola_profil')}}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
@@ -205,7 +205,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Pondok Pesantren Dunia Akhirat</span>
+                        <span>Pondok Pesantren Negeri Akhirat</span>
                     </div>
                 </div>
             </footer>
