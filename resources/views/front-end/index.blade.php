@@ -418,10 +418,10 @@
                         
                    
                 </div>
-                <div class="col-lg-4 col-xs-12">
+                <div class="col-lg-4 col-xs-12" style="color: aliceblue">
                     <br>
                     <h4 class="mt-lg-0 mt-sm-4">Lokasi</h4>
-                    <p><i class="fas fa-map-marker-alt mr-3"></i> Jl. Sempit, Biru, Gunungrejo, Kec. Singosari, Malang, Jawa Timur 65153</p>
+                    <p><i class="fas fa-map-marker-alt mr-3"></i> Jl. Sempit Biru Desa Gunungrejo Kecamatan Singosari Kabupaten Malang Jawa Timur 65153</p>
                     <h4 class="mt-lg-0 mt-sm-4">Telepon</h4>
                     <p class="mb-0"><i class="fa fa-phone mr-3"></i>081359069006</p>
                 </div>
@@ -431,7 +431,7 @@
     </div>
 
     <!-- Copyright -->
-    <footer class="py-3" style="background-color: #4281A7">
+    <footer class="py-3" style="background-color: #1C648F">
         <div class="container">
             <p class="m-0 text-center text-white">Pondok Pesantren Negeri Akhirat</p>
         </div>
