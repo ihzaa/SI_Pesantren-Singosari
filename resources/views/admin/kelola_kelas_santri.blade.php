@@ -13,7 +13,7 @@
 <?php
     $kls = \App\tahun_ajaran::where('id',$id_ta)->first();
 ?>
-<a href='/4dm1n/kelola-pembelajaran/{{$kls->id}}-{{$kls->nama}}' class="btn btn-sm btn-outline-info mb-2">
+<a href='/4dm1n/kelola-pembelajaran/{{$kls->id}}' class="btn btn-sm btn-outline-info mb-2">
     <span class="text">Kembali</span>
 </a>
 <ul class="nav nav-tabs">

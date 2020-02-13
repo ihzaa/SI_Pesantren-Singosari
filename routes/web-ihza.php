@@ -28,7 +28,7 @@ Route::prefix('4dm1n')->middleware('CekStatusAdmin')->group(function () {
     Route::POST('/kelola-pembelajaran/tambah-tahun-ajaran', 'adminController@admin_tambah_tahun_ajaran')->name('admin_tambah_tahun_ajaran');
     Route::POST('/kelola-pembelajaran/edit-tahun-ajaran', 'adminController@admin_edit_tahun_ajaran')->name('admin_edit_tahun_ajaran');
     Route::POST('/kelola-pembelajaran/hapus-tahun-ajaran', 'adminController@admin_hapus_tahun_ajaran')->name('admin_hapus_tahun_ajaran');
-    Route::get('/kelola-pembelajaran/{id}-{semester}', 'adminController@timeline_tahuna_ajaran')->name('timeline_tahuna_ajaran');
+    Route::get('/kelola-pembelajaran/{id}', 'adminController@timeline_tahuna_ajaran')->name('timeline_tahuna_ajaran');
     Route::POST('/kelola-pembelajaran/kelola-tahun-ajaran/hapus-matpel', 'adminController@adminhapusmatpeldita')->name('adminhapusmatpeldita');
     Route::POST('/kelola-pembelajaran/kelola-tahun-ajaran/tambah-metpen', 'adminController@admin_tambah_mp_ta')->name('admin_tambah_mp_ta');
     Route::post('/kelola-pembelajaran/nonaktif', 'adminController@adminnonaktifpembelajaran')->name('adminnonaktifcarousel');

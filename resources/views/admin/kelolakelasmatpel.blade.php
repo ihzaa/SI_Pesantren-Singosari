@@ -12,7 +12,7 @@
 <?php
     $kls = \App\tahun_ajaran::where('id',$id_ta)->first();
 ?>
-<a href='/4dm1n/kelola-pembelajaran/{{$kls->id}}-{{$kls->nama}}' class="btn btn-sm btn-outline-info mb-2">
+<a href='/4dm1n/kelola-pembelajaran/{{$kls->id}}' class="btn btn-sm btn-outline-info mb-2">
     <span class="text">Kembali</span>
 </a>
 <ul class="nav nav-tabs">
@@ -104,7 +104,11 @@
                             <label>Mata Pelajaran</label>
                             <select name="id_matpel" class="form-control" required="">
                                 <?php
-                                    $temp = \App\pengajar_mata_pelajaran::pluck('id_mata_pelajaran');
+                                    $pem = \App\pembelajaran::where('id_kelas',$id_kls)->pluck('id_pengajar_mata_pelajaran');
+                                    if(empty($pem)){
+                                        $pem = array(0);
+                                    }
+                                    $temp = \App\pengajar_mata_pelajaran::whereIn('id',$pem)->pluck('id_mata_pelajaran');
                                     if(empty($temp)){
                                         $temp = array(0);
                                     }

@@ -10,8 +10,9 @@
 @endsection
 
 @section('content')
-
-
+<a href='{{route('adminkelolapembelajaran')}}' class="btn btn-sm btn-outline-info mb-2">
+    <span class="text">Kembali</span>
+</a>
 <div class="card shadow">
     <div class="card-header py-3 d-flex align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">Kelas</h6>

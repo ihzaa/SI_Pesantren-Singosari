@@ -72,7 +72,8 @@
                             }
                             ?>
                         </td>
-                        <td>{{\App\pengajar_mata_pelajaran::where('id_tahun_ajaran',$s->id)->groupBy('id_pengajar')->pluck('id_pengajar')->count()}}</td>
+                        <td>{{\App\pengajar_mata_pelajaran::where('id_tahun_ajaran',$s->id)->groupBy('id_pengajar')->pluck('id_pengajar')->count()}}
+                        </td>
                         <?php
                             $ttl = 0;
                             foreach($s->kelas_tahun_ajaran as $te){
@@ -80,7 +81,8 @@
                             }
                         ?>
                         <td>{{$ttl}}</td>
-                        <td>{{\App\pengajar_mata_pelajaran::where('id_tahun_ajaran',$s->id)->groupBy('id_mata_pelajaran')->count()}}</td>
+                        <td>{{\App\pengajar_mata_pelajaran::where('id_tahun_ajaran',$s->id)->groupBy('id_mata_pelajaran')->pluck('id_mata_pelajaran')->count()}}
+                        </td>
                         <td>{{\App\kelas_tahun_ajaran::where('id_tahun_ajaran',$s->id)->count()}}</td>
                         <td>{{Carbon\Carbon::parse($s->dibuat)->isoFormat('Do MMMM YYYY, H:mm')}}</td>
                         <td>
@@ -117,7 +119,7 @@
                                     data-semester="{{$s->semester}}">
                                     <i class="fas fa-user-edit text-light"></i>
                                 </a>
-                                <a href="/4dm1n/kelola-pembelajaran/{{$s->id}}-{{$s->semester}}"
+                                <a href="/4dm1n/kelola-pembelajaran/{{$s->id}}"
                                     class="btn btn-success btn-circle btn-sm" title="Kelola Tahun Ajaran">
                                     <i class="fas fa-cog text-light"></i>
                                 </a>
