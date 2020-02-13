@@ -121,6 +121,16 @@
                     <span>Kelola Informasi</span></a>
             </li>
 
+            <hr class="sidebar-divider mb-0">
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('halaman_depan')}}">
+                    <i class="fas fa-globe"></i>
+                    <span>Lihat Website</span></a>
+            </li>
+
+            <hr class="sidebar-divider ">
+
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>

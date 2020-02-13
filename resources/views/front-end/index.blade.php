@@ -175,7 +175,7 @@
         <div id="pengumuman" class="container-fluid text-center pt-4 pb-4" style="background-color: #4281A7;">
             {{-- #428bca --}}
             <div id="kotakpengumuman">
-                <h2> INFORMASI </h2>
+                <h2 style="color: aliceblue"> INFORMASI </h2>
                 <div class="row justify-content-center box-wrap" style="background-color: #4281A7;">
                     <?php
                         $last_id = 0;
@@ -223,23 +223,22 @@
                     <div class="col-xl-12">
                         <div class="card shadow mb-4 align-content-center">
                             <div class="card-header py-3 text-center">
-                                <h6 class="m-0 font-weight-bold text-primary">Informasi Donasi</h6>
+                                <h3 class="m-0 font-weight-bold text-primary">DONASI</h3>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body mx-2">
                                 <div class="tab-content">
                                     <?php
                                     $i = \App\donasi::first();
                                 ?>
-
                                     {{-- DONASI OPERASIONAL --}}
                                     <div class="tab-pane active" role="tabpanel" id="donasi1">
                                         <div class="row">
                                             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                                <div class="row ml-2 justify-content-center">
+                                                <div class="row justify-content-center">
                                                     {{$i->judul}}
 
                                                 </div>
-                                                <div class="row ml-2 mr-2">
+                                                <div class="row mr-2">
                                                     {{$i->deskripsi}}
                                                 </div>
                                                 <div
@@ -430,7 +429,8 @@
                 <div class="col-lg-4 col-xs-12" style="color: aliceblue">
                     <br>
                     <h4 class="mt-lg-0 mt-sm-4">Lokasi</h4>
-                    <p><i class="fas fa-map-marker-alt mr-3"></i> Jl. Sempit Biru Desa Gunungrejo Kecamatan Singosari Kabupaten Malang Jawa Timur 65153</p>
+                    <p><i class="fas fa-map-marker-alt mr-3"></i> Jl. Sempit Biru Desa Gunungrejo Kecamatan Singosari
+                        Kabupaten Malang Jawa Timur 65153</p>
                     <h4 class="mt-lg-0 mt-sm-4">Telepon</h4>
                     <p class="mb-0"><i class="fa fa-phone mr-3"></i>081359069006</p>
                 </div>

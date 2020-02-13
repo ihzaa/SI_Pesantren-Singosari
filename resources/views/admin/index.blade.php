@@ -66,7 +66,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Carousel</div>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-2">Carousel</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">{{\App\carousel::count()}}</div>
                         <hr>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -86,7 +86,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Informasi</div>
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-2">Informasi</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">{{\App\pengumuman::count()}}</div>
                         <hr>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
