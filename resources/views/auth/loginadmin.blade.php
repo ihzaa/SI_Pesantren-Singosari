@@ -1,67 +1,99 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Login Admin</title>
+
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel='icon' href='/img/logo.png' type='image/x-icon' style="height: 25px;">
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="/css/login.css">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
+
 <body>
-	{{-- <div class="container"> --}}
-		{{-- Outer Row --}}
-		{{-- <div class="row justify-content-center">
-			<div class="col-xl-10 col-lg-12 col-md-9">
-				<div class="card o-hidden border-0 shadow-lg my-5">
-					<div class="card-body p-0"> --}}
-						{{-- Nested Row Within Card Body --}}
-						{{-- <div class="row">
-							<div class="col-lg-6 d-none d-lg-block bg-login-image">
-								<div class="col-lg-6">
-									<div class="p-5">
-										<div class="text-center">
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <form action="/logincek" method="POST" class="login100-form validate-form">
+                    @csrf
+                    <span class="login100-form-title p-b-26" style="margin-top: -35px;">
+                        Login Admin
+                    </span>
+                    <span class="login100-form-title p-b-48">
+                        <i class="">
+                            <img src="/img/logo.png" height="120px">
+                        </i>
+                    </span>
 
-										</div>
-									</div>
+                    @if(Session::get('pesan'))
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{Session::get('pesan')}}
+                    </div>
+                    @endif
 
-								</div>
+                    <div class="wrap-input100 validate-input">
+                        <input class="input100" type="text" name="username">
+                        <span class="focus-input100" data-placeholder="UserName"></span>
+                    </div>
 
-							</div>
-						</div>
-					</div>
-				</div>
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                        <span class="btn-show-pass">
+                            <i class="zmdi zmdi-eye"></i>
+                        </span>
+                        <input class="input100" type="password" name="password">
+                        <span class="focus-input100" data-placeholder="Password"></span>
+                    </div>
 
-			</div>
-		</div>
-	</div> --}}
-
-	<div class="wrapper fadeInDown ">
-	  <div id="formContent">
-	    <!-- Tabs Titles -->
-		<div class="fadeIn first">
-	    	<h3 class="h2">Login Admin</h3>
+                    <div class="container-login100-form-btn">
+                        <div class="wrap-login100-form-btn">
+                            <div class="login100-form-bgbtn"></div>
+                            <button type="submit" class="login100-form-btn">
+                                Login
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        @if(Session::get('pesan'))
-          <div class="alert alert-danger alert-dismissible fade show">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{Session::get('pesan')}}
-          </div>
-          @endif
-	    <!-- Login Form -->
-	    <form action="/logincek" method="POST">
-	    	@csrf
-	      <input type="text" id="username" class="fadeIn second" name="username" placeholder="login" required="">
-	      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" required="">
-	      <input type="submit" class="fadeIn fourth" value="Masuk">
-	    </form>
-
-	    <!-- Remind Passowrd -->
-	    <div id="formFooter">
-
-	    </div>
-
-	  </div>
-	</div>
+    </div>
+    <div id="dropDownSelect1"></div>
+    <!--===============================================================================================-->
+    <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="/vendor/bootstrap/js/popper.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="/vendor/daterangepicker/moment.min.js"></script>
+    <script src="/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="/js/main.js"></script>
 </body>
+
 </html>
