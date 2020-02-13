@@ -175,7 +175,7 @@
         <div id="pengumuman" class="container-fluid text-center pt-4 pb-4" style="background-color: #4281A7;">
             {{-- #428bca --}}
             <div id="kotakpengumuman">
-                <h2> INFORMASI </h2>
+                <h2 style="color: aliceblue"> INFORMASI </h2>
                 <div class="row justify-content-center box-wrap" style="background-color: #4281A7;">
                     <?php
                         $last_id = 0;
@@ -223,23 +223,22 @@
                     <div class="col-xl-12">
                         <div class="card shadow mb-4 align-content-center">
                             <div class="card-header py-3 text-center">
-                                <h6 class="m-0 font-weight-bold text-primary">Informasi Donasi</h6>
+                                <h3 class="m-0 font-weight-bold text-primary">DONASI</h3>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body mx-2">
                                 <div class="tab-content">
                                     <?php
                                     $i = \App\donasi::first();
                                 ?>
-
                                     {{-- DONASI OPERASIONAL --}}
                                     <div class="tab-pane active" role="tabpanel" id="donasi1">
                                         <div class="row">
                                             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                                <div class="row ml-2 justify-content-center">
+                                                <div class="row justify-content-center">
                                                     {{$i->judul}}
 
                                                 </div>
-                                                <div class="row ml-2 mr-2">
+                                                <div class="row mr-2">
                                                     {{$i->deskripsi}}
                                                 </div>
                                                 <div
@@ -336,11 +335,11 @@
                                         <div class=" row">
                                             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                                 <div class="row ml-2 justify-content-center">
-                                                    INI JUDUL ANJING
+                                                    INI JUDUL
 
                                                 </div>
                                                 <div class="row ml-2 mr-2">
-                                                    IYA BANGSAT
+                                                    IYA DESKRIPSI
                                                 </div>
                                                 <div
                                                     class="row mt-4 justify-content-center text-center align-content-center">
