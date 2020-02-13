@@ -87,7 +87,7 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #4281A7">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background : linear-gradient(to right, #1c648f 30%, #4281a7 89%);">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img class="img-fluid" src="/img/logo.png" alt="" style="height: 45px;">
@@ -410,7 +410,7 @@
     {{-- Akhir Alamat --}}
 
     <!-- Footer -->
-    <div class="pt-5 pb-5 footer" style="background-color: #4281A7">
+    <div class="pt-5 pb-5 footer" style="background :linear-gradient(to right, #1c648f 30%, #4281a7 89%);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-xs-12 about-company">
