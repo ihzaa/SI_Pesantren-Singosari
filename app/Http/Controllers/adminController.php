@@ -1062,6 +1062,12 @@ class adminController extends Controller
         return redirect('/4dm1n/kelola-artikel');
     }
 
+    public function bukaeditArtikel($id)
+    {
+        $artikel = artikel::find($id);
+        return view('admin.tambah_edit_artikel', compact('artikel'));
+    }
+
     public function editArtikel(Request $request)
     {
         $detail = $request->content;
@@ -1076,20 +1082,22 @@ class adminController extends Controller
         foreach ($images as $k => $img) {
             $data = $img->getattribute('src');
 
-            list($type, $data) = explode(';', $data);
-            list(, $data)      = explode(',', $data);
+            if ($data[0] != '/') {
+                list($type, $data) = explode(';', $data);
+                list(, $data)      = explode(',', $data);
 
-            $data = base64_decode($data);
-            $image_name = time() . $k . '.png';
-            $path = 'artikel/' . $image_name;
-            gambarArtikel::insert([
-                'nama' => $path,
-                'id_artikel' => $summernote->id
-            ]);
-            file_put_contents($path, $data);
+                $data = base64_decode($data);
+                $image_name = time() . $k . '.png';
+                $path = 'artikel/' . $image_name;
+                gambarArtikel::insert([
+                    'nama' => $path,
+                    'id_artikel' => $summernote->id
+                ]);
+                file_put_contents($path, $data);
 
-            $img->removeattribute('src');
-            $img->setattribute('src', '/' . $path);
+                $img->removeattribute('src');
+                $img->setattribute('src', '/' . $path);
+            }
         }
 
         $detail = $dom->savehtml();

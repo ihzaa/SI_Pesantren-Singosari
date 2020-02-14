@@ -13,7 +13,7 @@
     <div class="card-header py-3 align-items-center justify-content-between d-sm-flex">
         <h6 class="mb-0 font-weight-bold text-primary">Artikel</h6>
         <div>
-            <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#tambahModal">
+            <a href="{{route('tambahArtikel')}}" class="btn btn-primary btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fa fa-plus"></i>
                 </span>
@@ -54,9 +54,8 @@
                         <td>{{$a->updated_at}}</td>
                         <td>
                             <div class="row justify-content-center">
-                                <a href="#" data-toggle="modal" data-target="#editModal"
-                                    class="btn btn-info btn-circle btn-sm" title="Detail dan Edit"
-                                    data-nama="{{$a->nama}}" data-id="{{$a->id}}" data-content="{{$a->content}}">
+                                <a href="/4dm1n/kelola-artikel/edit/{{$a->id}}" class="btn btn-info btn-circle btn-sm"
+                                    title="Detail dan Edit">
                                     <i class="fas fa-user-edit text-light"></i>
                                 </a>
                                 <a href="#" class="btn btn-danger btn-circle btn-sm" title="Hapus" data-toggle="modal"
@@ -73,80 +72,7 @@
     </div>
 </div>
 
-{{-- MODAL TAMBAH --}}
-<div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Carousel</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form class="user" action="{{route('storeArtikel')}}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group row">
-                        <div class="col">
-                            <label>Nama</label>
-                            <input type="text" class="form-control" placeholder="Nama" id="nama" name="nama"
-                                required="">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col">
-                            <label>Content</label>
-                            <textarea id="summernote" class="form-control" name="content"></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary" href="#">Tambah</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
-{{-- MODAL EDIT --}}
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Carousel</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form class="user" action="{{route('editArtikel')}}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" name="id" id="id">
-                    <div class="form-group row">
-                        <div class="col">
-                            <label>Nama</label>
-                            <input type="text" class="form-control" placeholder="Nama" id="nama" name="nama"
-                                required="">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col">
-                            <label>Content</label>
-                            <textarea id="summernoteEdit" class="form-control" name="content"></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary" href="#">Tambah</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
 {{-- MODAL HAPUS --}}
 <div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -190,21 +116,6 @@
 <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#summernote').summernote();
-    });
-
-    $('#editModal').on('show.bs.modal', function (event) {
-      var button = $(event.relatedTarget) // Button that trigg  ered the modal
-      var modal = $(this)
-
-      modal.find('.modal-body #id').val(button.data('id'))
-      modal.find('.modal-body #nama').val(button.data('nama'))
-    //   document.cookie = "wadaw="+button.data('content');
-      var content = button.data('content');
-      $('#summernoteEdit').summernote('code', content);
-    })
-
     $('#hapusModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that trigg  ered the modal
         var modal = $(this)

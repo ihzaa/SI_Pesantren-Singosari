@@ -123,7 +123,7 @@
 
             <li class="nav-item {{request()->is('4dm1n/kelola-artikel*') ? 'active open' : ''}}">
                 <a class="nav-link" href="{{route('kelola_artikel')}}">
-                    <i class="fas fa-bullhorn"></i>
+                    <i class="far fa-newspaper"></i>
                     <span>Kelola Artikel</span></a>
             </li>
 

@@ -91,7 +91,11 @@ Route::prefix('4dm1n')->middleware('CekStatusAdmin')->group(function () {
 
     #####################
     Route::get('/kelola-artikel', 'adminController@kelola_artikel')->name('kelola_artikel');
+    Route::get('/kelola-artikel/tambah/artikel', function () {
+        return view('admin.tambah_edit_artikel');
+    })->name('tambahArtikel');
     Route::post('/kelola-artikel/tambah', 'adminController@storeArtikel')->name('storeArtikel');
+    Route::get('/kelola-artikel/edit/{id}', 'adminController@bukaeditArtikel')->name('bukaeditArtikel');
     Route::post('/kelola-artikel/edit', 'adminController@editArtikel')->name('editArtikel');
     Route::post('/kelola-artikel/hapus', 'adminController@hapusArtikel')->name('hapusArtikel');
 });
