@@ -87,7 +87,8 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background : linear-gradient(to right, #1c648f 30%, #4281a7 89%);">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top"
+        style="background : linear-gradient(to right, #1c648f 30%, #4281a7 89%);">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img class="img-fluid" src="/img/logo.png" alt="" style="height: 45px;">
@@ -201,7 +202,8 @@
 
                                 </div>
                                 <?php
-                                    echo '<p class="text-lg mb-0">'.str_limit($p->isi,60)."</p>";
+                                    $str = preg_replace('/(<i>)|(<\/i>)|(<strong>)|(<\/strong>)|(<br>)|(<hr>)|(<u>)|(<\/u>)/', '', str_limit($p->isi,80));
+                                    echo '<p class="text-lg mb-0">'.$str."</p>";
                                 ?>
                             </div>
                         </div>
@@ -429,7 +431,8 @@
                 <div class="col-lg-4 col-xs-12" style="color: aliceblue">
                     <br>
                     <h4 class="mt-lg-0 mt-sm-4">Lokasi</h4>
-                    <p><i class="fas fa-map-marker-alt mr-3"></i> Jl. Sempit Biru Desa Gunungrejo Kecamatan Singosari Kabupaten Malang Jawa Timur 65153</p>
+                    <p><i class="fas fa-map-marker-alt mr-3"></i> Jl. Sempit Biru Desa Gunungrejo Kecamatan Singosari
+                        Kabupaten Malang Jawa Timur 65153</p>
                     <h4 class="mt-lg-0 mt-sm-4">Telepon</h4>
                     <p class="mb-0"><i class="fa fa-phone mr-3"></i>081359069006</p>
                 </div>
@@ -474,11 +477,11 @@
                     // Using jQuery's animate() method to add smooth page scroll
                     // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
                     $('html, body').animate({
-                        scrollTop: $(hash).offset().top
+                        scrollTop: $(hash).offset().top - 40
                     }, 800, function(){
 
                         // Add hash (#) to URL when done scrolling (default click behavior)
-                        window.location.hash = hash;
+                        // window.location.hash = hash;
                     });
                     }  // End if
                 });

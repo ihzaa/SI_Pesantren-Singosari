@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Response;
 use \App\santri;
+use \App\artikel;
+use \App\gambarArtikel;
 
 class adminController extends Controller
 {
@@ -93,7 +95,7 @@ class adminController extends Controller
             Session::flush();
             Session::flash('pesan', 'Password Berhasil Diubah Silahkan Login Kembali dengan Password Baru');
             return redirect('/4dm1n/login');
-        }else{
+        } else {
             Session::flash('color', 'alert-danger');
             Session::flash('pesan', 'Password Lama Salah !!');
             return back();
@@ -1011,5 +1013,109 @@ class adminController extends Controller
         Session::flash('color', 'alert-danger');
         Session::flash('pesan', 'Berhasil Hapus Kelas');
         return back();
+    }
+
+    public function kelola_artikel()
+    {
+        $artikel = artikel::get();
+        return view('admin.kelola_artikel', compact('artikel'));
+    }
+
+    public function storeArtikel(Request $request)
+    {
+        $detail = $request->content;
+
+        $dom = new \domdocument();
+        $dom->loadHtml($detail, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $images = $dom->getelementsbytagname('img');
+        $summernote = new artikel;
+        $summernote->save();
+
+        //loop over img elements, decode their base64 src and save them to public folder,
+        //and then replace base64 src with stored image URL.
+        foreach ($images as $k => $img) {
+            $data = $img->getattribute('src');
+
+            list($type, $data) = explode(';', $data);
+            list(, $data)      = explode(',', $data);
+
+            $data = base64_decode($data);
+            $image_name = time() . $k . '.png';
+            $path = '/artikel/' . $image_name;
+            gambarArtikel::insert([
+                'nama' => $path,
+                'id_artikel' => $summernote->id
+            ]);
+            file_put_contents(public_path() . $path, $data);
+
+            $img->removeattribute('src');
+            $img->setattribute('src', $path);
+        }
+
+        $detail = $dom->savehtml();
+        $summernote->nama = $request->nama;
+        $summernote->content = $detail;
+        $summernote->save();
+
+        Session::flash('color', 'alert-success');
+        Session::flash('pesan', 'Berhasil Menambahkan Artikel');
+        return redirect('/4dm1n/kelola-artikel');
+    }
+
+    public function editArtikel(Request $request)
+    {
+        $detail = $request->content;
+
+        $dom = new \domdocument();
+        $dom->loadHtml($detail, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $images = $dom->getelementsbytagname('img');
+        $summernote = artikel::find($request->id);
+
+        //loop over img elements, decode their base64 src and save them to public folder,
+        //and then replace base64 src with stored image URL.
+        foreach ($images as $k => $img) {
+            $data = $img->getattribute('src');
+
+            list($type, $data) = explode(';', $data);
+            list(, $data)      = explode(',', $data);
+
+            $data = base64_decode($data);
+            $image_name = time() . $k . '.png';
+            $path = 'artikel/' . $image_name;
+            gambarArtikel::insert([
+                'nama' => $path,
+                'id_artikel' => $summernote->id
+            ]);
+            file_put_contents($path, $data);
+
+            $img->removeattribute('src');
+            $img->setattribute('src', '/' . $path);
+        }
+
+        $detail = $dom->savehtml();
+        $summernote->nama = $request->nama;
+        $summernote->content = $detail;
+        $summernote->save();
+
+        Session::flash('color', 'alert-success');
+        Session::flash('pesan', 'Berhasil Merubah Artikel');
+        return redirect('/4dm1n/kelola-artikel');
+    }
+
+    public function hapusArtikel(Request $request)
+    {
+        artikel::where('id', $request->id)->delete();
+
+        $ga = gambarArtikel::where('id_artikel', $request->id)->pluck('nama');
+
+        foreach ($ga as $g) {
+            File::delete(substr($g, 1));
+        }
+
+        gambarArtikel::where('id_artikel', $request->id)->delete();
+
+        Session::flash('color', 'alert-danger');
+        Session::flash('pesan', 'Berhasil Menghapus Artikel');
+        return redirect('/4dm1n/kelola-artikel');
     }
 }

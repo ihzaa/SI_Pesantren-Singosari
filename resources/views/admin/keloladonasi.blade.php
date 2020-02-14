@@ -35,7 +35,23 @@
                     <div class="col">
                         <label>Deskripsi</label>
                         <textarea class="form-control" placeholder="Deskripsi" name="desc" id="desc"
-                            rows="4">{{$data->deskripsi}}</textarea>
+                            rows="12">{{$data->deskripsi}}</textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <ul>
+                            <li>Untuk baris baru gunakan &lt;br&gt;</li>
+                            <li>Untuk garis pembatas gunakan &lt;hr&gt;</li>
+                            <li>Untuk tulisan miring ikuti contoh berikut : &lt;i&gt; KALIMAT YANG INGIN DIMIRINGKAN
+                                &lt;/i&gt;</li>
+                            <li>Untuk garis bawah pada kalimat ikuti contoh berikut : &lt;u&gt; KALIMAT YANG INGIN
+                                DIGARIS BAWAHI
+                                &lt;/u&gt;</li>
+                            <li>Untuk menebalkan huruf ikuti contoh berikut : &lt;strong&gt; KATA ATAU KALIMAT YANG
+                                INGIN DI
+                                TEBALKAN &lt;/strong&gt;</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="form-group row">

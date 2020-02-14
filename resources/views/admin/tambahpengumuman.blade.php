@@ -37,6 +37,9 @@
                     <ul>
                         <li>Untuk baris baru gunakan &lt;br&gt;</li>
                         <li>Untuk garis pembatas gunakan &lt;hr&gt;</li>
+                        <li>Untuk tulisan miring ikuti contoh berikut : &lt;i&gt; KALIMAT YANG INGIN DIMIRINGKAN &lt;/i&gt;</li>
+                        <li>Untuk garis bawah pada kalimat ikuti contoh berikut : &lt;u&gt; KALIMAT YANG INGIN DIGARIS BAWAHI
+                            &lt;/u&gt;</li>
                         <li>Untuk menebalkan huruf ikuti contoh berikut : &lt;strong&gt; KATA ATAU KALIMAT YANG INGIN DI
                             TEBALKAN &lt;/strong&gt;</li>
                     </ul>
@@ -87,7 +90,8 @@
         <div class="form-group row">
             <div class="col">
                 <label>Isi</label>
-                <textarea class="form-control" placeholder="isi" id="isi" name="isi" required="" rows="15">{{$p->isi}}</textarea>
+                <textarea class="form-control" placeholder="isi" id="isi" name="isi" required=""
+                    rows="15">{{$p->isi}}</textarea>
             </div>
         </div>
         <div class="form-group row">
@@ -95,6 +99,9 @@
                 <ul>
                     <li>Untuk baris baru gunakan &lt;br&gt;</li>
                     <li>Untuk garis pembatas gunakan &lt;hr&gt;</li>
+                    <li>Untuk tulisan miring ikuti contoh berikut : &lt;i&gt; KALIMAT YANG INGIN DIMIRINGKAN &lt;/i&gt;</li>
+                    <li>Untuk garis bawah pada kalimat ikuti contoh berikut : &lt;u&gt; KALIMAT YANG INGIN DIGARIS BAWAHI &lt;/u&gt;
+                    </li>
                     <li>Untuk menebalkan huruf ikuti contoh berikut : &lt;strong&gt; KATA ATAU KALIMAT YANG INGIN DI
                         TEBALKAN &lt;/strong&gt;</li>
                 </ul>

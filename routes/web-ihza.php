@@ -72,7 +72,7 @@ Route::prefix('4dm1n')->middleware('CekStatusAdmin')->group(function () {
     Route::get('/kelola-pengumuman/edit/{id}/{judul}', 'adminController@admineditpengumuman')->name('admineditpengumuman');
     Route::POST('/kelola-pengumuman/edit/ya', 'adminController@admineditpengumumanya')->name('admineditpengumumanya');
 
-
+    ####################
     Route::get('/kelola-pembelajaran/{id_ta}/kelola-kelas/{id_kls}/mata-pelajaran', 'adminController@kelas_matpel')->name('kelola_kelas_ta');
     Route::post('/kelola-pembelajaran/tambah-matpel-pengajar', 'adminController@kelas_matpel_tambah')->name('kelas_matpel_tambah');
     Route::post('/kelola-pembelajaran/hapus-matpel-pengajar', 'adminController@kelas_matpel_hapus')->name('kelas_matpel_hapus');
@@ -84,8 +84,14 @@ Route::prefix('4dm1n')->middleware('CekStatusAdmin')->group(function () {
     Route::post('/kelola-pembelajaran/kelas/tambah', 'adminController@tambah_kelas_ta')->name('tambah_kelas_ta');
     Route::post('/kelola-pembelajaran/kelas/hapus', 'adminController@hapus_kelas_ta')->name('hapus_kelas_ta');
 
-    Route::get('/kelola-profil','adminController@kelola_profil')->name('kelola_profil');
-
+    #################
+    Route::get('/kelola-profil', 'adminController@kelola_profil')->name('kelola_profil');
     Route::post('/kelola-profil/ubah-username', 'adminController@ubah_username')->name('ubah_username');
     Route::post('/kelola-profil/ubah-password', 'adminController@ubah_password')->name('ubah_password');
+
+    #####################
+    Route::get('/kelola-artikel', 'adminController@kelola_artikel')->name('kelola_artikel');
+    Route::post('/kelola-artikel/tambah', 'adminController@storeArtikel')->name('storeArtikel');
+    Route::post('/kelola-artikel/edit', 'adminController@editArtikel')->name('editArtikel');
+    Route::post('/kelola-artikel/hapus', 'adminController@hapusArtikel')->name('hapusArtikel');
 });

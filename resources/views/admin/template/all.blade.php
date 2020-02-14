@@ -121,6 +121,12 @@
                     <span>Kelola Informasi</span></a>
             </li>
 
+            <li class="nav-item {{request()->is('4dm1n/kelola-artikel*') ? 'active open' : ''}}">
+                <a class="nav-link" href="{{route('kelola_artikel')}}">
+                    <i class="fas fa-bullhorn"></i>
+                    <span>Kelola Artikel</span></a>
+            </li>
+
             <hr class="sidebar-divider mb-0">
 
             <li class="nav-item">
