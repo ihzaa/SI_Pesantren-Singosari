@@ -1051,24 +1051,26 @@ class adminController extends Controller
             $img->removeattribute('src');
             $img->setattribute('src', $path);
         }
-        $i = 0;
-        foreach ($request->file('file') as $r) {
-            $filename = $r->getClientOriginalName();
-            $extension = $r->getClientOriginalExtension();
+        if ($request->file != null) {
+            $i = 0;
+            foreach ($request->file('file') as $r) {
+                $filename = $r->getClientOriginalName();
+                $extension = $r->getClientOriginalExtension();
 
-            // File upload location
-            $location = 'artikel';
-            $nameUpload = time() . $i++ . '.' . $extension;
-            // Upload file
-            $r->move($location, $nameUpload);
+                // File upload location
+                $location = 'artikel';
+                $nameUpload = time() . $i++ . '.' . $extension;
+                // Upload file
+                $r->move($location, $nameUpload);
 
-            // Import CSV to Database
-            $filepath = $location . "/" . $nameUpload;
-            \App\file_artikel::insert([
-                'nama' => $filename,
-                'path' => $filepath,
-                'id_artikel' => $summernote->id
-            ]);
+                // Import CSV to Database
+                $filepath = $location . "/" . $nameUpload;
+                \App\file_artikel::insert([
+                    'nama' => $filename,
+                    'path' => $filepath,
+                    'id_artikel' => $summernote->id
+                ]);
+            }
         }
 
         $detail = $dom->savehtml();
@@ -1120,24 +1122,26 @@ class adminController extends Controller
                 $img->setattribute('src', '/' . $path);
             }
         }
-        $i = 0;
-        foreach ($request->file('file') as $r) {
-            $filename = $r->getClientOriginalName();
-            $extension = $r->getClientOriginalExtension();
+        if ($request->file != null) {
+            $i = 0;
+            foreach ($request->file('file') as $r) {
+                $filename = $r->getClientOriginalName();
+                $extension = $r->getClientOriginalExtension();
 
-            // File upload location
-            $location = 'artikel';
-            $nameUpload = time() . $i++ . '.' . $extension;
-            // Upload file
-            $r->move($location, $nameUpload);
+                // File upload location
+                $location = 'artikel';
+                $nameUpload = time() . $i++ . '.' . $extension;
+                // Upload file
+                $r->move($location, $nameUpload);
 
-            // Import CSV to Database
-            $filepath = $location . "/" . $nameUpload;
-            \App\file_artikel::insert([
-                'nama' => $filename,
-                'path' => $filepath,
-                'id_artikel' => $summernote->id
-            ]);
+                // Import CSV to Database
+                $filepath = $location . "/" . $nameUpload;
+                \App\file_artikel::insert([
+                    'nama' => $filename,
+                    'path' => $filepath,
+                    'id_artikel' => $summernote->id
+                ]);
+            }
         }
 
         $detail = $dom->savehtml();

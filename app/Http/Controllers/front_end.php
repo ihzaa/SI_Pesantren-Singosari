@@ -25,14 +25,13 @@ class front_end extends Controller
             if ($request->id > 0) {
                 $data = DB::table('pengumuman')
                     ->where('id', '<=', $request->id)
-                    ->where('prioritas', 'n')
                     ->orderBy('id', 'DESC')
                     ->limit(4)
                     ->get();
-            }else if( $request->id == 0){
+            } else if ($request->id == 0) {
                 $data = DB::table('pengumuman')
-                ->where('id',50)
-                ->get();
+                    ->where('id', 'abc')
+                    ->get();
             } else {
                 $data = DB::table('pengumuman')
                     ->orderBy('id', 'DESC')
@@ -48,11 +47,12 @@ class front_end extends Controller
                 foreach ($data as $row) {
                     $output .= '
                     <div class="col-xl-3 col-md-3 col-sm-12 col-xs-12  mt-4 ">
+                    <a href="/informasi/' . $row->id . '/.' . $row->judul . '">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <a href="/informasi/' . $row->id . '/.' . $row->judul . '">
+
                                     <h6 class="m-0 font-weight-bold text-primary">' . $row->judul . '</h6>
-                                </a>
+
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -62,9 +62,10 @@ class front_end extends Controller
                                         </a>
                                     </div>
                                 </div>
-                                <p class="text-lg mb-0">' . str_limit($row->isi, 60) . '</p>
+                                <p class="text-lg mb-0 text-dark">' . str_limit($row->isi, 60) . '</p>
                             </div>
                         </div>
+                        </a>
                     </div>
                     ';
                     $last_id = $row->id - 1;
@@ -86,16 +87,69 @@ class front_end extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *<?php
-     *                              echo "<p class="text-lg mb-0">'.str_limit($row->isi,60).'</p>";
-     *                         ?>
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function liat_artikel($id)
     {
-        //
+        $artikel = \App\artikel::find($id);
+        return view('front-end.Information.artikel', compact('artikel'));
+    }
+
+    function load_data_artikel(Request $request)
+    {
+        if ($request->ajax()) {
+            if ($request->id > 0) {
+                $data = DB::table('artikels')
+                    ->where('id', '>', $request->id)
+                    ->orderBy('id', 'ASC')
+                    ->limit(4)
+                    ->get();
+            } else if ($request->id == 0) {
+                $data = DB::table('artikels')
+                    ->where('id', 'asd')
+                    ->get();
+            }
+            $output = '';
+            $last_id = '';
+
+            if (!$data->isEmpty()) {
+                $output .= '<div class="row justify-content-center" style="background-color: #4281A7;">';
+                foreach ($data as $row) {
+                    $output .= '
+                    <div class="col-xl-3 col-md-3 col-sm-12 col-xs-12 mt-4 hideme box">
+                    <a href="/lihat/artikel/'.$row->id.'">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+
+                                    <h6 class="m-0 font-weight-bold text-primary">'.$row->nama.'</h6>
+
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col ">
+                                        '.'<p class="mb-0 text-dark">'.strip_tags(html_entity_decode(str_limit($row->content,80))).'</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    ';
+                    $last_id = $row->id;
+                }
+                $output .= '</div>';
+                $output .= '
+                    <div id="load_more">
+                        <button type="button" name="load_more_button" class="btn btn-outline-light" data-id="' . $last_id . '" id="load_more_button_artikel">Lihat Lainnya</button>
+                    </div>
+                    ';
+            } else {
+                $output .= '
+                    <div id="load_more">
+                        <button type="button" name="load_more_button" class="btn btn-warning">Semua Artikel Sudah di Tampilkan</button>
+                    </div>
+                    ';
+            }
+            echo $output;
+        }
     }
 
     /**
@@ -118,8 +172,8 @@ class front_end extends Controller
     public function pengumuman($id, $nama)
     {
         $pengumuman = \App\pengumuman::where('id', $id)->first();
-        $other = \App\pengumuman::where('id','!=',$id)->orderBy('id','DESC')->get()->take(10);
-        return view('front-end.Information.pengumuman', compact('pengumuman','other'));
+        $other = \App\pengumuman::where('id', '!=', $id)->orderBy('id', 'DESC')->get()->take(10);
+        return view('front-end.Information.pengumuman', compact('pengumuman', 'other'));
     }
 
     /**

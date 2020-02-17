@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <meta charset="utf-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -37,11 +37,11 @@
             <h1 class="mt-4 text-center">Developer</h1>
         </div>
 
-        <div class="row">
+        <div class="row mb-3">
             <!-- Post Content Column -->
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="card">
-                    <img class="card-img-top" src="/img/evi.jpeg" alt="Card image cap">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mb-2">
+                <div class="card shadow">
+                    {{-- <img class="card-img-top" src="/img/evi.jpeg" alt="Card image cap"> --}}
                     <div class="card-body">
                         <h5 class="card-title">Evi Febrion Rahayuningtyas</h5>
                         <p class="card-text">Tulungageng</p>
@@ -49,9 +49,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="card">
-                    <img class="card-img-top" src="/img/ihza.jpg" alt="Card image cap">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mb-2">
+                <div class="card shadow">
+                    {{-- <img class="card-img-top" src="/img/ihza.jpg" alt="Card image cap"> --}}
                     <div class="card-body">
                         <h5 class="card-title">Ihza Ahmad Abror Amrullah</h5>
                         <p class="card-text">Balikpapan</p>
@@ -59,9 +59,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="card">
-                    <img class="card-img-top" src="/img/eko.jpg" alt="Card image cap">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mb-2">
+                <div class="card shadow">
+                    {{-- <img class="card-img-top" src="/img/eko.jpg" alt="Card image cap"> --}}
                     <div class="card-body">
                         <h5 class="card-title">Eko Sugeng Cahyadi</h5>
                         <p class="card-text">Sampit</p>
@@ -76,15 +76,12 @@
         </div>
 
     </div>
-    <!-- /.row -->
-
-    </div>
     <!-- /.container -->
 
     <!-- Footer -->
-    <footer class="py-3 page-footer" style="background-color: #4281A7">
+    <footer class="py-3" style="background-color: #4281A7;position: absolute; bottom: 0;width: 100%;">
         <div class="container">
-            <p class="m-0 text-center text-white">Pondok Pesantren Dunia Akhirat</p>
+            <p class="m-0 text-center text-white">Pondok Pesantren Negeri Akhirat</p>
         </div>
         <!-- /.container -->
     </footer>

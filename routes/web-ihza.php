@@ -1,11 +1,14 @@
 <?php
 Route::post('/logincek', 'adminController@cek');
-Route::get('/developer',function(){
+Route::get('/developer', function () {
     return view('front-end.Information.developer');
 })->name('liatDev');
 
+Route::get('/lihat/artikel/{id}', 'front_end@liat_artikel')->name('liat_artikel');
+
 Route::get('4dm1n/login', 'adminController@index')->name('loginadmin');
 Route::post('/get/pengumuman/baru', 'front_end@load_data')->name('loadpengumuman');
+Route::post('/get/artikel/baru', 'front_end@load_data_artikel')->name('loadartikel');
 
 Route::prefix('4dm1n')->middleware('CekStatusAdmin')->group(function () {
 

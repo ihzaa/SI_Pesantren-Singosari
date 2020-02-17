@@ -111,6 +111,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#donasi">Donasi</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#artikel">Artikel</a>
+                    </li>
                 </ul>
                 <a href="{{route('userlogin')}}" type="button" class="btn btn-sm btn-outline-info text-white"
                     style="border-style: none;">LOGIN<i class=""></i></a>
@@ -169,94 +172,92 @@
                 <span class="carousel-control-next-icon"></span>
             </a>
         </div>
+    </div>
+    <!-- Akhir Carousel -->
 
-        <!-- Akhir Carousel -->
-
-        {{-- Pengumuman --}}
-        <div id="pengumuman" class="container-fluid text-center pt-4 pb-4" style="background-color: #4281A7;">
-            {{-- #428bca --}}
-            <div id="kotakpengumuman">
-                <h2 style="color: aliceblue"> INFORMASI </h2>
-                <div class="row justify-content-center box-wrap" style="background-color: #4281A7;">
-                    <?php
+    {{-- Pengumuman --}}
+    <div id="pengumuman" class="container-fluid text-center pt-4 pb-4" style="background-color: #4281A7;">
+        {{-- #428bca --}}
+        <div id="kotakpengumuman">
+            <h2 style="color: aliceblue"> INFORMASI </h2>
+            <div class="row justify-content-center box-wrap" style="background-color: #4281A7;">
+                <?php
                         $last_id = 0;
                     ?>
-                    @foreach(\App\pengumuman::where('prioritas','y')->get() as $p)
+                @foreach(\App\pengumuman::where('prioritas','y')->get() as $p)
 
 
-                    <div class="col-xl-3 col-md-3 col-sm-12 col-xs-12 mt-4 hideme box">
-
+                <div class="col-xl-3 col-md-3 col-sm-12 col-xs-12 mt-4 hideme box">
+                    <a href="/informasi/{{$p->id}}/{{$p->judul}}">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <a href="/informasi/{{$p->id}}/{{$p->judul}}">
-                                    <h6 class="m-0 font-weight-bold text-primary">{{$p->judul}}</h6>
-                                </a>
+
+                                <h6 class="m-0 font-weight-bold text-primary">{{$p->judul}}</h6>
+
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col ">
-                                        <a href="/informasi/{{$p->id}}/{{$p->judul}}">
-                                            <img src="{{$p->foto}}" alt="image" class="img-fluid">
-                                        </a>
+                                        <img src="{{$p->foto}}" alt="image" class="img-fluid">
                                     </div>
 
                                 </div>
                                 <?php
                                     $str = preg_replace('/(<i>)|(<\/i>)|(<strong>)|(<\/strong>)|(<br>)|(<hr>)|(<u>)|(<\/u>)/', '', str_limit($p->isi,80));
-                                    echo '<p class="text-lg mb-0">'.$str."</p>";
+                                    echo '<p class="text-lg mb-0 text-dark">'.$str."</p>";
                                 ?>
                             </div>
                         </div>
-                    </div>
-                    @endforeach
+                    </a>
                 </div>
-                {{ csrf_field() }}
-                <div id="load_more">
-                    <button type="button" name="load_more_button" class="btn btn-outline-light"
-                        data-id="{{\App\pengumuman::where('prioritas','n')->orderBy('id','DESC')->pluck('id')->first()}}"
-                        id="load_more_button">Lihat Lainnya</button>
-                </div>
+                @endforeach
+            </div>
+            {{ csrf_field() }}
+            <div id="load_more">
+                <button type="button" name="load_more_button" class="btn btn-outline-light"
+                    data-id="{{\App\pengumuman::where('prioritas','n')->orderBy('id','DESC')->pluck('id')->first()}}"
+                    id="load_more_button">Lihat Lainnya</button>
             </div>
         </div>
-        <!-- Donasi -->
-        <section id="donasi" class="features p-1 pt-4" style="background-color: #4192C2">
-            <div class="container-fluid">
-                <div class="row" style="">
-                    <div class="col-xl-12">
-                        <div class="card shadow mb-4 align-content-center">
-                            <div class="card-header py-3 text-center">
-                                <h3 class="m-0 font-weight-bold text-primary">DONASI</h3>
-                            </div>
-                            <div class="card-body mx-2">
-                                <div class="tab-content">
-                                    <?php
+    </div>
+    <!-- Donasi -->
+    <section id="donasi" class="features p-1 pt-4" style="background-color: #4192C2">
+        <div class="container-fluid">
+            <div class="row" style="">
+                <div class="col-xl-12">
+                    <div class="card shadow mb-4 align-content-center">
+                        <div class="card-header py-3 text-center">
+                            <h3 class="m-0 font-weight-bold text-primary">DONASI</h3>
+                        </div>
+                        <div class="card-body mx-2">
+                            <div class="tab-content">
+                                <?php
                                     $i = \App\donasi::first();
                                 ?>
-                                    {{-- DONASI OPERASIONAL --}}
-                                    <div class="tab-pane active" role="tabpanel" id="donasi1">
-                                        <div class="row">
-                                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                                <div class="row justify-content-center">
-                                                    {{$i->judul}}
+                                {{-- DONASI OPERASIONAL --}}
+                                <div class="tab-pane active" role="tabpanel" id="donasi1">
+                                    <div class="row">
+                                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                            <div class="row justify-content-center">
+                                                {{$i->judul}}
 
-                                                </div>
-                                                <div class="row mr-2">
-                                                    {{$i->deskripsi}}
-                                                </div>
-                                                <div
-                                                    class="row mt-4 justify-content-center text-center align-content-center">
-                                                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                                                        <img src="{{$i->foto}}" class="img-fluid" alt="Gambar apa gitu">
-                                                    </div>
+                                            </div>
+                                            <div class="row mr-2">
+                                                {{$i->deskripsi}}
+                                            </div>
+                                            <div
+                                                class="row mt-4 justify-content-center text-center align-content-center">
+                                                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                                    <img src="{{$i->foto}}" class="img-fluid" alt="Gambar apa gitu">
                                                 </div>
                                             </div>
-                                            <div id="kolomkanandonasi"
-                                                class="col-lg-4 col-md-4 col-sm-12 col-sm-12 border-left-secondary shadow">
-                                                <div
-                                                    class="row text-center align-content-center justify-content-center">
-                                                    Donasi Yang Diperlukan <p><br></p>
-                                                </div>
-                                                <?php
+                                        </div>
+                                        <div id="kolomkanandonasi"
+                                            class="col-lg-4 col-md-4 col-sm-12 col-sm-12 border-left-secondary shadow">
+                                            <div class="row text-center align-content-center justify-content-center">
+                                                Donasi Yang Diperlukan <p><br></p>
+                                            </div>
+                                            <?php
                                                     $i = \App\donasi::first()->Target;
                                                     $i_arr = str_split(strrev($i),3);
                                                     $tlt = "";
@@ -270,14 +271,12 @@
                                                     // implode($tlt);
                                                     $tlt = strrev($tlt);
                                                 ?>
-                                                <div
-                                                    class="row text-center align-content-center justify-content-center">
-                                                    <h3><strong>Rp. {{$tlt}}</strong></h3>
-                                                    <p><br><br></p>
-                                                </div>
-                                                <div class="progress d-flex justify-content-center"
-                                                    style="height: 70px;">
-                                                    <?php
+                                            <div class="row text-center align-content-center justify-content-center">
+                                                <h3><strong>Rp. {{$tlt}}</strong></h3>
+                                                <p><br><br></p>
+                                            </div>
+                                            <div class="progress d-flex justify-content-center" style="height: 70px;">
+                                                <?php
                                                     $j = \App\donasi_masuk::get()->pluck('nominal');
                                                     $total = 0;
                                                     for($a = 0; $a < count($j); $a++){
@@ -285,28 +284,27 @@
                                                     }
                                                   $persen = $total / $i *100;
                                                 ?>
-                                                    <div class="progress-bar progress-bar-striped progress-bar-animated mr-auto"
-                                                        role="progressbar" style="width: {{$persen}}%;"
-                                                        aria-valuenow="{{$persen}}" aria-valuemin="0"
-                                                        aria-valuemax="100">
-                                                    </div>
-                                                    <h4 class="mt-3" style="color: black;position: absolute;">
-                                                        {{round($persen)}} %</h4>
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated mr-auto"
+                                                    role="progressbar" style="width: {{$persen}}%;"
+                                                    aria-valuenow="{{$persen}}" aria-valuemin="0" aria-valuemax="100">
                                                 </div>
-                                                <div
-                                                    class="row mt-2 text-center align-content-center justify-content-center">
-                                                    <p><br></p>
-                                                    Donasi yang terkumpul
-                                                </div>
-                                                <div
-                                                    class="row mt-2 text-center align-content-center justify-content-center">
+                                                <h4 class="mt-3" style="color: black;position: absolute;">
+                                                    {{round($persen)}} %</h4>
+                                            </div>
+                                            <div
+                                                class="row mt-2 text-center align-content-center justify-content-center">
+                                                <p><br></p>
+                                                Donasi yang terkumpul
+                                            </div>
+                                            <div
+                                                class="row mt-2 text-center align-content-center justify-content-center">
 
 
 
-                                                    @foreach(\App\donasi_masuk::orderBy('dibuat','desc')->take(3)->get()
-                                                    as
-                                                    $item)
-                                                    <?php
+                                                @foreach(\App\donasi_masuk::orderBy('dibuat','desc')->take(3)->get()
+                                                as
+                                                $item)
+                                                <?php
                                                         $i = $item->nominal;
                                                         $i_arr = str_split(strrev($i),3);
                                                         $tlt = "";
@@ -321,95 +319,110 @@
                                                         $tlt = strrev($tlt);
                                                         ?>
 
-                                                    {{ucfirst($item->nama)}} - Rp. {{$tlt}} -
-                                                    {{Carbon\Carbon::parse($item->dibuat)->diffForHumans()}}<br>
-                                                    @endforeach
-
-                                                </div>
+                                                {{ucfirst($item->nama)}} - Rp. {{$tlt}} -
+                                                {{Carbon\Carbon::parse($item->dibuat)->diffForHumans()}}<br>
+                                                @endforeach
 
                                             </div>
+
                                         </div>
                                     </div>
+                                </div>
 
 
-                                    {{-- DONASI PEMBANGUNAN --}}
-                                    <div class="tab-pane" role="tabpanel" id="donasi2">
-                                        <div class=" row">
-                                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                                <div class="row ml-2 justify-content-center">
-                                                    INI JUDUL
+                                {{-- DONASI PEMBANGUNAN --}}
+                                <div class="tab-pane" role="tabpanel" id="donasi2">
+                                    <div class=" row">
+                                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                            <div class="row ml-2 justify-content-center">
+                                                INI JUDUL
 
-                                                </div>
-                                                <div class="row ml-2 mr-2">
-                                                    IYA DESKRIPSI
-                                                </div>
-                                                <div
-                                                    class="row mt-4 justify-content-center text-center align-content-center">
-                                                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                                                        <img src="" class="img-fluid" alt="Gambar apa gitu">
-                                                    </div>
+                                            </div>
+                                            <div class="row ml-2 mr-2">
+                                                IYA DESKRIPSI
+                                            </div>
+                                            <div
+                                                class="row mt-4 justify-content-center text-center align-content-center">
+                                                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                                    <img src="" class="img-fluid" alt="Gambar apa gitu">
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4 col-md-4 col-sm-12 col-sm-12 border-left-secondary">
-                                                <div class="row ml-2 ">Donasi Yang Diperlukan <p><br></p>
-                                                </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-sm-12 border-left-secondary">
+                                            <div class="row ml-2 ">Donasi Yang Diperlukan <p><br></p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="">
-                                <h5>
-                                    {{-- TAB DONASI --}}
-                                    <ul class="nav nav-pills justify-content-center" id="myTab" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#donasi1"
-                                                role="tab" aria-selected="true">Operasional</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#donasi2"
-                                                role="tab" aria-selected="false">Pembangunan</a>
-                                        </li>
-                                    </ul>
+                        </div>
+                        <hr>
+                        <div class="">
+                            <h5>
+                                {{-- TAB DONASI --}}
+                                <ul class="nav nav-pills justify-content-center" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#donasi1"
+                                            role="tab" aria-selected="true">Operasional</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#donasi2"
+                                            role="tab" aria-selected="false">Pembangunan</a>
+                                    </li>
+                                </ul>
 
-                                </h5>
-                            </div>
+                            </h5>
                         </div>
                     </div>
                 </div>
             </div>
-    </div>
-    <!-- Akhir Donasi -->
+        </div>
+        <!-- Akhir Donasi -->
+    </section>
 
-    {{-- Alamat--}}
-    {{-- <section class="features bg-secondary p-5">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="card shadow mb-4 align-content-center">
-                            <div class="card-header py-3 text-center">
-                                <h6 class="m-0 font-weight-bold text-primary">Alamat</h6>
+    {{-- Artikel --}}
+    <div id="artikel" class="container-fluid text-center pt-4 pb-4" style="background-color: #4281A7;">
+        {{-- #428bca --}}
+        <div id="kotakartikel">
+            <h2 style="color: aliceblue"> ARTIKEL </h2>
+            <div class="row justify-content-center box-wrap" style="background-color: #4281A7;">
+                <?php
+                    $lastid = 0;
+                ?>
+                @foreach(\App\artikel::take(4)->get() as $p)
+                <div class="col-xl-3 col-md-3 col-sm-12 col-xs-12 mt-4 hideme box">
+                    <a href="/lihat/artikel/{{$p->id}}">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+
+                                <h6 class="m-0 font-weight-bold text-primary">{{$p->nama}}</h6>
+
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-4 align-content-center justify-content-center">
-                                        <div class="progress" style="height: 100px;">
-                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                                role="progressbar" style="width: 25%;" aria-valuenow="25"
-                                                aria-valuemin="0" aria-valuemax="100">25%<br></div>
-                                        </div>
+                                    <div class="col ">
+                                        <?php
+                                    echo '<p class="mb-0 text-dark">'.strip_tags(html_entity_decode(str_limit($p->content,80)))."</p>";
+                                    ?>
                                     </div>
                                 </div>
-                                <hr>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-            </div>--}}
-    </section>
+                <?php
+                    $last_id = $p->id;
+                ?>
+                @endforeach
+            </div>
+            {{ csrf_field() }}
+            <div id="load_more_artikel">
+                <button type="button" name="load_more_button" class="btn btn-outline-light" data-id="{{$last_id}}"
+                    id="load_more_button_artikel">Lihat Lainnya</button>
+            </div>
+        </div>
+    </div>
 
-    {{-- Akhir Alamat --}}
 
     <!-- Footer -->
     <div class="pt-5 pb-5 footer" style="background :linear-gradient(to right, #1c648f 30%, #4281a7 89%);">
@@ -518,6 +531,32 @@
                     });
                 });
 
+    //AJAX LOAD MORE ARTIKEL DISINI YA
+    $(document).ready(function(){
+
+        var _token = $('input[name="_token"]').val();
+
+
+        function load_data_artikel(id="", _token)
+        {
+            $.ajax({
+                url:"{{ route('loadartikel') }}",
+                method:"POST",
+                data:{id:id, _token:_token},
+                success:function(data)
+                {
+                    $('#load_more_button_artikel').remove();
+                    $('#kotakartikel').append(data);
+                }
+            })
+        }
+
+        $(document).on('click', '#load_more_button_artikel', function(){
+            var id = $(this).data('id');
+            $('#load_more_button_artikel').html('<b>Tunggu...</b>');
+            load_data_artikel(id, _token);
+        });
+    });
 
 
 

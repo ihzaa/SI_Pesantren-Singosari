@@ -186,7 +186,7 @@
     <!-- Footer -->
     <footer class="py-3 " style="background-color: #4281A7">
         <div class="container">
-            <p class="m-0 text-center text-white">Pondok Pesantren Dunia Akhirat</p>
+            <p class="m-0 text-center text-white">Pondok Pesantren Negeri Akhirat</p>
         </div>
         <!-- /.container -->
     </footer>
