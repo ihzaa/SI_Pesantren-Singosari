@@ -1,5 +1,8 @@
 <?php
 Route::post('/logincek', 'adminController@cek');
+Route::get('/developer',function(){
+    return view('front-end.Information.developer');
+})->name('liatDev');
 
 Route::get('4dm1n/login', 'adminController@index')->name('loginadmin');
 Route::post('/get/pengumuman/baru', 'front_end@load_data')->name('loadpengumuman');
@@ -98,4 +101,5 @@ Route::prefix('4dm1n')->middleware('CekStatusAdmin')->group(function () {
     Route::get('/kelola-artikel/edit/{id}', 'adminController@bukaeditArtikel')->name('bukaeditArtikel');
     Route::post('/kelola-artikel/edit', 'adminController@editArtikel')->name('editArtikel');
     Route::post('/kelola-artikel/hapus', 'adminController@hapusArtikel')->name('hapusArtikel');
+    Route::post('/kelola-artikel/hapus-file', 'adminController@hapusFileArtikel')->name('hapusFileArtikel');
 });

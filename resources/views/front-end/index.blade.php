@@ -435,6 +435,8 @@
                         Kabupaten Malang Jawa Timur 65153</p>
                     <h4 class="mt-lg-0 mt-sm-4">Telepon</h4>
                     <p class="mb-0"><i class="fa fa-phone mr-3"></i>081359069006</p>
+                    <br>
+                    <a href="{{route('liatDev')}}" class="text-light"><i class="fas fa-code mr-2"></i>Developer</a>
                 </div>
                 </ul>
             </div>

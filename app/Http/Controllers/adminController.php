@@ -1051,11 +1051,32 @@ class adminController extends Controller
             $img->removeattribute('src');
             $img->setattribute('src', $path);
         }
+        $i = 0;
+        foreach ($request->file('file') as $r) {
+            $filename = $r->getClientOriginalName();
+            $extension = $r->getClientOriginalExtension();
+
+            // File upload location
+            $location = 'artikel';
+            $nameUpload = time() . $i++ . '.' . $extension;
+            // Upload file
+            $r->move($location, $nameUpload);
+
+            // Import CSV to Database
+            $filepath = $location . "/" . $nameUpload;
+            \App\file_artikel::insert([
+                'nama' => $filename,
+                'path' => $filepath,
+                'id_artikel' => $summernote->id
+            ]);
+        }
 
         $detail = $dom->savehtml();
         $summernote->nama = $request->nama;
         $summernote->content = $detail;
         $summernote->save();
+
+        // foreach($request->file as)
 
         Session::flash('color', 'alert-success');
         Session::flash('pesan', 'Berhasil Menambahkan Artikel');
@@ -1099,6 +1120,25 @@ class adminController extends Controller
                 $img->setattribute('src', '/' . $path);
             }
         }
+        $i = 0;
+        foreach ($request->file('file') as $r) {
+            $filename = $r->getClientOriginalName();
+            $extension = $r->getClientOriginalExtension();
+
+            // File upload location
+            $location = 'artikel';
+            $nameUpload = time() . $i++ . '.' . $extension;
+            // Upload file
+            $r->move($location, $nameUpload);
+
+            // Import CSV to Database
+            $filepath = $location . "/" . $nameUpload;
+            \App\file_artikel::insert([
+                'nama' => $filename,
+                'path' => $filepath,
+                'id_artikel' => $summernote->id
+            ]);
+        }
 
         $detail = $dom->savehtml();
         $summernote->nama = $request->nama;
@@ -1108,6 +1148,14 @@ class adminController extends Controller
         Session::flash('color', 'alert-success');
         Session::flash('pesan', 'Berhasil Merubah Artikel');
         return redirect('/4dm1n/kelola-artikel');
+    }
+
+    public function hapusFileArtikel(Request $request)
+    {
+        File::delete(\App\file_artikel::where('id', $request->id)->get()[0]->path);
+        \App\file_artikel::where('id', $request->id)->delete();
+
+        return 1;
     }
 
     public function hapusArtikel(Request $request)
