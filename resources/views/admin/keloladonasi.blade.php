@@ -442,7 +442,7 @@
                 type: 'post',
                 url: '/4dm1n/kelola-donasi/total/edit',
                 data: {
-                    'target': trt.replace(",","")
+                    'target': trt.split(',').join('')
                 },
                 success: function(data) {
                     wadaw1();

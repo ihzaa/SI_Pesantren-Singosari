@@ -99,12 +99,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav text-uppercase mx-auto">
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="#">Profil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Akademik</a>
-                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link" href="#pengumuman">Informasi</a>
                     </li>
@@ -115,8 +109,13 @@
                         <a class="nav-link" href="#artikel">Artikel</a>
                     </li>
                 </ul>
-                <a href="{{route('userlogin')}}" type="button" class="btn btn-sm btn-outline-info text-white"
-                    style="border-style: none;">LOGIN<i class=""></i></a>
+                <div>
+                    <a href="{{route('userlogin')}}" type="button" class="btn btn-sm btn-outline-info text-white"
+                        style="border-style: none;">LOGIN<i class=""></i></a>
+                    <i class="far fa-window-minimize fa-rotate-90 ml-2"></i>
+                    <a href="{{route('liatDev')}}" class="btn btn-sm btn-outline-info text-light"
+                        style="border-style: none;"><i class="fas fa-code mr-2"></i>Dev</a>
+                </div>
             </div>
         </div>
     </nav>
